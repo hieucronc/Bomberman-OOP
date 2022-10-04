@@ -5,10 +5,8 @@ import uet.oop.bomberman.entities.Entity;
 
 public abstract class DynamicEntities extends Entity {
     protected int isMove;
-    protected int swap;
+    protected int swapImg;
     protected int direction;
-    protected int count;
-    protected int countToRun;
 
     public DynamicEntities() {
 
@@ -18,12 +16,10 @@ public abstract class DynamicEntities extends Entity {
         super(xUnit, yUnit, img);
     }
 
-    public DynamicEntities(int isMove, int swap, int direction, int count, int countToRun) {
+    public DynamicEntities(int isMove, int swapImg, int direction) {
         this.isMove = isMove;
-        this.swap = swap;
+        this.swapImg = swapImg;
         this.direction = direction;
-        this.count = count;
-        this.countToRun = countToRun;
     }
 
     public int getIsMove() {
@@ -34,12 +30,12 @@ public abstract class DynamicEntities extends Entity {
         this.isMove = isMove;
     }
 
-    public int getSwap() {
-        return swap;
+    public int getswapImg() {
+        return swapImg;
     }
 
-    public void setSwap(int swap) {
-        this.swap = swap;
+    public void setswapImg(int swapImg) {
+        this.swapImg = swapImg;
     }
 
     public int getDirection() {
@@ -47,22 +43,6 @@ public abstract class DynamicEntities extends Entity {
     }
 
     public void setDirection(int direction) {
-        this.swap = direction;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getCountToRun() {
-        return countToRun;
-    }
-
-    public void setCountToRun(int countToRun) {
-        this.countToRun = countToRun;
+        this.swapImg = direction;
     }
 }

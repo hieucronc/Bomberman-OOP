@@ -38,6 +38,7 @@ public class BombermanGame extends Application {
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
+    public static int[][] position = new int [WIDTH][HEIGHT];
 
     public static DynamicEntities bomberman;
 
@@ -95,13 +96,12 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        bomberman = new Bomber(10, 10, Sprite.player_right.getFxImage());
-
-
+        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
         entities.add(bomberman);
     }
     public void createMap() throws Exception{
+        //String url = "../../res/levels/lv1.txt";
         String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
@@ -121,6 +121,7 @@ public class BombermanGame extends Application {
                 Entity object;
                 if (Character.compare(map[i][j],'#') == 0) {
                     object = new Wall(j, i, Sprite.wall.getFxImage());
+                    position[j][i] = 1;
                 }
                 else {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
