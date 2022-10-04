@@ -101,47 +101,29 @@ public class BombermanGame extends Application {
 
         entities.add(bomberman);
     }
-    //doc map tu file txt
-    public List<String> loadMap() throws FileNotFoundException {
-
-        String url = "G:/Backup/HK1/bombermanFull/res/levels/lv1.txt";
+    public void createMap() throws Exception{
+        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
         Scanner scanner = new Scanner(fileInputStream);
-        List<String> map = new ArrayList<>();
-        try {
-            while (scanner.hasNextLine()) {
-                map.add(scanner.nextLine());
-            }
-        } finally {
-            try {
-                scanner.close();
-                fileInputStream.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        int height = scanner.nextInt();
+        int width = scanner.nextInt();
+        scanner.nextLine();
+        char[][] map = new char[height][width];
+        for (int i=0;i<height;i++) {
+            String s = scanner.nextLine();
+            for (int j=0;j<width;j++) {
+                map[i][j] = s.charAt(j);
             }
         }
-        return map;
-    }
-    //tao map
-    public void createMap() throws Exception{
-//        List<String> map = loadMap();
-//
-//
-//        for (int i=0;i< map.size();i++) {
-//            for (int j=0;j < map.get(0).length();j++) {
-//                System.out.print(map.get(i).charAt(j));
-//            }
-//            System.out.println();
-//        }
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
+                if (Character.compare(map[i][j],'#') == 0) {
+                    object = new Wall(j, i, Sprite.wall.getFxImage());
                 }
                 else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
                 }
                 stillObjects.add(object);
             }
