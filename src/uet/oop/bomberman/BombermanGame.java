@@ -31,8 +31,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class BombermanGame extends Application {
     
-    public static final int WIDTH = 30;
-    public static final int HEIGHT = 20;
+    public static final int WIDTH = 20;
+    public static final int HEIGHT = 15;
     
     private GraphicsContext gc;
     private Canvas canvas;
@@ -102,7 +102,7 @@ public class BombermanGame extends Application {
     }
     public void createMap() throws Exception{
         //String url = "../../res/levels/lv1.txt";
-        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
+        String url = "C:/Users/This PC/Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
         Scanner scanner = new Scanner(fileInputStream);

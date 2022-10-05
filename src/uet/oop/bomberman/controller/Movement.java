@@ -1,34 +1,43 @@
 package uet.oop.bomberman.controller;
+
 import uet.oop.bomberman.entities.dynamic.*;
+
 import static uet.oop.bomberman.BombermanGame.*;
+
 import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Movement {
-//    position
+    //    position
 //    public static void checkRun(DynamicEntities dynamicEntities) {
 //        setDirection(dynamicEntities.getDirection(), dynamicEntities, 1);
 //        //dynamicEntities.setCount(dynamicEntities.getCount() - 1);
 //    }
+    public static final int BomberStep = 3;
+    public static int Steptimer = 54;
+
     public static boolean canMoveDown(DynamicEntities dynamicEntities) {
         int x = dynamicEntities.getX() / 32;
         int y = dynamicEntities.getY() / 32;
-        return position[x][y+1] == 0;
+        return position[x][y + 1] == 0;
     }
+
     public static boolean canMoveUp(DynamicEntities dynamicEntities) {
         int x = dynamicEntities.getX() / 32;
         int y = dynamicEntities.getY() / 32;
-        return position[x][y-1] == 0;
+        return position[x][y - 1] == 0;
     }
+
     public static boolean canMoveLeft(DynamicEntities dynamicEntities) {
         int x = dynamicEntities.getX() / 32;
         int y = dynamicEntities.getY() / 32;
-        return position[x-1][y] == 0;
+        return position[x - 1][y] == 0;
     }
+
     public static boolean canMoveRight(DynamicEntities dynamicEntities) {
         int x = dynamicEntities.getX() / 32;
         int y = dynamicEntities.getY() / 32;
-        return position[x+1][y] == 0;
+        return position[x + 1][y] == 0;
     }
 //    private static void setDirection(int direction, DynamicEntities dynamicEntities, int isMove) {
 //        switch (direction) {
@@ -53,8 +62,10 @@ public class Movement {
 
     public static void moveUp(DynamicEntities dynamicEntities) {
         upStep(dynamicEntities);
-        if (canMoveUp(dynamicEntities) == true)  {
-            dynamicEntities.setY(dynamicEntities.getY() - 32);
+        if (canMoveUp(dynamicEntities) == true) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1,
+                    Sprite.player_up_2, dynamicEntities.getY(), Steptimer).getFxImage());
+            dynamicEntities.setY(dynamicEntities.getY() - BomberStep);
         }
 
     }
@@ -78,9 +89,12 @@ public class Movement {
     public static void moveDown(DynamicEntities dynamicEntities) {
         downStep(dynamicEntities);
         if (canMoveDown(dynamicEntities) == true) {
-            dynamicEntities.setY(dynamicEntities.getY() + 32);
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1,
+                    Sprite.player_down_2, dynamicEntities.getY(), Steptimer).getFxImage());
+            dynamicEntities.setY(dynamicEntities.getY() + BomberStep);
         }
     }
+
     private static void downStep(DynamicEntities dynamicEntities) {
         if (dynamicEntities.getswapImg() == 1) {
             dynamicEntities.setImg(Sprite.player_down.getFxImage());
@@ -97,10 +111,13 @@ public class Movement {
         }
 
     }
+
     public static void moveLeft(DynamicEntities dynamicEntities) {
         leftStep(dynamicEntities);
         if (canMoveLeft(dynamicEntities) == true) {
-            dynamicEntities.setX(dynamicEntities.getX() - 32);
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1,
+                    Sprite.player_left_2, dynamicEntities.getX(), Steptimer).getFxImage());
+            dynamicEntities.setX(dynamicEntities.getX() - BomberStep);
         }
     }
 
@@ -123,7 +140,9 @@ public class Movement {
     public static void moveRight(DynamicEntities dynamicEntities) {
         rightStep(dynamicEntities);
         if (canMoveRight(dynamicEntities) == true) {
-            dynamicEntities.setX(dynamicEntities.getX() + 32);
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1,
+                    Sprite.player_right_2, dynamicEntities.getX(), Steptimer).getFxImage());
+            dynamicEntities.setX(dynamicEntities.getX() + BomberStep);
         }
 
     }
