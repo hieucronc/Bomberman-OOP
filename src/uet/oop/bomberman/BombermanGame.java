@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.entities.blocks.Grass;
 import uet.oop.bomberman.entities.blocks.Wall;
 import uet.oop.bomberman.entities.dynamic.Bomber;
@@ -36,8 +37,8 @@ public class BombermanGame extends Application {
     
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
+    public static List<Entity> entities = new ArrayList<>();
+    public List<Entity> stillObjects = new ArrayList<>();
     public static int[][] position = new int [WIDTH][HEIGHT];
 
     public static DynamicEntities bomberman;
@@ -75,6 +76,8 @@ public class BombermanGame extends Application {
                     case RIGHT:
                         Movement.moveRight(bomberman);
                         break;
+                    case SPACE:
+                        Bomb.placeBomb();
                     default:
                         break;
                 }
