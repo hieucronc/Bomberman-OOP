@@ -10,10 +10,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.entities.blocks.Grass;
 import uet.oop.bomberman.entities.blocks.Wall;
+import uet.oop.bomberman.entities.dynamic.Ballom;
 import uet.oop.bomberman.entities.dynamic.Bomber;
+import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
@@ -32,17 +33,17 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class BombermanGame extends Application {
     
-    public static final int WIDTH = 20;
-    public static final int HEIGHT = 15;
+    public static final int WIDTH = 30;
+    public static final int HEIGHT = 20;
     
     private GraphicsContext gc;
     private Canvas canvas;
     public static List<Entity> entities = new ArrayList<>();
-    public List<Entity> stillObjects = new ArrayList<>();
+    private List<Entity> block = new ArrayList<>();
+    public static List<Entity> enemy = new ArrayList<>();
     public static int[][] position = new int [WIDTH][HEIGHT];
 
     public static DynamicEntities bomberman;
-
     public static void main(String[] args) throws Exception {
         Application.launch(BombermanGame.class);
     }
@@ -99,13 +100,15 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
+        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        DynamicEntities ballom = new Ballom(3,1,Sprite.balloom_left3.getFxImage());
+        enemy.add(ballom);
         entities.add(bomberman);
     }
     public void createMap() throws Exception{
         //String url = "../../res/levels/lv1.txt";
-        String url = "C:/Users/This PC/Bomberman_BTL/res/levels/lv1.txt";
+        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
         Scanner scanner = new Scanner(fileInputStream);
@@ -129,7 +132,7 @@ public class BombermanGame extends Application {
                 else {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
                 }
-                stillObjects.add(object);
+                block.add(object);
             }
         }
 
@@ -139,12 +142,16 @@ public class BombermanGame extends Application {
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).update();
         }
+        for (int i = 0; i < enemy.size();i++) {
+            enemy.get(i).update();
+        }
 //        entities.forEach(Entity::update);
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
+        block.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        enemy.forEach(g -> g.render(gc));
     }
 }

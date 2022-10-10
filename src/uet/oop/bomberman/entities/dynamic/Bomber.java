@@ -15,44 +15,42 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
-
+import static uet.oop.bomberman.BombermanGame.*;
 import java.awt.event.ActionEvent;
 
 public class Bomber extends DynamicEntities {
-
     public Bomber(int x, int y, Image img) {
         super( x, y, img);
     }
+    public void checkEnemy() {
+        int ax = this.getX() ;
+        int ay = this.getY() ;
+        for (int i=0;i<enemy.size();i++) {
+            int bx = enemy.get(i).getX() ;
+            int by = enemy.get(i).getY() ;
 
-//    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
-//        if(number == 1){
-//            charactor.setImage(Sprite.player_up.getFxImage());
-//            number = 2;
-//        } else if( number == 2){
-//            charactor.setImage(Sprite.player_up_1.getFxImage());
-//            number = 3;
-//        } else if (number == 3){
-//            charactor.setImage(Sprite.player_up_2.getFxImage());
-//            number = 1;
-//        }
-//    }));
-//
-//    public Bomber(int x, int y, Image img,ImageView charactor) {
-//        super( x, y, img);
-//        this.charactor = charactor;
-//        timeline.setCycleCount(Animation.INDEFINITE);
-//    }
-//
-//    public void startAnimation(){
-//        timeline.play();
-//    }
-//
-//    public void stopAnimation(){
-//        timeline.stop();
-//    }
+            if (ax < bx + 32 &&
+                    ax + 32 > bx &&
+                    ay < by + 32 &&
+                    ay + 32 > by ) {
+                this.life = false;
+                break;
+            }
+        }
+    }
+    public void checkBom() {
 
+    }
+    public void killBomber() {
+        this.setImg(Sprite.movingSprite(Sprite.player_dead1,Sprite.player_dead2,Sprite.player_dead3,this.getY(),100).getFxImage());
+
+    }
     @Override
     public void update() {
-
+        checkBom();
+        checkEnemy();
+        if (this.life == false) {
+            killBomber();
+        }
     }
 }
