@@ -17,6 +17,7 @@ public abstract class Entity {
 
     protected Image img;
 
+    public int frameCount = 0;
     public Entity() {
 
     }
@@ -51,6 +52,14 @@ public abstract class Entity {
     }
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
+    }
+
+    public void updateFrameCount() {
+        if (frameCount > 80) {
+            frameCount = 0;
+        } else {
+            frameCount ++;
+        }
     }
     public abstract void update();
 }

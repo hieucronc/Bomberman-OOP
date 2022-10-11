@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
+import uet.oop.bomberman.BombermanGame;
 import java.awt.event.ActionEvent;
 
 public class Bomber extends DynamicEntities {
@@ -42,8 +43,9 @@ public class Bomber extends DynamicEntities {
 
     }
     public void killBomber() {
-        this.setImg(Sprite.movingSprite(Sprite.player_dead1,Sprite.player_dead2,Sprite.player_dead3,this.getY(),100).getFxImage());
-
+        this.setImg(Sprite.movingSprite(Sprite.player_dead1,Sprite.player_dead2,Sprite.player_dead3,frameCount,100).getFxImage());
+        updateFrameCount();
+        gc.drawImage(img,x,y);
     }
     @Override
     public void update() {

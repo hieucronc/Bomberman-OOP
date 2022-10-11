@@ -36,7 +36,7 @@ public class BombermanGame extends Application {
     public static final int WIDTH = 30;
     public static final int HEIGHT = 20;
     
-    private GraphicsContext gc;
+    public static GraphicsContext gc;
     private Canvas canvas;
     public static List<Entity> entities = new ArrayList<>();
     private List<Entity> block = new ArrayList<>();

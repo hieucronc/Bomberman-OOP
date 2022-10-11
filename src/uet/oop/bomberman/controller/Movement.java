@@ -7,21 +7,21 @@ import uet.oop.bomberman.graphics.Sprite;
 public class Movement {
     public static boolean canMoveDown(DynamicEntities dynamicEntities) {
         int x = dynamicEntities.getX() / 32;
-        int y = (dynamicEntities.getY() + 3) / 32;
+        int y = (dynamicEntities.getY() ) / 32;
         return position[x][y+1] == 0;
     }
     public static boolean canMoveUp(DynamicEntities dynamicEntities) {
         int x = dynamicEntities.getX() / 32;
-        int y = (dynamicEntities.getY() - 3) / 32;
-        return position[x][y] == 0;
+        int y = (dynamicEntities.getY() ) / 32;
+        return position[x][y-1] == 0;
     }
     public static boolean canMoveLeft(DynamicEntities dynamicEntities) {
-        int x = (dynamicEntities.getX() - 4) / 32;
+        int x = (dynamicEntities.getX() ) / 32;
         int y = dynamicEntities.getY() / 32;
-        return position[x][y] == 0;
+        return position[x-1][y] == 0;
     }
     public static boolean canMoveRight(DynamicEntities dynamicEntities) {
-        int x = (dynamicEntities.getX() - 4) / 32;
+        int x = (dynamicEntities.getX() ) / 32;
         int y = dynamicEntities.getY() / 32;
         return position[x+1][y] == 0;
     }
