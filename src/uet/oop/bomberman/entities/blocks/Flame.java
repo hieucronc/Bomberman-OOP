@@ -11,6 +11,7 @@ import java.awt.*;
 import static uet.oop.bomberman.BombermanGame.position;
 
 public class Flame extends Entity {
+    static int count = 0;
 
     @Override
     public void update() {
@@ -18,40 +19,52 @@ public class Flame extends Entity {
     }
 
     public static boolean canFireDown(int x, int y) {
-        return position[x][y + 1] == 0;
+        return position[x][y + 1] != 1;
     }
 
     public static boolean canFireUp(int x, int y) {
-        return position[x][y - 1] == 0;
+        return position[x][y - 1] != 1;
     }
 
     public static boolean canFireLeft(int x, int y) {
-        return position[x - 1][y] == 0;
+        return position[x - 1][y] != 1;
     }
 
     public static boolean canFireRight(int x, int y) {
-        return position[x + 1][y] == 0;
+        return position[x + 1][y] != 1;
     }
 
     public Flame(int x, int y, Image _flame) {
         super(x, y, _flame);
     }
+
     public static void fireFlame(int x, int y) {
-        if (canFireUp(x,y)) {
-            Flame flameup = new Flame(x, y - 1, Sprite.explosion_vertical2.getFxImage());
-            BombermanGame.entities.add(flameup);
+        if (canFireUp(x, y)) {
+            Flame flameup = new Flame(x, y - 1, Sprite.explosion_vertical.getFxImage());
+            BombermanGame.flame.add(flameup);
+            flameup.setImg(Sprite.movingSprite(Sprite.explosion_vertical,
+                    Sprite.explosion_vertical1, Sprite.explosion_vertical2, count, 120).getFxImage());
         }
-        if (canFireDown(x,y)) {
-            Flame flamedown = new Flame(x, y + 1, Sprite.explosion_vertical_down_last2.getFxImage());
-            BombermanGame.entities.add(flamedown);
+        if (canFireDown(x, y)) {
+            Flame flamedown = new Flame(x, y + 1, Sprite.explosion_vertical_down_last.getFxImage());
+            BombermanGame.flame.add(flamedown);
+            flamedown.setImg(Sprite.movingSprite(Sprite.explosion_vertical_down_last,
+                    Sprite.explosion_vertical_down_last1, Sprite.explosion_vertical_down_last2, count, 120).getFxImage());
         }
-        if (canFireLeft(x,y)) {
-            Flame flameleft = new Flame(x -1 , y, Sprite.explosion_horizontal_left_last2.getFxImage());
-            BombermanGame.entities.add(flameleft);
+        if (canFireLeft(x, y)) {
+            Flame flameleft = new Flame(x - 1, y, Sprite.explosion_horizontal_left_last.getFxImage());
+            BombermanGame.flame.add(flameleft);
+            flameleft.setImg(Sprite.movingSprite(Sprite.explosion_horizontal_left_last,
+                    Sprite.explosion_horizontal_left_last1, Sprite.explosion_horizontal_left_last2, count, 120).getFxImage());
+
         }
-        if (canFireRight(x,y)) {
-            Flame flameright = new Flame(x + 1, y , Sprite.explosion_horizontal_right_last2.getFxImage());
-            BombermanGame.entities.add(flameright);
+        if (canFireRight(x, y)) {
+            Flame flameright = new Flame(x + 1, y, Sprite.explosion_horizontal_right_last.getFxImage());
+            BombermanGame.flame.add(flameright);
+            flameright.setImg(Sprite.movingSprite(Sprite.explosion_horizontal_right_last,
+                    Sprite.explosion_horizontal_right_last1, Sprite.explosion_horizontal_right_last2, count, 120).getFxImage());
+
         }
+        count++;
     }
 }

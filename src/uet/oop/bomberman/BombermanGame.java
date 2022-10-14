@@ -32,24 +32,27 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 public class BombermanGame extends Application {
-    
-    public static final int WIDTH = 30;
-    public static final int HEIGHT = 20;
-    
+
+    public static final int WIDTH = 20;
+    public static final int HEIGHT = 15;
+
     public static GraphicsContext gc;
     private Canvas canvas;
     public static List<Entity> entities = new ArrayList<>();
-    private List<Entity> block = new ArrayList<>();
+    public static List<Entity> block = new ArrayList<>();
+    public static List<Entity> flame = new ArrayList<>();
+
     public static List<Entity> enemy = new ArrayList<>();
-    public static int[][] position = new int [WIDTH][HEIGHT];
+    public static int[][] position = new int[WIDTH][HEIGHT];
 
     public static DynamicEntities bomberman;
+
     public static void main(String[] args) throws Exception {
         Application.launch(BombermanGame.class);
     }
 
     @Override
-    public void start(Stage stage) throws  Exception{
+    public void start(Stage stage) throws Exception {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
@@ -65,16 +68,19 @@ public class BombermanGame extends Application {
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()) {
                     case UP:
+                    case W:
                         Movement.moveUp(bomberman);
-
                         break;
                     case DOWN:
+                    case S:
                         Movement.moveDown(bomberman);
                         break;
                     case LEFT:
+                    case A:
                         Movement.moveLeft(bomberman);
                         break;
                     case RIGHT:
+                    case D:
                         Movement.moveRight(bomberman);
                         break;
                     case SPACE:
@@ -101,14 +107,15 @@ public class BombermanGame extends Application {
         createMap();
 
 
-        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        DynamicEntities ballom = new Ballom(3,1,Sprite.balloom_left3.getFxImage());
+        bomberman = new Bomber(7, 8, Sprite.player_right.getFxImage());
+        DynamicEntities ballom = new Ballom(3, 1, Sprite.balloom_left3.getFxImage());
         enemy.add(ballom);
         entities.add(bomberman);
     }
-    public void createMap() throws Exception{
+
+    public void createMap() throws Exception {
         //String url = "../../res/levels/lv1.txt";
-        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
+        String url = "C:/Users/This PC//Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
         Scanner scanner = new Scanner(fileInputStream);
@@ -116,23 +123,28 @@ public class BombermanGame extends Application {
         int width = scanner.nextInt();
         scanner.nextLine();
         char[][] map = new char[height][width];
-        for (int i=0;i<height;i++) {
+        for (int i = 0; i < height; i++) {
             String s = scanner.nextLine();
-            for (int j=0;j<width;j++) {
+            for (int j = 0; j < width; j++) {
                 map[i][j] = s.charAt(j);
             }
         }
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Entity object;
-                if (Character.compare(map[i][j],'#') == 0) {
+                if (Character.compare(map[i][j], '#') == 0) {
                     object = new Wall(j, i, Sprite.wall.getFxImage());
                     position[j][i] = 1;
-                }
-                else {
+                    block.add(object);
+                } else if (Character.compare(map[i][j], '*') == 0) {
+                    object = new Wall(j, i, Sprite.brick.getFxImage());
+                    position[j][i] = 2;
+                    block.add(object);
+                } else {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
+                    position[j][i] = 0;
                 }
-                block.add(object);
+                entities.add(object);
             }
         }
 
@@ -142,7 +154,7 @@ public class BombermanGame extends Application {
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).update();
         }
-        for (int i = 0; i < enemy.size();i++) {
+        for (int i = 0; i < enemy.size(); i++) {
             enemy.get(i).update();
         }
 //        entities.forEach(Entity::update);
@@ -150,8 +162,9 @@ public class BombermanGame extends Application {
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        block.forEach(g -> g.render(gc));
+        //block.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        flame.forEach(g -> g.render(gc));
         enemy.forEach(g -> g.render(gc));
     }
 }

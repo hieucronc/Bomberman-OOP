@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.util.Objects;
+
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected int x;
@@ -17,7 +19,7 @@ public abstract class Entity {
 
     protected Image img;
 
-    public int frameCount = 0;
+    public static int frameCount = 0;
     public Entity() {
 
     }
@@ -54,7 +56,12 @@ public abstract class Entity {
         gc.drawImage(img, x, y);
     }
 
-    public void updateFrameCount() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, img);
+    }
+
+    public static void updateFrameCount() {
         if (frameCount > 80) {
             frameCount = 0;
         } else {

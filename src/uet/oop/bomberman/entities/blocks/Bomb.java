@@ -1,27 +1,30 @@
 package uet.oop.bomberman.entities.blocks;
 
 import javafx.scene.image.Image;
+
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
 
+import static uet.oop.bomberman.BombermanGame.gc;
+
 public class Bomb extends Entity {
     public static int x;
     public static int y;
-    public static long bombplacetime;
     private boolean allowToWalkOn = true;
+    int count = 0;
     private boolean exploded = false;
-    private static final int decayTimer = 500;
-    private static final int timeToExplode = 2000; // 2000 milisec = 2 sec
+
 
     public Bomb(int x, int y, Image boom) {
         super(x, y, boom);
     }
 
     protected void explode() {
-        setImg(Sprite.bomb_exploded2.getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2, count, 120).getFxImage());
+        count++;
         Flame.fireFlame(x, y);
     }
 
@@ -30,25 +33,34 @@ public class Bomb extends Entity {
      */
     @Override
     public void update() {
-        if (System.currentTimeMillis() - bombplacetime > timeToExplode)
+//        if (System.currentTimeMillis() - bombplacetime > timeToExplode)
+//            explode();
+//        long explodeTime = System.currentTimeMillis();
+//        if (System.currentTimeMillis() - explodeTime > decayTimer) {
+//            for (int i = 0; i < 5; i++)
+//            BombermanGame.entities.remove(BombermanGame.entities.size() - 1);
+//        }
+        if (!exploded) {
+            this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, count, 120).getFxImage());
+            count++;
+//            gc.drawImage(img,x,y);
+            if (count > 120) {
+                exploded = true;
+                count = 0;
+            }
+        }
+        if (exploded) {
             explode();
-        long explodeTime = System.currentTimeMillis();
-        if (System.currentTimeMillis() - explodeTime > decayTimer)
-            BombermanGame.entities.remove(BombermanGame.entities.size() - 1);
+        }
+
     }
 
+    public void remove() {
+
+    }
     /**
      *
      */
-    public void playAnimation() {
-//        if (exploded) {
-//            img = Sprite.movingSprite(Sprite.bomb_exploded,
-//                    Sprite.bomb_exploded1, Sprite.bomb_exploded2, 90, 30).getFxImage();
-//        } else {
-//            img = Sprite.movingSprite(Sprite.bomb
-//                    , Sprite.bomb_1, Sprite.bomb_2, timeToExplode, 50).getFxImage();
-//        }
-    }
 
     public static void placeBomb() {
         x = BombermanGame.bomberman.getX() / 32;
@@ -57,7 +69,10 @@ public class Bomb extends Entity {
         y = Math.round(y);
         Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
         BombermanGame.entities.add(bomb);
-        bombplacetime = System.currentTimeMillis();
+//        bomb.setImg(Sprite.movingSprite(Sprite.bomb,Sprite.bomb_1,Sprite.bomb_2,frameCount,100).getFxImage());
+//        updateFrameCount();
+//        gc.drawImage(img,x,y);
+//        bombplacetime = System.currentTimeMillis();
     }
 
 }
