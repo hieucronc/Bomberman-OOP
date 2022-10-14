@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
+
 import java.util.Random;
 
 public class Ballom extends DynamicEntities {
@@ -99,7 +101,7 @@ public class Ballom extends DynamicEntities {
     public void killBallom() {
         this.setImg(Sprite.movingSprite(Sprite.balloom_dead,Sprite.balloom_dead,Sprite.balloom_dead,count,60).getFxImage());
         count++;
-        if (count > 60)  {
+        if (count > decayTimer)  {
             for (int i=0;i<enemy.size();i++) {
                 if (enemy.get(i).getX() == this.getX() && enemy.get(i).getY() == this.getY()) {
                     enemy.remove(i);
