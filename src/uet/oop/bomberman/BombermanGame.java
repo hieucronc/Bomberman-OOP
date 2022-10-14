@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.blocks.Brick;
 import uet.oop.bomberman.entities.blocks.Grass;
 import uet.oop.bomberman.entities.blocks.Wall;
 import uet.oop.bomberman.entities.dynamic.Ballom;
@@ -109,13 +110,17 @@ public class BombermanGame extends Application {
 
         bomberman = new Bomber(7, 8, Sprite.player_right.getFxImage());
         DynamicEntities ballom = new Ballom(3, 1, Sprite.balloom_left3.getFxImage());
+        DynamicEntities ballom1 = new Ballom(5, 1, Sprite.balloom_left3.getFxImage());
+        DynamicEntities ballom2 = new Ballom(7, 1, Sprite.balloom_left3.getFxImage());
         enemy.add(ballom);
+        enemy.add(ballom1);
+        enemy.add(ballom2);
         entities.add(bomberman);
     }
 
     public void createMap() throws Exception {
         //String url = "../../res/levels/lv1.txt";
-        String url = "C:/Users/This PC//Bomberman_BTL/res/levels/lv1.txt";
+        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
         Scanner scanner = new Scanner(fileInputStream);
@@ -137,32 +142,35 @@ public class BombermanGame extends Application {
                     position[j][i] = 1;
                     block.add(object);
                 } else if (Character.compare(map[i][j], '*') == 0) {
-                    object = new Wall(j, i, Sprite.brick.getFxImage());
+                    object = new Brick(j, i, Sprite.brick.getFxImage());
                     position[j][i] = 2;
                     block.add(object);
                 } else {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
                     position[j][i] = 0;
+                    entities.add(object);
                 }
-                entities.add(object);
+
             }
         }
 
     }
 
     public void update() {
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).update();
+        for (Entity entity : entities) {
+            entity.update();
         }
-        for (int i = 0; i < enemy.size(); i++) {
-            enemy.get(i).update();
+        for (Entity entity : enemy) {
+            entity.update();
         }
-//        entities.forEach(Entity::update);
+        for (Entity entity : block) {
+            entity.update();
+        }
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        //block.forEach(g -> g.render(gc));
+        block.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
         flame.forEach(g -> g.render(gc));
         enemy.forEach(g -> g.render(gc));

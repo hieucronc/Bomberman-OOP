@@ -33,13 +33,6 @@ public class Bomb extends Entity {
      */
     @Override
     public void update() {
-//        if (System.currentTimeMillis() - bombplacetime > timeToExplode)
-//            explode();
-//        long explodeTime = System.currentTimeMillis();
-//        if (System.currentTimeMillis() - explodeTime > decayTimer) {
-//            for (int i = 0; i < 5; i++)
-//            BombermanGame.entities.remove(BombermanGame.entities.size() - 1);
-//        }
         if (!exploded) {
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, count, explodeTimer).getFxImage());
             count++;

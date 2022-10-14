@@ -2,17 +2,17 @@ package uet.oop.bomberman.entities.dynamic;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.controller.Movement;
-
+import uet.oop.bomberman.graphics.Sprite;
+import static uet.oop.bomberman.BombermanGame.*;
 import java.util.Random;
 
 public class Ballom extends DynamicEntities {
-    int cnt = 0;
+    int count = 0;
     public Ballom(int x, int y, Image img) {
         super(x,y,img);
     }
-    @Override
-    public void update() {
-//        Random random = new Random();
+    public void enemyMove() {
+        //        Random random = new Random();
 //        int dir = random.nextInt(4);
 //        int cnt = 0,cnt1 = 0, cnt2 = 0, cnt3 = 0;
 //        switch (dir) {
@@ -94,5 +94,26 @@ public class Ballom extends DynamicEntities {
 //            Random random = new Random();
 //            cnt = random.nextInt(20);
 //        }
+    }
+
+    public void killBallom() {
+        this.setImg(Sprite.movingSprite(Sprite.balloom_dead,Sprite.balloom_dead,Sprite.balloom_dead,count,60).getFxImage());
+        count++;
+        if (count > 60)  {
+            for (int i=0;i<enemy.size();i++) {
+                if (enemy.get(i).getX() == this.getX() && enemy.get(i).getY() == this.getY()) {
+                    enemy.remove(i);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void update() {
+        enemyMove();
+        checkBomb();
+        if (!life) {
+            killBallom();
+        }
     }
 }

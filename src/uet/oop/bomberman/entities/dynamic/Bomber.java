@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
+import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -28,25 +28,15 @@ public class Bomber extends DynamicEntities {
     }
 
     public void checkEnemy() {
-        int ax = this.getX();
-        int ay = this.getY();
-        for (int i = 0; i < enemy.size(); i++) {
-            int bx = enemy.get(i).getX();
-            int by = enemy.get(i).getY();
-
-            if (ax < bx + 32 &&
-                    ax + 32 > bx &&
-                    ay < by + 32 &&
-                    ay + 32 > by) {
+        for (Entity entity : enemy) {
+            if (Movement.collision(this.getX(), this.getY(), entity.getX(), entity.getY())) {
                 this.life = false;
                 break;
             }
         }
     }
 
-    public void checkBom() {
 
-    }
 
     public void killBomber() {
         this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, frameCount, 100).getFxImage());
@@ -56,9 +46,9 @@ public class Bomber extends DynamicEntities {
 
     @Override
     public void update() {
-        checkBom();
+        checkBomb();
         checkEnemy();
-        if (this.life == false) {
+        if (!this.life) {
             killBomber();
         }
     }

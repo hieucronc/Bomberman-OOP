@@ -20,39 +20,79 @@ public class Movement {
     }
 
     public static boolean canMoveDown(DynamicEntities dynamicEntities) {
-        for (int i = 0; i < block.size(); i++) {
-            if (collision(dynamicEntities.getX(), dynamicEntities.getY() + 4, block.get(i).getX(), block.get(i).getY())) {
-                return false;
+        if (dynamicEntities instanceof Bomber) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities.getX(), dynamicEntities.getY() + 4, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
             }
+            return true;
+        } else if (dynamicEntities instanceof Ballom) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities.getX(), dynamicEntities.getY() + 1, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean canMoveUp(DynamicEntities dynamicEntities) {
-        for (int i = 0; i < block.size(); i++) {
-            if (collision(dynamicEntities.getX(), dynamicEntities.getY() - 4, block.get(i).getX(), block.get(i).getY())) {
-                return false;
+        if (dynamicEntities instanceof Bomber) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities.getX(), dynamicEntities.getY() - 4, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
             }
+            return true;
+        } else if (dynamicEntities instanceof Ballom) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities.getX(), dynamicEntities.getY() - 1, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean canMoveLeft(DynamicEntities dynamicEntities) {
-        for (int i = 0; i < block.size(); i++) {
-            if (collision(dynamicEntities.getX() - 4, dynamicEntities.getY(), block.get(i).getX(), block.get(i).getY())) {
-                return false;
+        if (dynamicEntities instanceof Bomber) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities.getX() - 4, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
             }
+            return true;
+        } else if (dynamicEntities instanceof Ballom) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities.getX() - 1, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean canMoveRight(DynamicEntities dynamicEntities) {
-        for (int i = 0; i < block.size(); i++) {
-            if (collision(dynamicEntities.getX() + 4, dynamicEntities.getY(), block.get(i).getX(), block.get(i).getY())) {
-                return false;
+        if (dynamicEntities instanceof Bomber) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities.getX() + 4, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
             }
+            return true;
+        } else if (dynamicEntities instanceof Ballom) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities.getX() + 1, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static void moveUp(DynamicEntities dynamicEntities) {

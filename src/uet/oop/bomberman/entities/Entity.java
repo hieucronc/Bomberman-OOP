@@ -68,5 +68,6 @@ public abstract class Entity {
             frameCount ++;
         }
     }
+
     public abstract void update();
 }
