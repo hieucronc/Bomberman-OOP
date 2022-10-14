@@ -25,13 +25,7 @@ public class Bomb extends Entity {
     }
 
     protected void explode() {
-        this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2, count, decayTimer).getFxImage());
-        count++;
         Flame.fireFlame(x, y);
-        if (count > decayTimer) {
-            flame.clear();
-            entities.remove(entities.size()-1);
-        }
     }
 
     /**
@@ -57,13 +51,17 @@ public class Bomb extends Entity {
         }
         if (exploded) {
             explode();
+            count++;
+            if (count > decayTimer) {
+                remove();
+            }
         }
 
     }
 
     public void remove() {
-
-
+            flame.clear();
+            entities.remove(entities.size()-1);
     }
     /**
      *

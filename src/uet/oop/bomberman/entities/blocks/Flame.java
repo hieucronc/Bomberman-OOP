@@ -40,6 +40,10 @@ public class Flame extends Entity {
     }
 
     public static void fireFlame(int x, int y) {
+        Flame flamecenter = new Flame(x, y, Sprite.bomb_exploded.getFxImage());
+        BombermanGame.flame.add(flamecenter);
+        flamecenter.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2, count, decayTimer).getFxImage());
+
         if (canFireUp(x, y)) {
             Flame flameup = new Flame(x, y - 1, Sprite.explosion_vertical.getFxImage());
             BombermanGame.flame.add(flameup);
