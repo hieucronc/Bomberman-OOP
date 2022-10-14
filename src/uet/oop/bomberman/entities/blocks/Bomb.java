@@ -8,12 +8,14 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.BombermanGame.gc;
+import static uet.oop.bomberman.BombermanGame.*;
 
 public class Bomb extends Entity {
     public static int x;
     public static int y;
     private boolean allowToWalkOn = true;
+    public static final int explodeTimer = 120;
+    public static final int decayTimer = 30;
     int count = 0;
     private boolean exploded = false;
 
@@ -23,9 +25,13 @@ public class Bomb extends Entity {
     }
 
     protected void explode() {
-        this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2, count, 120).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2, count, decayTimer).getFxImage());
         count++;
         Flame.fireFlame(x, y);
+        if (count > decayTimer) {
+            flame.clear();
+            entities.remove(entities.size()-1);
+        }
     }
 
     /**
@@ -41,10 +47,10 @@ public class Bomb extends Entity {
 //            BombermanGame.entities.remove(BombermanGame.entities.size() - 1);
 //        }
         if (!exploded) {
-            this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, count, 120).getFxImage());
+            this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, count, explodeTimer).getFxImage());
             count++;
 //            gc.drawImage(img,x,y);
-            if (count > 120) {
+            if (count > explodeTimer) {
                 exploded = true;
                 count = 0;
             }
@@ -56,6 +62,7 @@ public class Bomb extends Entity {
     }
 
     public void remove() {
+
 
     }
     /**
