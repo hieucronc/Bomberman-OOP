@@ -9,10 +9,10 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.awt.*;
 
 import static uet.oop.bomberman.BombermanGame.position;
+import static uet.oop.bomberman.entities.blocks.Bomb.count;
 import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 
 public class Flame extends Entity {
-    static int count = 0;
 
     @Override
     public void update() {
@@ -70,6 +70,5 @@ public class Flame extends Entity {
                     Sprite.explosion_horizontal_right_last1, Sprite.explosion_horizontal_right_last2, count, decayTimer).getFxImage());
 
         }
-        count++;
     }
 }

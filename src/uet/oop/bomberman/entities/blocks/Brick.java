@@ -29,7 +29,6 @@ public class Brick extends Entity {
                     Entity object = new Grass(this.x / 32, this.y / 32, Sprite.grass.getFxImage());
                     entities.add(object);
                     block.remove(i);
-
                 }
             }
 

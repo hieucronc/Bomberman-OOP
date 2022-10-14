@@ -3,7 +3,7 @@ package uet.oop.bomberman.entities.blocks;
 import javafx.scene.image.Image;
 
 import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.entities.AnimatedEntity;
+import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
@@ -16,7 +16,7 @@ public class Bomb extends Entity {
     private boolean allowToWalkOn = true;
     public static final int explodeTimer = 120;
     public static final int decayTimer = 30;
-    int count = 0;
+    static int count = 0;
     private boolean exploded = false;
 
 
@@ -33,9 +33,10 @@ public class Bomb extends Entity {
      */
     @Override
     public void update() {
+        count++;
         if (!exploded) {
-            this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, count, explodeTimer).getFxImage());
-            count++;
+            this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1,
+                    Sprite.bomb_2, count, explodeTimer / 2).getFxImage());
 //            gc.drawImage(img,x,y);
             if (count > explodeTimer) {
                 exploded = true;
@@ -44,7 +45,6 @@ public class Bomb extends Entity {
         }
         if (exploded) {
             explode();
-            count++;
             if (count > decayTimer) {
                 remove();
             }
@@ -53,14 +53,21 @@ public class Bomb extends Entity {
     }
 
     public void remove() {
-            flame.clear();
-            entities.remove(entities.size()-1);
+        flame.clear();
+        entities.remove(entities.size() - 1);
     }
+    public void setAllowToWalkOn() {
+        if (!Movement.collision(this.getX(), this.getY(), bomberman.getX(), bomberman.getY())) {
+            allowToWalkOn = false;
+        }
+    }
+
     /**
      *
      */
 
     public static void placeBomb() {
+        count = 0;
         x = BombermanGame.bomberman.getX() / 32;
         y = BombermanGame.bomberman.getY() / 32;
         x = Math.round(x);
