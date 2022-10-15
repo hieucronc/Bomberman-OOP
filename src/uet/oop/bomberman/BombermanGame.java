@@ -20,6 +20,7 @@ import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.FileNotFoundException;
@@ -70,26 +71,52 @@ public class BombermanGame extends Application {
                 switch (keyEvent.getCode()) {
                     case UP:
                     case W:
-                        Movement.moveUp(bomberman);
+                        Movement.keyup = true;
                         break;
                     case DOWN:
                     case S:
-                        Movement.moveDown(bomberman);
+                        Movement.keydown = true;
                         break;
                     case LEFT:
                     case A:
-                        Movement.moveLeft(bomberman);
+                        Movement.keyleft = true;
                         break;
                     case RIGHT:
                     case D:
-                        Movement.moveRight(bomberman);
+                        Movement.keyright = true;
                         break;
                     case SPACE:
                         Bomb.placeBomb();
+
                     default:
                         break;
                 }
 
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch (keyEvent.getCode()) {
+                    case UP:
+                    case W:
+                        Movement.keyup = false;
+                        break;
+                    case DOWN:
+                    case S:
+                        Movement.keydown = false;
+                        break;
+                    case LEFT:
+                    case A:
+                        Movement.keyleft = false;
+                        break;
+                    case RIGHT:
+                    case D:
+                        Movement.keyright = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         });
         // Them scene vao stage
@@ -108,7 +135,7 @@ public class BombermanGame extends Application {
         createMap();
 
 
-        bomberman = new Bomber(7, 8, Sprite.player_right.getFxImage());
+        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         DynamicEntities ballom = new Ballom(3, 1, Sprite.balloom_left3.getFxImage());
         DynamicEntities ballom1 = new Ballom(5, 1, Sprite.balloom_left3.getFxImage());
         DynamicEntities ballom2 = new Ballom(7, 1, Sprite.balloom_left3.getFxImage());
@@ -117,13 +144,11 @@ public class BombermanGame extends Application {
         enemy.add(ballom2);
         entities.add(bomberman);
     }
-
     public void createMap() throws Exception {
-        //String url = "../../res/levels/lv1.txt";
-        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
+        System.out.println(System.getProperty("user.dir") + "/res/levels/lv1.txt");
+        File file = new File(System.getProperty("user.dir") + "/res/levels/lv1.txt");
 
-        FileInputStream fileInputStream = new FileInputStream(url);
-        Scanner scanner = new Scanner(fileInputStream);
+        Scanner scanner = new Scanner(file);
         int height = scanner.nextInt();
         int width = scanner.nextInt();
         scanner.nextLine();

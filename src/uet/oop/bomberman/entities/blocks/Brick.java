@@ -23,16 +23,12 @@ public class Brick extends Entity {
     }
 
     public void removeBrick() {
-        this.setImg(Sprite.movingSprite(Sprite.brick_exploded,Sprite.brick_exploded1,Sprite.brick_exploded2,cntBrickExploded,54).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.brick_exploded,Sprite.brick_exploded1,Sprite.brick_exploded2,cntBrickExploded,50).getFxImage());
         cntBrickExploded++;
-        if (cntBrickExploded > 30) {
+        if (cntBrickExploded > 20) {
             for (int i = 0; i < block.size(); i++) {
                 if (block.get(i) instanceof Brick) {
                     if (((Brick) block.get(i)).checkBomb()) {
-//                    if (block.get(i).getX() == this.x && block.get(i).getY() == this.y) {
-//                    position[this.x / 32][this.y / 32] = 0;
-//                    Entity object = new Grass(this.x / 32, this.y / 32, Sprite.grass.getFxImage());
-//                    entities.add(object);
                         block.remove(i);
                     }
                 }

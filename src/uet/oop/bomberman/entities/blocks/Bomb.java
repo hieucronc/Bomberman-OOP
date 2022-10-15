@@ -84,8 +84,8 @@ public class Bomb extends Entity {
     public static void placeBomb() {
         if (bombs.size() < MAX_BOMB) {
             count = 0;
-            x = BombermanGame.bomberman.getX() / 32;
-            y = BombermanGame.bomberman.getY() / 32;
+            x = BombermanGame.bomberman.getX() / Sprite.SCALED_SIZE;
+            y = BombermanGame.bomberman.getY() / Sprite.SCALED_SIZE;
             x = Math.round(x);
             y = Math.round(y);
             Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
