@@ -8,7 +8,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Brick extends Entity {
-    public int cntBrickExploded = 0;
+    public static int cntBrickExploded = 0;
     public Brick(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
@@ -28,7 +28,8 @@ public class Brick extends Entity {
         if (cntBrickExploded > 30) {
             for (int i = 0; i < block.size(); i++) {
                 if (block.get(i) instanceof Brick) {
-                    if (block.get(i).getX() == this.x && block.get(i).getY() == this.y) {
+                    if (((Brick) block.get(i)).checkBomb()) {
+//                    if (block.get(i).getX() == this.x && block.get(i).getY() == this.y) {
 //                    position[this.x / 32][this.y / 32] = 0;
 //                    Entity object = new Grass(this.x / 32, this.y / 32, Sprite.grass.getFxImage());
 //                    entities.add(object);
