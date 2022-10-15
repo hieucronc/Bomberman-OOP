@@ -39,10 +39,10 @@ public class BombermanGame extends Application {
 
     public static GraphicsContext gc;
     private Canvas canvas;
-    public static List<Entity> entities = new ArrayList<>();
-    public static List<Entity> block = new ArrayList<>();
+    public static List<Entity> entities = new ArrayList<>(); //gom nhan vat, grass
+    public static List<Entity> block = new ArrayList<>(); // gom gach,tuong
     public static List<Entity> flame = new ArrayList<>();
-
+    public static List<Entity> bombs = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
     public static int[][] position = new int[WIDTH][HEIGHT];
 
@@ -120,7 +120,7 @@ public class BombermanGame extends Application {
 
     public void createMap() throws Exception {
         //String url = "../../res/levels/lv1.txt";
-        String url = "C:/Users/This PC//Bomberman_BTL/res/levels/lv1.txt";
+        String url = "G:/Backup/Bomberman_BTL/res/levels/lv1.txt";
 
         FileInputStream fileInputStream = new FileInputStream(url);
         Scanner scanner = new Scanner(fileInputStream);
@@ -164,6 +164,9 @@ public class BombermanGame extends Application {
         for (Entity entity : entities) {
             entity.update();
         }
+        for (Entity entity : bombs) {
+            entity.update();
+        }
         for (Entity entity : enemy) {
             entity.update();
         }
@@ -176,6 +179,7 @@ public class BombermanGame extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         entities.forEach(g -> g.render(gc));
         block.forEach(g -> g.render(gc));
+        bombs.forEach(g -> g.render(gc));
         flame.forEach(g -> g.render(gc));
         enemy.forEach(g -> g.render(gc));
     }

@@ -18,6 +18,8 @@ public class Bomb extends Entity {
     public static final int decayTimer = 30;
     static int count = 0;
     private boolean exploded = false;
+    public static boolean canPassThrough = true;
+    public static int MAX_BOMB = 1;
 
 
     public Bomb(int x, int y, Image boom) {
@@ -37,10 +39,27 @@ public class Bomb extends Entity {
         if (!exploded) {
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1,
                     Sprite.bomb_2, count, explodeTimer / 2).getFxImage());
-//            gc.drawImage(img,x,y);
+//            if (canPassThrough) {
+//                for (int i=0;i<entities.size();i++) {
+//                    if (entities.get(i) instanceof Bomber) {
+//                        if (!Movement.collision(this.getX(),this.getY(),entities.get(i).getX(),entities.get(i).getY())) {
+//                            canPassThrough = false;
+//                            break;
+//                        }
+//                    }
+//                }
+//
+//            }
+//            if (!canPassThrough) {
+//                if (!block.contains(this)) {
+//                    block.add(this);
+//                }
+//
+//            }
             if (count > explodeTimer) {
                 exploded = true;
                 count = 0;
+//                block.remove(this);
             }
         }
         if (exploded) {
@@ -53,13 +72,9 @@ public class Bomb extends Entity {
     }
 
     public void remove() {
+        bombs.remove(0);
         flame.clear();
-        entities.remove(entities.size() - 1);
-    }
-    public void setAllowToWalkOn() {
-        if (!Movement.collision(this.getX(), this.getY(), bomberman.getX(), bomberman.getY())) {
-            allowToWalkOn = false;
-        }
+
     }
 
     /**
@@ -67,17 +82,16 @@ public class Bomb extends Entity {
      */
 
     public static void placeBomb() {
-        count = 0;
-        x = BombermanGame.bomberman.getX() / 32;
-        y = BombermanGame.bomberman.getY() / 32;
-        x = Math.round(x);
-        y = Math.round(y);
-        Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
-        BombermanGame.entities.add(bomb);
-//        bomb.setImg(Sprite.movingSprite(Sprite.bomb,Sprite.bomb_1,Sprite.bomb_2,frameCount,100).getFxImage());
-//        updateFrameCount();
-//        gc.drawImage(img,x,y);
-//        bombplacetime = System.currentTimeMillis();
+        if (bombs.size() < MAX_BOMB) {
+            count = 0;
+            x = BombermanGame.bomberman.getX() / 32;
+            y = BombermanGame.bomberman.getY() / 32;
+            x = Math.round(x);
+            y = Math.round(y);
+            Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
+            BombermanGame.bombs.add(bomb);
+        }
+
     }
 
 }
