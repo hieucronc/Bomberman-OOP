@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import uet.oop.bomberman.graphics.Sprite;
-
+import static uet.oop.bomberman.BombermanGame.*;
 import java.util.Objects;
 
 public abstract class Entity {
@@ -56,11 +56,34 @@ public abstract class Entity {
         gc.drawImage(img, x, y);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y, img);
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(x, y, img);
+//    }
+    public static int isInEntities(Entity entity) {
+        for (int i=0;i<entities.size();i++) {
+            if (entities.get(i).getX() == entity.getX() && entities.get(i).getY() == entity.getY()) {
+                return i;
+            }
+        }
+        return -1;
     }
-
+    public static int isInItem(Entity entity) {
+        for (int i=0;i<items.size();i++) {
+            if (items.get(i).getX() == entity.getX() && items.get(i).getY() == entity.getY()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static int isInBlock(Entity entity) {
+        for (int i=0;i<block.size();i++) {
+            if (block.get(i).getX() == entity.getX() && block.get(i).getY() == entity.getY()) {
+                return i;
+            }
+        }
+        return -1;
+    }
     public static void updateFrameCount() {
         if (frameCount > 80) {
             frameCount = 0;

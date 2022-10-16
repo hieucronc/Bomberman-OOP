@@ -9,30 +9,77 @@ import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 import java.util.Random;
 
 public class Ballom extends DynamicEntities {
+    public static int ballomStep = 1;
     private int tick = 0;
     private int dir;
-    int countBallomDead = 0;
+    private int countBallomDead = 0;
+    private static final int UP = 0;
+    private static final int DOWN = 1;
+    private static final int LEFT = 2;
+    private static final int RIGHT = 3;
     public Ballom(int x, int y, Image img) {
         super(x,y,img);
     }
     public void enemyMove() {
-        Random random = new Random();
-
-        if (tick % 70 == 0) {
+//        if (dir == UP && !Movement.canMoveUp(this) && tick <= 70) {
+//            while (dir == UP) {
+//                Random random = new Random();
+//                dir = random.nextInt(4);
+//            }
+//        }
+//        if (dir == DOWN && !Movement.canMoveDown(this) && tick <= 70) {
+//            while (dir == DOWN) {
+//                Random random = new Random();
+//                dir = random.nextInt(4);
+//            }
+//        }
+//        if (dir == LEFT && !Movement.canMoveLeft(this) && tick <= 70) {
+//            while (dir == LEFT) {
+//                Random random = new Random();
+//                dir = random.nextInt(4);
+//            }
+//        }
+//        if (dir == RIGHT && !Movement.canMoveRight(this) && tick <= 70) {
+//            while (dir == RIGHT) {
+//                Random random = new Random();
+//                dir = random.nextInt(4);
+//            }
+//        }
+        if (tick > 70) {
+            Random random = new Random();
             dir = random.nextInt(4);
+            tick = 0;
         }
+
         switch (dir) {
-            case 0:
-                Movement.moveUp(this);
+            case UP:
+                if (Movement.canMoveUp(this)) {
+                    Movement.moveUp(this);
+                } else {
+                    tick = 71;
+                }
+
                 break;
-            case 1:
-                Movement.moveDown(this);
+            case DOWN:
+                if (Movement.canMoveDown(this)) {
+                    Movement.moveDown(this);
+                } else {
+                    tick = 71;
+                }
                 break;
-            case 2:
-                Movement.moveLeft(this);
+            case LEFT:
+                if (Movement.canMoveLeft(this)) {
+                    Movement.moveLeft(this);
+                } else {
+                    tick = 71;
+                }
                 break;
-            case 3:
-                Movement.moveRight(this);
+            case RIGHT:
+                if (Movement.canMoveRight(this)) {
+                    Movement.moveRight(this);
+                } else {
+                    tick = 71;
+                }
                 break;
 
         }
@@ -53,9 +100,9 @@ public class Ballom extends DynamicEntities {
     @Override
     public void update() {
         tick++;
-        if (tick > 1e6) {
-            tick = 0;
-        }
+//        if (tick > 1e6) {
+//            tick = 0;
+//        }
         enemyMove();
         checkBomb();
         if (!life) {

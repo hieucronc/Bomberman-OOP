@@ -16,9 +16,9 @@ public class Bomb extends Entity {
     private boolean allowToWalkOn = true;
     public static final int explodeTimer = 120;
     public static final int decayTimer = 30;
-    static int count = 0;
+    static int countToExploded = 0;
     private boolean exploded = false;
-    public static boolean canPassThrough = true;
+    public boolean canPassThrough = true;
     public static int MAX_BOMB = 1;
 
 
@@ -35,36 +35,35 @@ public class Bomb extends Entity {
      */
     @Override
     public void update() {
-        count++;
+        countToExploded++;
         if (!exploded) {
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1,
-                    Sprite.bomb_2, count, explodeTimer / 2).getFxImage());
-//            if (canPassThrough) {
-//                for (int i=0;i<entities.size();i++) {
-//                    if (entities.get(i) instanceof Bomber) {
-//                        if (!Movement.collision(this.getX(),this.getY(),entities.get(i).getX(),entities.get(i).getY())) {
-//                            canPassThrough = false;
-//                            break;
-//                        }
-//                    }
-//                }
-//
-//            }
-//            if (!canPassThrough) {
-//                if (!block.contains(this)) {
-//                    block.add(this);
-//                }
-//
-//            }
-            if (count > explodeTimer) {
+                    Sprite.bomb_2, countToExploded, explodeTimer / 2).getFxImage());
+            if (allowToWalkOn) {
+                if (canPassThrough) {
+                    for (Entity entity : entities) {
+                        if (entity instanceof Bomber) {
+                            if (!Movement.collision(entity.getX(), entity.getY(), this.getX(), this.getY())) {
+                                canPassThrough = false;
+                                break;
+                            }
+                        }
+                    }
+
+                } else {
+                    block.add(this);
+                    allowToWalkOn = false;
+                }
+            }
+            if (countToExploded > explodeTimer) {
                 exploded = true;
-                count = 0;
-//                block.remove(this);
+                countToExploded = 0;
+
             }
         }
         if (exploded) {
             explode();
-            if (count > decayTimer) {
+            if (countToExploded > decayTimer) {
                 remove();
             }
         }
@@ -74,7 +73,7 @@ public class Bomb extends Entity {
     public void remove() {
         bombs.remove(0);
         flame.clear();
-
+        block.remove(block.size() - 1);
     }
 
     /**
@@ -83,11 +82,11 @@ public class Bomb extends Entity {
 
     public static void placeBomb() {
         if (bombs.size() < MAX_BOMB) {
-            count = 0;
-            x = BombermanGame.bomberman.getX() / Sprite.SCALED_SIZE;
-            y = BombermanGame.bomberman.getY() / Sprite.SCALED_SIZE;
-            x = Math.round(x);
-            y = Math.round(y);
+            countToExploded = 0;
+            double tmpX = BombermanGame.bomberman.getX() / Sprite.SCALED_SIZE;
+            double tmpY = BombermanGame.bomberman.getY() / Sprite.SCALED_SIZE;
+            x = (int) Math.round(tmpX);
+            y = (int) Math.round(tmpY);
             Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
             BombermanGame.bombs.add(bomb);
         }

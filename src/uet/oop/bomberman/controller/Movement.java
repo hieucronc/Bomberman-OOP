@@ -5,11 +5,12 @@ import uet.oop.bomberman.entities.dynamic.*;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.dynamic.Bomber.*;
+import static uet.oop.bomberman.entities.dynamic.Ballom.*;
 import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Movement {
-    public static int cnt = 0;
+    public static int countBomberStep = 0;
     public static boolean keyup = false;
     public static boolean keydown = false;
     public static boolean keyleft = false;
@@ -34,7 +35,7 @@ public class Movement {
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities.getX(), dynamicEntities.getY() + 1, block.get(i).getX(), block.get(i).getY())) {
+                if (collision(dynamicEntities.getX(), dynamicEntities.getY() + ballomStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -53,7 +54,7 @@ public class Movement {
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities.getX(), dynamicEntities.getY() - 1, block.get(i).getX(), block.get(i).getY())) {
+                if (collision(dynamicEntities.getX(), dynamicEntities.getY() - ballomStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -72,7 +73,7 @@ public class Movement {
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities.getX() - 1, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities.getX() - ballomStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -91,7 +92,7 @@ public class Movement {
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities.getX() + 1, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities.getX() + ballomStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -102,10 +103,10 @@ public class Movement {
 
     public static void moveUp(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
-            cnt++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, cnt, 54).getFxImage());
-            if (cnt > 10000) {
-                cnt = 0;
+            countBomberStep++;
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, countBomberStep, 54).getFxImage());
+            if (countBomberStep > 10000) {
+                countBomberStep = 0;
             }
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - bomberStep);
@@ -114,7 +115,7 @@ public class Movement {
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
-                dynamicEntities.setY(dynamicEntities.getY() - 1);
+                dynamicEntities.setY(dynamicEntities.getY() - ballomStep);
             }
         }
 
@@ -122,10 +123,10 @@ public class Movement {
 
     public static void moveDown(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
-            cnt++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, cnt, 54).getFxImage());
-            if (cnt > 10000) {
-                cnt = 0;
+            countBomberStep++;
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, countBomberStep, 54).getFxImage());
+            if (countBomberStep > 10000) {
+                countBomberStep = 0;
             }
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + bomberStep);
@@ -134,17 +135,17 @@ public class Movement {
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
-                dynamicEntities.setY(dynamicEntities.getY() + 1);
+                dynamicEntities.setY(dynamicEntities.getY() + ballomStep);
             }
         }
     }
 
     public static void moveLeft(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
-            cnt++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, cnt, 54).getFxImage());
-            if (cnt > 10000) {
-                cnt = 0;
+            countBomberStep++;
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, countBomberStep, 54).getFxImage());
+            if (countBomberStep > 10000) {
+                countBomberStep = 0;
             }
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - bomberStep);
@@ -153,7 +154,7 @@ public class Movement {
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
-                dynamicEntities.setX(dynamicEntities.getX() - 1);
+                dynamicEntities.setX(dynamicEntities.getX() - ballomStep);
             }
         }
     }
@@ -161,10 +162,10 @@ public class Movement {
 
     public static void moveRight(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
-            cnt++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, cnt, 54).getFxImage());
-            if (cnt > 10000) {
-                cnt = 0;
+            countBomberStep++;
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, countBomberStep, 54).getFxImage());
+            if (countBomberStep > 10000) {
+                countBomberStep = 0;
             }
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + bomberStep);
@@ -173,7 +174,7 @@ public class Movement {
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
-                dynamicEntities.setX(dynamicEntities.getX() + 1);
+                dynamicEntities.setX(dynamicEntities.getX() + ballomStep);
             }
         }
     }

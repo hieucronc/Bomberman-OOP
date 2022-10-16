@@ -18,6 +18,7 @@ import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
+import uet.oop.bomberman.entities.items.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.File;
@@ -43,6 +44,7 @@ public class BombermanGame extends Application {
     public static List<Entity> entities = new ArrayList<>(); //gom nhan vat, grass
     public static List<Entity> block = new ArrayList<>(); // gom gach,tuong
     public static List<Entity> flame = new ArrayList<>();
+    public static List<Entity> items = new ArrayList<>();
     public static List<Entity> bombs = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
     public static int[][] position = new int[WIDTH][HEIGHT];
@@ -136,9 +138,9 @@ public class BombermanGame extends Application {
 
 
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        DynamicEntities ballom = new Ballom(3, 1, Sprite.balloom_left3.getFxImage());
-        DynamicEntities ballom1 = new Ballom(5, 1, Sprite.balloom_left3.getFxImage());
-        DynamicEntities ballom2 = new Ballom(7, 1, Sprite.balloom_left3.getFxImage());
+        DynamicEntities ballom = new Ballom(3, 8, Sprite.balloom_left3.getFxImage());
+        DynamicEntities ballom1 = new Ballom(5, 8, Sprite.balloom_left3.getFxImage());
+        DynamicEntities ballom2 = new Ballom(7, 8, Sprite.balloom_left3.getFxImage());
         enemy.add(ballom);
         enemy.add(ballom1);
         enemy.add(ballom2);
@@ -173,6 +175,10 @@ public class BombermanGame extends Application {
                     object = new Brick(j, i, Sprite.brick.getFxImage());
                     position[j][i] = 2;
                     block.add(object);
+                } else if (Character.compare(map[i][j], 's') == 0) {
+                    object = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
                 }
 //                else {
 //                    object = new Grass(j, i, Sprite.grass.getFxImage());
@@ -198,6 +204,9 @@ public class BombermanGame extends Application {
         for (Entity entity : block) {
             entity.update();
         }
+        for (Entity entity : items) {
+            entity.update();
+        }
     }
 
     public void render() {
@@ -207,5 +216,7 @@ public class BombermanGame extends Application {
         bombs.forEach(g -> g.render(gc));
         flame.forEach(g -> g.render(gc));
         enemy.forEach(g -> g.render(gc));
+        items.forEach(g -> g.render(gc));
+
     }
 }
