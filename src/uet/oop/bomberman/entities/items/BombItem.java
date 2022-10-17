@@ -16,7 +16,6 @@ public class BombItem extends Items{
         }
         if (takeItem()) {
             items.remove(isInItem(this));
-
         }
     }
 

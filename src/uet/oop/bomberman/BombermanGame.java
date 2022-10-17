@@ -162,35 +162,30 @@ public class BombermanGame extends Application {
         }
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Entity object;
                 Entity baseobject = new Grass(j, i, Sprite.grass.getFxImage());
                 position[j][i] = 0;
                 entities.add(baseobject);
                 if (Character.compare(map[i][j], '#') == 0) {
-                    object = new Wall(j, i, Sprite.wall.getFxImage());
+                    Entity object = new Wall(j, i, Sprite.wall.getFxImage());
                     position[j][i] = 1;
                     block.add(object);
                 } else if (Character.compare(map[i][j], '*') == 0) {
-                    object = new Brick(j, i, Sprite.brick.getFxImage());
+                    Entity object = new Brick(j, i, Sprite.brick.getFxImage());
                     position[j][i] = 2;
                     block.add(object);
                 } else if (Character.compare(map[i][j], 's') == 0) {
-                    object = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                    Entity object = new SpeedItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
                 } else if (Character.compare(map[i][j], 'b') == 0) {
-                    object = new BombItem(j, i, Sprite.brick.getFxImage());
+                    Entity object = new BombItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
                 } else if (Character.compare(map[i][j], 'f') == 0) {
-                    object = new FlameItem(j, i, Sprite.brick.getFxImage());
+                    Entity object = new FlameItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
-                } else if (Character.compare(map[i][j], 'x') == 0) {
-                    object = new Portal(j, i, Sprite.brick.getFxImage());
-                    items.add(object);
-                    block.add(object);
-                }
+                } 
 //                else {
 //                    object = new Grass(j, i, Sprite.grass.getFxImage());
 //                    position[j][i] = 0;
@@ -228,6 +223,5 @@ public class BombermanGame extends Application {
         flame.forEach(g -> g.render(gc));
         enemy.forEach(g -> g.render(gc));
         items.forEach(g -> g.render(gc));
-
     }
 }
