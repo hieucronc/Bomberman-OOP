@@ -39,7 +39,7 @@ public class Brick extends Entity {
     public void playImg() {
         if (broken) {
             this.setImg(Sprite.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1,
-                    Sprite.brick_exploded2, cntBrickExploded, 30).getFxImage());
+                    Sprite.brick_exploded2, cntBrickExploded, decayTimer).getFxImage());
             cntBrickExploded++;
         }
     }
