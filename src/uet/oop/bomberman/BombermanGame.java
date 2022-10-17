@@ -18,6 +18,7 @@ import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
+import uet.oop.bomberman.entities.items.FlameItem;
 import uet.oop.bomberman.entities.items.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -177,6 +178,10 @@ public class BombermanGame extends Application {
                     block.add(object);
                 } else if (Character.compare(map[i][j], 's') == 0) {
                     object = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
+                } else if (Character.compare(map[i][j], 'f') == 0) {
+                    object = new FlameItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
                 }
