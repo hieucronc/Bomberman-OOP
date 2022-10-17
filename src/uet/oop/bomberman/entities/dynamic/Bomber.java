@@ -38,7 +38,8 @@ public class Bomber extends DynamicEntities {
         }
     }
     public void killBomber() {
-        this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, frameCount, 100).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2,
+                Sprite.player_dead3, frameCount, 100).getFxImage());
         updateFrameCount();
         gc.drawImage(img, x, y);
     }
@@ -60,7 +61,7 @@ public class Bomber extends DynamicEntities {
     @Override
     public void update() {
         updateMove();
-        checkBomb();
+        checkAlive();
         checkEnemy();
         if (!this.life) {
             killBomber();

@@ -10,13 +10,15 @@ public abstract class DynamicEntities extends Entity {
     public DynamicEntities() {
 
     }
-    public void checkBomb() {
-        for (Entity entity : flame) {
-            if (Movement.collision(this, this.getX(), this.getY(), entity.getX(), entity.getY())) {
-                this.life = false;
-                break;
-            }
-        }
+
+    public void checkAlive() {
+        if (checkBomb()) this.life = false;
+//        for (Entity entity : flame) {
+//            if (Movement.collision(this, this.getX(), this.getY(), entity.getX(), entity.getY())) {
+//                this.life = false;
+//                break;
+//            }
+//        }
     }
     public DynamicEntities(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);

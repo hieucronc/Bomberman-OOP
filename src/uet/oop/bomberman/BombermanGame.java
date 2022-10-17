@@ -10,12 +10,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.entities.blocks.Brick;
-import uet.oop.bomberman.entities.blocks.Grass;
-import uet.oop.bomberman.entities.blocks.Wall;
+import uet.oop.bomberman.entities.blocks.*;
 import uet.oop.bomberman.entities.dynamic.Ballom;
 import uet.oop.bomberman.entities.dynamic.Bomber;
-import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.items.BombItem;
@@ -187,6 +184,10 @@ public class BombermanGame extends Application {
                     block.add(object);
                 } else if (Character.compare(map[i][j], 'f') == 0) {
                     object = new FlameItem(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
+                } else if (Character.compare(map[i][j], 'x') == 0) {
+                    object = new Portal(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
                 }

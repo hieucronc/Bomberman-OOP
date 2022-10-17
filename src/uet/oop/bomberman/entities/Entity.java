@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
 import java.util.Objects;
@@ -67,6 +68,14 @@ public abstract class Entity {
             }
         }
         return -1;
+    }
+    public boolean checkBomb() {
+        for (Entity entity : flame) {
+            if (Movement.collision(entity, entity.getX(), entity.getY(), this.getX(), this.getY())) {
+                return true;
+            }
+        }
+        return false;
     }
     public static int isInItem(Entity entity) {
         for (int i=0;i<items.size();i++) {
