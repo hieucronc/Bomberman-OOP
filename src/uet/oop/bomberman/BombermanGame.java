@@ -137,19 +137,16 @@ public class BombermanGame extends Application {
         createMap();
 
 
-        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        DynamicEntities ballom = new Ballom(3, 8, Sprite.balloom_left3.getFxImage());
-        DynamicEntities ballom1 = new Ballom(5, 8, Sprite.balloom_left3.getFxImage());
-        DynamicEntities ballom2 = new Ballom(7, 8, Sprite.balloom_left3.getFxImage());
-        enemy.add(ballom);
-        enemy.add(ballom1);
-        enemy.add(ballom2);
-        entities.add(bomberman);
+//        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+//        entities.add(bomberman);
     }
+
     public void createMap() throws Exception {
         System.out.println(System.getProperty("user.dir") + "/res/levels/lv1.txt");
         File file = new File(System.getProperty("user.dir") + "/res/levels/lv1.txt");
-
+        entities.clear();
+        items.clear();
+        block.clear();
         Scanner scanner = new Scanner(file);
         int height = scanner.nextInt();
         int width = scanner.nextInt();
@@ -190,16 +187,21 @@ public class BombermanGame extends Application {
                     Entity object = new Portal(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                } else if (Character.compare(map[i][j], '1') == 0) {
+                    DynamicEntities ballom = new Ballom(j, i, Sprite.balloom_left3.getFxImage());
+                    enemy.add(ballom);
+                } else if (Character.compare(map[i][j], 'p') == 0) {
+                    bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                 }
 //                else {
 //                    object = new Grass(j, i, Sprite.grass.getFxImage());
 //                    position[j][i] = 0;
 //                    entities.add(object);
 //                }
-
             }
-        }
 
+        }
+        entities.add(bomberman);
     }
 
     public void update() {
