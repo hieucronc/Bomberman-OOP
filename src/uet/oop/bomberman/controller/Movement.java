@@ -15,27 +15,32 @@ public class Movement {
     public static boolean keydown = false;
     public static boolean keyleft = false;
     public static boolean keyright = false;
-    public static boolean collision(int ax, int ay, int bx, int by) {
-        if (ax < bx + Sprite.SCALED_SIZE &&
-                ax + Sprite.SCALED_SIZE - 8 > bx &&
-                ay < by + Sprite.SCALED_SIZE &&
-                ay + Sprite.SCALED_SIZE > by) {
-            return true;
+    public static boolean collision(Entity a,int ax, int ay, int bx, int by) {
+        if (a instanceof Bomber) {
+            return ax < bx + Sprite.SCALED_SIZE &&
+                    ax + Sprite.SCALED_SIZE - 8 > bx &&
+                    ay < by + Sprite.SCALED_SIZE &&
+                    ay + Sprite.SCALED_SIZE > by;
+        } else {
+            return ax < bx + Sprite.SCALED_SIZE &&
+                    ax + Sprite.SCALED_SIZE > bx &&
+                    ay < by + Sprite.SCALED_SIZE &&
+                    ay + Sprite.SCALED_SIZE > by;
         }
-        return false;
+
     }
 
     public static boolean canMoveDown(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities.getX(), dynamicEntities.getY() + bomberStep, block.get(i).getX(), block.get(i).getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + bomberStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities.getX(), dynamicEntities.getY() + ballomStep, block.get(i).getX(), block.get(i).getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + ballomStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -47,14 +52,14 @@ public class Movement {
     public static boolean canMoveUp(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities.getX(), dynamicEntities.getY() - bomberStep, block.get(i).getX(), block.get(i).getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - bomberStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities.getX(), dynamicEntities.getY() - ballomStep, block.get(i).getX(), block.get(i).getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - ballomStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -66,14 +71,14 @@ public class Movement {
     public static boolean canMoveLeft(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities.getX() - bomberStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - bomberStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities.getX() - ballomStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - ballomStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -85,14 +90,14 @@ public class Movement {
     public static boolean canMoveRight(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities.getX() + bomberStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + bomberStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Ballom) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities.getX() + ballomStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + ballomStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }

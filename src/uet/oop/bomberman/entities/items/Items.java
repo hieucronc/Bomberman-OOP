@@ -12,7 +12,7 @@ public abstract class Items extends Entity {
     }
     public boolean checkBomb() {
         for (Entity entity : flame) {
-            if (Movement.collision(entity.getX(), entity.getY(), this.getX(), this.getY())) {
+            if (Movement.collision(entity, entity.getX(), entity.getY(), this.getX(), this.getY())) {
                 return true;
             }
         }
@@ -21,7 +21,7 @@ public abstract class Items extends Entity {
     public boolean takeItem() {
         for (Entity entity : entities) {
             if (entity instanceof Bomber) {
-                if (Movement.collision(entity.getX(), entity.getY(), this.getX(), this.getY())) {
+                if (Movement.collision(entity, entity.getX(), entity.getY(), this.getX(), this.getY())) {
 
                     return true;
                 }

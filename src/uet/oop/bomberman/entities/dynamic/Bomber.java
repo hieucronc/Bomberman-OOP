@@ -31,7 +31,7 @@ public class Bomber extends DynamicEntities {
 
     public void checkEnemy() {
         for (Entity entity : enemy) {
-            if (Movement.collision(this.getX(), this.getY(), entity.getX(), entity.getY())) {
+            if (Movement.collision(this, this.getX(), this.getY(), entity.getX(), entity.getY())) {
                 this.life = false;
                 break;
             }

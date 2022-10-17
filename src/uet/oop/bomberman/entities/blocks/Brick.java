@@ -24,9 +24,9 @@ public class Brick extends Entity {
     }
 
     public void removeBrick() {
-        this.setImg(Sprite.movingSprite(Sprite.brick_exploded,Sprite.brick_exploded1,Sprite.brick_exploded2,cntBrickExploded,60).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.brick_exploded,Sprite.brick_exploded1,Sprite.brick_exploded2,cntBrickExploded,50).getFxImage());
         cntBrickExploded++;
-        if (cntBrickExploded > 40) {
+        if (cntBrickExploded > 20) {
             for (int i = 0; i < block.size(); i++) {
                 if (block.get(i) instanceof Brick) {
                     if (((Brick) block.get(i)).checkBomb()) {

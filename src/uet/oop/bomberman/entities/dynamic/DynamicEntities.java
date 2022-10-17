@@ -12,7 +12,7 @@ public abstract class DynamicEntities extends Entity {
     }
     public void checkBomb() {
         for (Entity entity : flame) {
-            if (Movement.collision(this.getX(), this.getY(), entity.getX(), entity.getY())) {
+            if (Movement.collision(this, this.getX(), this.getY(), entity.getX(), entity.getY())) {
                 this.life = false;
                 break;
             }

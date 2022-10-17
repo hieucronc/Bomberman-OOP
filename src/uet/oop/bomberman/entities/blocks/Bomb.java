@@ -43,7 +43,7 @@ public class Bomb extends Entity {
                 if (canPassThrough) {
                     for (Entity entity : entities) {
                         if (entity instanceof Bomber) {
-                            if (!Movement.collision(entity.getX(), entity.getY(), this.getX(), this.getY())) {
+                            if (!Movement.collision(entity, entity.getX(), entity.getY(), this.getX(), this.getY())) {
                                 canPassThrough = false;
                                 break;
                             }

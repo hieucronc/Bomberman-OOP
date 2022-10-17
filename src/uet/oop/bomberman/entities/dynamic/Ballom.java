@@ -45,7 +45,7 @@ public class Ballom extends DynamicEntities {
 //                dir = random.nextInt(4);
 //            }
 //        }
-        if (tick > 70) {
+        if (tick > 60) {
             Random random = new Random();
             dir = random.nextInt(4);
             tick = 0;

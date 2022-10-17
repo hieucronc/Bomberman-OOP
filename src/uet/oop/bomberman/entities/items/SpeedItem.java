@@ -17,7 +17,7 @@ public class SpeedItem extends Items {
         }
         if (takeItem()) {
             items.remove(isInItem(this));
-            bomberStep = 4;
+            bomberStep = 3;
         }
     }
 }
