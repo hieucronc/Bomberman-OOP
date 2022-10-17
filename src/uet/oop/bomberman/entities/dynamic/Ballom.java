@@ -104,7 +104,7 @@ public class Ballom extends DynamicEntities {
 //            tick = 0;
 //        }
         enemyMove();
-        checkBomb();
+        checkAlive();
         if (!life) {
             killBallom();
         }

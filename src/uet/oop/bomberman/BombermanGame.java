@@ -17,6 +17,7 @@ import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.entities.items.FlameItem;
+import uet.oop.bomberman.entities.items.Portal;
 import uet.oop.bomberman.entities.items.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -185,7 +186,11 @@ public class BombermanGame extends Application {
                     Entity object = new FlameItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
-                } 
+                } else if (Character.compare(map[i][j], 'x') == 0) {
+                    Entity object = new Portal(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
+                }
 //                else {
 //                    object = new Grass(j, i, Sprite.grass.getFxImage());
 //                    position[j][i] = 0;
