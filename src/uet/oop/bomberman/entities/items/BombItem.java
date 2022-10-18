@@ -10,7 +10,7 @@ public class BombItem extends Items{
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.powerup_bombs.getFxImage());
+            reveal(Sprite.powerup_bombs.getFxImage(),1);
         }
         if (takeItem()) {
             items.remove(isInItem(this));

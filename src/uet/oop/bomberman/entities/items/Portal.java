@@ -15,7 +15,7 @@ public class Portal extends Items {
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.portal.getFxImage());
+            reveal(Sprite.portal.getFxImage(),2);
         }
         if (takeItem()) {
 

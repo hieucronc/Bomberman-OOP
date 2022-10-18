@@ -12,7 +12,7 @@ public class SpeedItem extends Items {
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.powerup_speed.getFxImage());
+            reveal(Sprite.powerup_speed.getFxImage(),2);
         }
 
         if (takeItem()) {

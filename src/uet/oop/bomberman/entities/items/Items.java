@@ -19,12 +19,12 @@ public abstract class Items extends Entity {
         super(x, y, image);
     }
 
-    public void reveal(Image _itemImage) {
+    public void reveal(Image _itemImage, int hit) {
         if (broken) {
             this.setImg(Sprite.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1,
-                    Sprite.brick_exploded2, cntBrickExploded, decayTimer).getFxImage());
+                    Sprite.brick_exploded2, cntBrickExploded, decayTimer*hit).getFxImage());
             cntBrickExploded++;
-            if (cntBrickExploded > decayTimer) {
+            if (cntBrickExploded > decayTimer*hit) {
                 img = _itemImage;
                 for (int i = 0; i < block.size(); i++) {
                     if (block.get(i).getX() == this.getX() && block.get(i).getY() == this.getY()) {

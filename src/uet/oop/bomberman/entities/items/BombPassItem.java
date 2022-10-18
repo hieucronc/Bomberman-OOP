@@ -11,7 +11,7 @@ public class BombPassItem extends Items {
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.powerup_bombpass.getFxImage());
+            reveal(Sprite.powerup_bombpass.getFxImage(),1);
         }
         if (takeItem()) {
             items.remove(isInItem(this));

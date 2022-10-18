@@ -16,7 +16,7 @@ public class FlameItem extends Items {
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.powerup_flames.getFxImage());
+            reveal(Sprite.powerup_flames.getFxImage(),1);
         }
         if (takeItem()) {
             items.remove(isInItem(this));
