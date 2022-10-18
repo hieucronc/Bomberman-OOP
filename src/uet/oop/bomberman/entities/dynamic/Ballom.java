@@ -20,7 +20,7 @@ public class Ballom extends DynamicEntities {
     public Ballom(int x, int y, Image img) {
         super(x,y,img);
     }
-    public void enemyMove() {
+    public void ballomMove() {
 //        if (dir == UP && !Movement.canMoveUp(this) && tick <= 70) {
 //            while (dir == UP) {
 //                Random random = new Random();
@@ -106,7 +106,7 @@ public class Ballom extends DynamicEntities {
     @Override
     public void update() {
         tick++;
-        enemyMove();
+        ballomMove();
         checkAlive();
         if (!life) {
             killBallom();

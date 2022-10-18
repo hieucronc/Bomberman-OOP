@@ -15,6 +15,7 @@ import uet.oop.bomberman.entities.dynamic.Ballom;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.controller.Movement;
+import uet.oop.bomberman.entities.dynamic.Oneal;
 import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -139,8 +140,7 @@ public class BombermanGame extends Application {
     }
 
     public void createMap() throws Exception {
-        System.out.println(System.getProperty("user.dir") + "/res/levels/lv1.txt");
-        File file = new File(System.getProperty("user.dir") + "/res/levels/lv1.txt");
+        File file = new File(System.getProperty("user.dir") + "/res/levels/testOneal.txt");
         entities.clear();
         items.clear();
         block.clear();
@@ -193,8 +193,11 @@ public class BombermanGame extends Application {
                     items.add(object);
                     block.add(object);
                 } else if (Character.compare(map[i][j], '1') == 0) {
-                    DynamicEntities ballom = new Ballom(j, i, Sprite.balloom_left3.getFxImage());
+                    DynamicEntities ballom = new Ballom(j, i, Sprite.balloom_right1.getFxImage());
                     enemy.add(ballom);
+                } else if (Character.compare(map[i][j], '2') == 0) {
+                    DynamicEntities oneal = new Oneal(j, i, Sprite.oneal_right1.getFxImage());
+                    enemy.add(oneal);
                 } else if (Character.compare(map[i][j], 'p') == 0) {
                     bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                 }
