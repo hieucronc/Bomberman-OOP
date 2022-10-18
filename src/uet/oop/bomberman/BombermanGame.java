@@ -140,14 +140,19 @@ public class BombermanGame extends Application {
 
     }
 
-    public static void createMap() throws Exception {
-        File file = new File(System.getProperty("user.dir") + "/res/levels/lv" + level +".txt");
+    public static void reset() {
         entities.clear();
         items.clear();
         block.clear();
         enemy.clear();
         flame.clear();
         bombs.clear();
+        Flame.flameLength = 1;
+    }
+
+    public static void createMap() throws Exception {
+        File file = new File(System.getProperty("user.dir") + "/res/levels/lv" + level + ".txt");
+        reset();
         Scanner scanner = new Scanner(file);
         int height = scanner.nextInt();
         int width = scanner.nextInt();
