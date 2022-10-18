@@ -33,7 +33,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 public class BombermanGame extends Application {
-
+    public static int level = 1;
     public static final int WIDTH = 20;
     public static final int HEIGHT = 15;
 
@@ -127,23 +127,27 @@ public class BombermanGame extends Application {
             @Override
             public void handle(long l) {
                 render();
-                update();
+                try {
+                    update();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         };
         timer.start();
 
         createMap();
 
-
-//        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-//        entities.add(bomberman);
     }
 
-    public void createMap() throws Exception {
-        File file = new File(System.getProperty("user.dir") + "/res/levels/lv1.txt");
+    public static void createMap() throws Exception {
+        File file = new File(System.getProperty("user.dir") + "/res/levels/lv" + level +".txt");
         entities.clear();
         items.clear();
         block.clear();
+        enemy.clear();
+        flame.clear();
+        bombs.clear();
         Scanner scanner = new Scanner(file);
         int height = scanner.nextInt();
         int width = scanner.nextInt();
@@ -212,7 +216,7 @@ public class BombermanGame extends Application {
         entities.add(bomberman);
     }
 
-    public void update() {
+    public void update() throws Exception {
         for (Entity entity : entities) {
             entity.update();
         }

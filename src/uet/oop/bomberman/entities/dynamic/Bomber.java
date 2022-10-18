@@ -2,7 +2,9 @@ package uet.oop.bomberman.entities.dynamic;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.controller.Movement;
+
 import static uet.oop.bomberman.controller.Movement.*;
+
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -11,6 +13,7 @@ import static uet.oop.bomberman.entities.items.FlamePassItem.*;
 
 public class Bomber extends DynamicEntities {
     public static int bomberStep = 2;
+
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -23,12 +26,21 @@ public class Bomber extends DynamicEntities {
             }
         }
     }
+
     public void killBomber() {
         this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2,
                 Sprite.player_dead3, frameCount, 100).getFxImage());
-        updateFrameCount();
-        gc.drawImage(img, x, y);
+        frameCount++;
+        if (frameCount > 100) {
+            try {
+                createMap();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            frameCount = 0;
+        }
     }
+
     public void updateMove() {
         if (keyup) {
             moveUp(this);
