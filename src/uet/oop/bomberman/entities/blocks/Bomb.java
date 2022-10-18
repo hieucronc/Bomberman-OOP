@@ -7,7 +7,7 @@ import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
-
+import static uet.oop.bomberman.entities.items.BombPassItem.*;
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Bomb extends Entity {
@@ -51,7 +51,10 @@ public class Bomb extends Entity {
                     }
 
                 } else {
-                    block.add(this);
+                    if (!takeBombPass) {
+                        block.add(this);
+                    }
+
                     allowToWalkOn = false;
                 }
             }
@@ -73,7 +76,11 @@ public class Bomb extends Entity {
     public void remove() {
         bombs.remove(0);
         flame.clear();
-        block.remove(block.size() - 1);
+        if (!takeBombPass) {
+            block.remove(block.size() - 1);
+        }
+
+
     }
 
     /**

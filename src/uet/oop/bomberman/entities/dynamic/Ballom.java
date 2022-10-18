@@ -45,6 +45,8 @@ public class Ballom extends DynamicEntities {
 //                dir = random.nextInt(4);
 //            }
 //        }
+
+
         if (tick > 60) {
             Random random = new Random();
             dir = random.nextInt(4);
@@ -100,10 +102,7 @@ public class Ballom extends DynamicEntities {
     @Override
     public void update() {
         tick++;
-//        if (tick > 1e6) {
-//            tick = 0;
-//        }
-        enemyMove();
+        //enemyMove();
         checkAlive();
         if (!life) {
             killBallom();
