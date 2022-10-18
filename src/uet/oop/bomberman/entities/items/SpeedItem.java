@@ -1,6 +1,5 @@
 package uet.oop.bomberman.entities.items;
 
-import uet.oop.bomberman.entities.Entity;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
@@ -13,8 +12,14 @@ public class SpeedItem extends Items {
     public void update() {
         if (checkBomb()) {
             img = Sprite.powerup_speed.getFxImage();
-            block.remove(isInBlock(this));
+            //block.remove(isInBlock(this));
+            for (int i=0;i<block.size();i++) {
+                if (block.get(i).getX() == this.getX() && block.get(i).getY() == this.getY()) {
+                    block.remove(i);
+                }
+            }
         }
+
         if (takeItem()) {
             items.remove(isInItem(this));
             if (bomberman.getX() % 4 == 2) {

@@ -9,6 +9,7 @@ import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.entities.items.BombPassItem.*;
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.entities.items.SpeedItem.*;
 
 public class Bomb extends Entity {
     public static int x;
@@ -76,8 +77,6 @@ public class Bomb extends Entity {
         if (!takeBombPass) {
             block.remove(block.size() - 1);
         }
-
-
     }
 
     /**

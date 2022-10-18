@@ -6,7 +6,6 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.block;
 import static uet.oop.bomberman.BombermanGame.items;
-import static uet.oop.bomberman.entities.dynamic.Bomber.bomberStep;
 
 public class FlameItem extends Items {
     public FlameItem(int x, int y, Image image) {
@@ -17,7 +16,11 @@ public class FlameItem extends Items {
     public void update() {
         if (checkBomb()) {
             img = Sprite.powerup_flames.getFxImage();
-            block.remove(isInBlock(this));
+            for (int i=0;i<block.size();i++) {
+                if (block.get(i).getX() == this.getX() && block.get(i).getY() == this.getY()) {
+                    block.remove(i);
+                }
+            }
         }
         if (takeItem()) {
             items.remove(isInItem(this));

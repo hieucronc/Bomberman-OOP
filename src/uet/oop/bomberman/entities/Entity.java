@@ -94,14 +94,14 @@ public abstract class Entity {
         return -1;
     }
 
-    public static int isInBlock(Entity entity) {
-        for (int i = 0; i < block.size(); i++) {
-            if (block.get(i).getX() == entity.getX() && block.get(i).getY() == entity.getY()) {
-                return i;
-            }
-        }
-        return -1;
-    }
+//    public static int isInBlock(Entity entity) {
+//        for (int i = 0; i < block.size(); i++) {
+//            if (block.get(i).getX() == entity.getX() && block.get(i).getY() == entity.getY()) {
+//                return i;
+//            }
+//        }
+//        return -1;
+//    }
 
     public static void updateFrameCount() {
         if (frameCount > 80) {

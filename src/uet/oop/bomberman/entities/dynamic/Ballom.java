@@ -11,7 +11,7 @@ import java.util.Random;
 public class Ballom extends DynamicEntities {
     public static int ballomStep = 1;
     private int tick = 0;
-    private int dir;
+    private int dir = DOWN;
     private int countBallomDead = 0;
     private static final int UP = 0;
     private static final int DOWN = 1;
@@ -47,18 +47,19 @@ public class Ballom extends DynamicEntities {
 //        }
 
 
-        if (tick > 60) {
-            Random random = new Random();
-            dir = random.nextInt(4);
-            tick = 0;
-        }
+//        if (tick > 60) {
+//            Random random = new Random();
+//            dir = random.nextInt(4);
+//            tick = 0;
+//        }
 
         switch (dir) {
             case UP:
                 if (Movement.canMoveUp(this)) {
                     Movement.moveUp(this);
                 } else {
-                    tick = 71;
+                    Random random = new Random();
+                    dir = random.nextInt(4);
                 }
 
                 break;
@@ -66,21 +67,24 @@ public class Ballom extends DynamicEntities {
                 if (Movement.canMoveDown(this)) {
                     Movement.moveDown(this);
                 } else {
-                    tick = 71;
+                    Random random = new Random();
+                    dir = random.nextInt(4);
                 }
                 break;
             case LEFT:
                 if (Movement.canMoveLeft(this)) {
                     Movement.moveLeft(this);
                 } else {
-                    tick = 71;
+                    Random random = new Random();
+                    dir = random.nextInt(4);
                 }
                 break;
             case RIGHT:
                 if (Movement.canMoveRight(this)) {
                     Movement.moveRight(this);
                 } else {
-                    tick = 71;
+                    Random random = new Random();
+                    dir = random.nextInt(4);
                 }
                 break;
 
@@ -102,7 +106,7 @@ public class Ballom extends DynamicEntities {
     @Override
     public void update() {
         tick++;
-        //enemyMove();
+        enemyMove();
         checkAlive();
         if (!life) {
             killBallom();

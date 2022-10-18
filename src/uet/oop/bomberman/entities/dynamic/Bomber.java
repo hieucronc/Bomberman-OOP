@@ -1,17 +1,6 @@
 package uet.oop.bomberman.entities.dynamic;
 
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import uet.oop.bomberman.controller.Movement;
 import static uet.oop.bomberman.controller.Movement.*;
 import uet.oop.bomberman.entities.Entity;
@@ -19,9 +8,6 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.items.FlamePassItem.*;
-import uet.oop.bomberman.BombermanGame;
-
-import java.awt.event.ActionEvent;
 
 public class Bomber extends DynamicEntities {
     public static int bomberStep = 2;

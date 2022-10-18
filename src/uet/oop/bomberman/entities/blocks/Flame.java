@@ -3,10 +3,7 @@ package uet.oop.bomberman.entities.blocks;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.dynamic.DynamicEntities;
 import uet.oop.bomberman.graphics.Sprite;
-
-import java.awt.*;
 
 import static uet.oop.bomberman.BombermanGame.position;
 import static uet.oop.bomberman.entities.blocks.Bomb.*;

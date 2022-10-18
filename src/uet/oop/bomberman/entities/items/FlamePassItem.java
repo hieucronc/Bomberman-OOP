@@ -11,7 +11,11 @@ public class FlamePassItem extends Items {
     public void update() {
         if (checkBomb()) {
             img = Sprite.powerup_flamepass.getFxImage();
-            block.remove(isInBlock(this));
+            for (int i=0;i<block.size();i++) {
+                if (block.get(i).getX() == this.getX() && block.get(i).getY() == this.getY()) {
+                    block.remove(i);
+                }
+            }
         }
         if (takeItem()) {
             items.remove(isInItem(this));
