@@ -15,9 +15,10 @@ public class Kondoria extends DynamicEntities {
 
     }
     public void killKondoria() {
-        this.setImg(Sprite.movingSprite(Sprite.kondoria_dead,Sprite.mob_dead1,Sprite.mob_dead2,countKondoriaDead,60).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.kondoria_dead,Sprite.mob_dead1,Sprite.mob_dead2,
+                Sprite.mob_dead3, countKondoriaDead, decayTimer*4/3).getFxImage());
         countKondoriaDead++;
-        if (countKondoriaDead > decayTimer) {
+        if (countKondoriaDead > decayTimer*4/3) {
             for (int i=0;i<enemy.size();i++) {
                 if (enemy.get(i).getX() == this.getX() && enemy.get(i).getY() == this.getY()) {
                     enemy.remove(i);
