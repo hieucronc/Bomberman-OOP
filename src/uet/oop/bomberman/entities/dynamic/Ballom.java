@@ -11,7 +11,6 @@ import java.util.Random;
 
 public class Ballom extends DynamicEntities {
     public static int ballomStep = 1;
-    private int tick = 0;
     private int dir = DOWN;
     private int countBallomDead = 0;
     private static final int UP = 0;
@@ -24,38 +23,6 @@ public class Ballom extends DynamicEntities {
     }
 
     public void ballomMove() {
-//        if (dir == UP && !Movement.canMoveUp(this) && tick <= 70) {
-//            while (dir == UP) {
-//                Random random = new Random();
-//                dir = random.nextInt(4);
-//            }
-//        }
-//        if (dir == DOWN && !Movement.canMoveDown(this) && tick <= 70) {
-//            while (dir == DOWN) {
-//                Random random = new Random();
-//                dir = random.nextInt(4);
-//            }
-//        }
-//        if (dir == LEFT && !Movement.canMoveLeft(this) && tick <= 70) {
-//            while (dir == LEFT) {
-//                Random random = new Random();
-//                dir = random.nextInt(4);
-//            }
-//        }
-//        if (dir == RIGHT && !Movement.canMoveRight(this) && tick <= 70) {
-//            while (dir == RIGHT) {
-//                Random random = new Random();
-//                dir = random.nextInt(4);
-//            }
-//        }
-
-
-//        if (tick > 60) {
-//            Random random = new Random();
-//            dir = random.nextInt(4);
-//            tick = 0;
-//        }
-
         switch (dir) {
             case UP:
                 if (Movement.canMoveUp(this)) {
@@ -109,7 +76,6 @@ public class Ballom extends DynamicEntities {
 
     @Override
     public void update() {
-        tick++;
         ballomMove();
         checkAlive();
         if (!life) {

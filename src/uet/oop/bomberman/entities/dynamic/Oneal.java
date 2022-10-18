@@ -16,18 +16,16 @@ public class Oneal extends DynamicEntities {
         }
         if (bomberman.getY() > this.getY()) {
             moveDown(this);
-
         }
         if (bomberman.getX() > this.getX()) {
             moveRight(this);
         }
         if (bomberman.getX() < this.getX()) {
             moveLeft(this);
-
         }
     }
     public void killOneal() {
-        this.setImg(Sprite.movingSprite(Sprite.oneal_dead,Sprite.oneal_dead,Sprite.oneal_dead,countOnealDead,60).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.oneal_dead,Sprite.mob_dead1,Sprite.mob_dead2,countOnealDead,60).getFxImage());
         countOnealDead++;
         if (countOnealDead > decayTimer) {
             for (int i=0;i<enemy.size();i++) {

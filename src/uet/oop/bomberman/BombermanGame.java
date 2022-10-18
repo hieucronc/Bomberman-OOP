@@ -11,11 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.blocks.*;
-import uet.oop.bomberman.entities.dynamic.Ballom;
-import uet.oop.bomberman.entities.dynamic.Bomber;
-import uet.oop.bomberman.entities.dynamic.DynamicEntities;
+import uet.oop.bomberman.entities.dynamic.*;
 import uet.oop.bomberman.controller.Movement;
-import uet.oop.bomberman.entities.dynamic.Oneal;
 import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -207,14 +204,18 @@ public class BombermanGame extends Application {
                 } else if (Character.compare(map[i][j], '2') == 0) {
                     DynamicEntities oneal = new Oneal(j, i, Sprite.oneal_right1.getFxImage());
                     enemy.add(oneal);
+                } else if (Character.compare(map[i][j], '3') == 0) {
+                    DynamicEntities doll = new Doll(j, i, Sprite.doll_right1.getFxImage());
+                    enemy.add(doll);
+                } else if (Character.compare(map[i][j], '4') == 0) {
+                    DynamicEntities kondoria = new Kondoria(j, i, Sprite.kondoria_right1.getFxImage());
+                    enemy.add(kondoria);
+                } else if (Character.compare(map[i][j], '5') == 0) {
+                    DynamicEntities minvo = new Minvo(j, i, Sprite.minvo_right1.getFxImage());
+                    enemy.add(minvo);
                 } else if (Character.compare(map[i][j], 'p') == 0) {
                     bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                 }
-//                else {
-//                    object = new Grass(j, i, Sprite.grass.getFxImage());
-//                    position[j][i] = 0;
-//                    entities.add(object);
-//                }
             }
 
         }

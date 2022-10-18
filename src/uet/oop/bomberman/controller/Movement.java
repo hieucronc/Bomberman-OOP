@@ -124,7 +124,7 @@ public class Movement {
                 }
             }
             return true;
-        } else if (dynamicEntities instanceof Ballom) {
+        } else if (dynamicEntities instanceof Oneal) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX() + onealStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
@@ -148,13 +148,13 @@ public class Movement {
         }
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveDown(dynamicEntities)) {
+            if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - ballomStep);
             }
         }
         if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveDown(dynamicEntities)) {
+            if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - onealStep);
             }
         }
@@ -199,13 +199,13 @@ public class Movement {
         }
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveDown(dynamicEntities)) {
+            if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - ballomStep);
             }
         }
         if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveDown(dynamicEntities)) {
+            if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - onealStep);
             }
         }
@@ -225,13 +225,13 @@ public class Movement {
         }
         if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveDown(dynamicEntities)) {
+            if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + ballomStep);
             }
         }
         if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveDown(dynamicEntities)) {
+            if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + onealStep);
             }
         }
