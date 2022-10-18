@@ -184,6 +184,10 @@ public class BombermanGame extends Application {
                     Entity object = new BombPassItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                } else if (Character.compare(map[i][j], 'y') == 0) {
+                    Entity object = new FlamePassItem(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
                 } else if (Character.compare(map[i][j], 'x') == 0) {
                     Entity object = new Portal(j, i, Sprite.brick.getFxImage());
                     items.add(object);

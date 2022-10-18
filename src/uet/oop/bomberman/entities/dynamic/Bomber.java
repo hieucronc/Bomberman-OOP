@@ -18,7 +18,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
-
+import static uet.oop.bomberman.entities.items.FlamePassItem.*;
 import uet.oop.bomberman.BombermanGame;
 
 import java.awt.event.ActionEvent;
@@ -61,7 +61,10 @@ public class Bomber extends DynamicEntities {
     @Override
     public void update() {
         updateMove();
-        checkAlive();
+        if (!takeFlamePass) {
+            checkAlive();
+        }
+
         checkEnemy();
         if (!this.life) {
             killBomber();
