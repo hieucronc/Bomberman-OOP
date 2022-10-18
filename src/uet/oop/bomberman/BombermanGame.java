@@ -34,8 +34,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class BombermanGame extends Application {
 
-    public static final int WIDTH = 31;
-    public static final int HEIGHT = 13;
+    public static final int WIDTH = 20;
+    public static final int HEIGHT = 15;
 
     public static GraphicsContext gc;
     private Canvas canvas;
@@ -140,7 +140,7 @@ public class BombermanGame extends Application {
     }
 
     public void createMap() throws Exception {
-        File file = new File(System.getProperty("user.dir") + "/res/levels/testOneal.txt");
+        File file = new File(System.getProperty("user.dir") + "/res/levels/lv1.txt");
         entities.clear();
         items.clear();
         block.clear();

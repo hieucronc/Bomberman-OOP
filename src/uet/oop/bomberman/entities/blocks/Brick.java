@@ -36,11 +36,9 @@ public class Brick extends Entity {
     }
 
     public void playImg() {
-        if (broken) {
-            this.setImg(Sprite.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1,
-                    Sprite.brick_exploded2, cntBrickExploded, decayTimer).getFxImage());
-            cntBrickExploded++;
-        }
+        this.setImg(Sprite.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1,
+                Sprite.brick_exploded2, cntBrickExploded, decayTimer).getFxImage());
+        cntBrickExploded++;
     }
 
     @Override
@@ -48,9 +46,10 @@ public class Brick extends Entity {
         if (checkBomb()) {
             broken = true;
         }
-        if (broken)
+        if (broken) {
+            playImg();
             if (cntBrickExploded > decayTimer)
                 removeBrick();
-        playImg();
+        }
     }
 }

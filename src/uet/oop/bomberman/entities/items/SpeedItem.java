@@ -11,13 +11,8 @@ public class SpeedItem extends Items {
     @Override
     public void update() {
         if (checkBomb()) {
-            img = Sprite.powerup_speed.getFxImage();
-            //block.remove(isInBlock(this));
-            for (int i=0;i<block.size();i++) {
-                if (block.get(i).getX() == this.getX() && block.get(i).getY() == this.getY()) {
-                    block.remove(i);
-                }
-            }
+            broken = true;
+            reveal(Sprite.powerup_speed.getFxImage());
         }
 
         if (takeItem()) {
