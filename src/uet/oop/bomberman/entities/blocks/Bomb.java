@@ -39,7 +39,7 @@ public class Bomb extends Entity {
         if (!exploded) {
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1,
                     Sprite.bomb_2, countToExploded, explodeTimer / 2).getFxImage());
-            if (allowToWalkOn) {
+            if (allowToWalkOn && !takeBombPass) {
                 if (canPassThrough) {
                     for (Entity entity : entities) {
                         if (entity instanceof Bomber) {
@@ -51,10 +51,7 @@ public class Bomb extends Entity {
                     }
 
                 } else {
-                    if (!takeBombPass) {
-                        block.add(this);
-                    }
-
+                    block.add(this);
                     allowToWalkOn = false;
                 }
             }
