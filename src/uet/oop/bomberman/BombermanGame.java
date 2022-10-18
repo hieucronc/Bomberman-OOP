@@ -17,13 +17,11 @@ import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
@@ -38,7 +36,7 @@ public class BombermanGame extends Application {
     private Canvas canvas;
     public static List<Entity> entities = new ArrayList<>(); //gom nhan vat, grass
     public static List<Entity> block = new ArrayList<>(); // gom gach,tuong
-    public static List<Entity> flame = new ArrayList<>();
+    public static Queue<Flame> flame = new LinkedList<>();
     public static List<Entity> items = new ArrayList<>();
     public static List<Entity> bombs = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();

@@ -6,6 +6,7 @@ import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.block;
+import static uet.oop.bomberman.BombermanGame.enemy;
 
 public class Portal extends Items {
 
@@ -20,8 +21,10 @@ public class Portal extends Items {
             reveal(Sprite.portal.getFxImage(),2);
         }
         if (takeItem()) {
-            BombermanGame.level++;
-            BombermanGame.createMap();
+            if (enemy.isEmpty()) {
+                BombermanGame.level++;
+                BombermanGame.createMap();
+            }
         }
 
     }
