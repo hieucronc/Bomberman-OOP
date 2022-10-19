@@ -274,7 +274,7 @@ public class Movement {
             }
         } else if (dynamicEntities instanceof Doll) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
-            if (canMoveLeft(dynamicEntities)) {
+            if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + dollStep);
             }
         }
