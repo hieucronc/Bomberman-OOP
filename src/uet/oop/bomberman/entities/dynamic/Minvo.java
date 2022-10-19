@@ -1,22 +1,78 @@
 package uet.oop.bomberman.entities.dynamic;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
+
+import java.util.Random;
 
 import static uet.oop.bomberman.entities.blocks.Bomb.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.controller.Movement.*;
 
 public class Minvo extends DynamicEntities {
-    public static int minvoStep = 2;
+    public static int minvoStep = 1;
+    private int dir = DOWN;
     private int countMinvoDead = 0;
+    private static final int UP = 0;
+    private static final int DOWN = 1;
+    private static final int LEFT = 2;
+    private static final int RIGHT = 3;
 
     public Minvo(int x, int y, Image img) {
         super(x, y, img);
     }
 
     public void minvoMove() {
+        if (bomberman.getX() == this.getX() && Math.abs(bomberman.getY() - this.getY()) < 5 * Sprite.SCALED_SIZE) {
+            if (bomberman.getY() > this.getY()) {
+                Movement.moveUp(this);
+            } else if (bomberman.getY() < this.getY()) {
+                Movement.moveDown(this);
+            }
+        } else if (bomberman.getY() == this.getY() && Math.abs(bomberman.getX() - this.getX()) < 5 * Sprite.SCALED_SIZE) {
+            if (bomberman.getX() > this.getX()) {
+                Movement.moveLeft(this);
+            } else if (bomberman.getX() < this.getX()) {
+                Movement.moveRight(this);
+            }
+        } else {
+            switch (dir) {
+                case UP:
+                    if (Movement.canMoveUp(this)) {
+                        Movement.moveUp(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
 
+                    break;
+                case DOWN:
+                    if (Movement.canMoveDown(this)) {
+                        Movement.moveDown(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+                    break;
+                case LEFT:
+                    if (Movement.canMoveLeft(this)) {
+                        Movement.moveLeft(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+                    break;
+                case RIGHT:
+                    if (Movement.canMoveRight(this)) {
+                        Movement.moveRight(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+                    break;
+            }
+        }
     }
 
     public void killMinvo() {

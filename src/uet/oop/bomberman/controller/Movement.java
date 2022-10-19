@@ -8,7 +8,7 @@ import static uet.oop.bomberman.entities.dynamic.Bomber.*;
 import static uet.oop.bomberman.entities.dynamic.Ballom.*;
 import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.*;
-
+import static uet.oop.bomberman.entities.dynamic.Minvo.*;
 import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -63,6 +63,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Minvo) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + minvoStep, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -92,6 +99,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Doll) {
             for (int i = 0; i < block.size(); i++) {
                 if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - dollStep, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof Minvo) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - minvoStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -129,6 +143,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Doll) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - minvoStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -162,6 +183,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Minvo) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + minvoStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -190,6 +218,11 @@ public class Movement {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - dollStep);
+            }
+        } else if (dynamicEntities instanceof Minvo) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveUp(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() - minvoStep);
             }
         }
 
@@ -220,6 +253,11 @@ public class Movement {
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + dollStep);
             }
+        } else if (dynamicEntities instanceof Minvo) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveDown(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() + minvoStep);
+            }
         }
     }
 
@@ -247,6 +285,11 @@ public class Movement {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2, Sprite.doll_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - dollStep);
+            }
+        } else if (dynamicEntities instanceof Minvo) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveLeft(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() - minvoStep);
             }
         }
     }
@@ -276,6 +319,11 @@ public class Movement {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + dollStep);
+            }
+        } else if (dynamicEntities instanceof Minvo) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveRight(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() + minvoStep);
             }
         }
     }
