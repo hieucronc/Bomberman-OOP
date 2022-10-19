@@ -40,7 +40,7 @@ public class BombermanGame extends Application {
     public static List<Entity> items = new ArrayList<>();
     public static List<Entity> bombs = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
-    public static int[][] position = new int[WIDTH][HEIGHT];
+    public static int[][] position = new int[HEIGHT][WIDTH];
 
     public static DynamicEntities bomberman;
 
@@ -82,7 +82,6 @@ public class BombermanGame extends Application {
                         break;
                     case SPACE:
                         Bomb.placeBomb();
-
                     default:
                         break;
                 }
@@ -162,15 +161,15 @@ public class BombermanGame extends Application {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Entity baseobject = new Grass(j, i, Sprite.grass.getFxImage());
-                position[j][i] = 0;
+                position[i][j] = 0;
                 entities.add(baseobject);
                 if (Character.compare(map[i][j], '#') == 0) {
                     Entity object = new Wall(j, i, Sprite.wall.getFxImage());
-                    position[j][i] = 1;
+                    position[i][j] = 1;
                     block.add(object);
                 } else if (Character.compare(map[i][j], '*') == 0) {
                     Entity object = new Brick(j, i, Sprite.brick.getFxImage());
-                    position[j][i] = 2;
+                    position[i][j] = 2;
                     block.add(object);
                 } else if (Character.compare(map[i][j], 's') == 0) {
                     Entity object = new SpeedItem(j, i, Sprite.brick.getFxImage());
