@@ -6,7 +6,9 @@ import uet.oop.bomberman.entities.dynamic.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.dynamic.Bomber.*;
 import static uet.oop.bomberman.entities.dynamic.Ballom.*;
+import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.*;
+
 import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -16,7 +18,8 @@ public class Movement {
     public static boolean keydown = false;
     public static boolean keyleft = false;
     public static boolean keyright = false;
-    public static boolean collision(Entity a,int ax, int ay, int bx, int by) {
+
+    public static boolean collision(Entity a, int ax, int ay, int bx, int by) {
         if (a instanceof Bomber) {
             return ax < bx + Sprite.SCALED_SIZE &&
                     ax + Sprite.SCALED_SIZE - 8 > bx &&
@@ -53,6 +56,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Doll) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + dollStep, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -75,6 +85,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Oneal) {
             for (int i = 0; i < block.size(); i++) {
                 if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - onealStep, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof Doll) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - dollStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -105,6 +122,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Doll) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - dollStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -131,6 +155,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Doll) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + dollStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -145,17 +176,20 @@ public class Movement {
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - bomberStep);
             }
-        }
-        if (dynamicEntities instanceof Ballom) {
+        } else if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - ballomStep);
             }
-        }
-        if (dynamicEntities instanceof Oneal) {
+        } else if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - onealStep);
+            }
+        } else if (dynamicEntities instanceof Doll) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveUp(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() - dollStep);
             }
         }
 
@@ -171,17 +205,20 @@ public class Movement {
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + bomberStep);
             }
-        }
-        if (dynamicEntities instanceof Ballom) {
+        } else if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + ballomStep);
             }
-        }
-        if (dynamicEntities instanceof Oneal) {
+        } else if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + onealStep);
+            }
+        } else if (dynamicEntities instanceof Doll) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2, Sprite.doll_left3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveDown(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() + dollStep);
             }
         }
     }
@@ -196,17 +233,20 @@ public class Movement {
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - bomberStep);
             }
-        }
-        if (dynamicEntities instanceof Ballom) {
+        } else if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - ballomStep);
             }
-        }
-        if (dynamicEntities instanceof Oneal) {
+        } else if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - onealStep);
+            }
+        } else if (dynamicEntities instanceof Doll) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2, Sprite.doll_left3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveLeft(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() - dollStep);
             }
         }
     }
@@ -222,17 +262,20 @@ public class Movement {
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + bomberStep);
             }
-        }
-        if (dynamicEntities instanceof Ballom) {
+        } else if (dynamicEntities instanceof Ballom) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + ballomStep);
             }
-        }
-        if (dynamicEntities instanceof Oneal) {
+        } else if (dynamicEntities instanceof Oneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + onealStep);
+            }
+        } else if (dynamicEntities instanceof Doll) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveLeft(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() + dollStep);
             }
         }
     }
