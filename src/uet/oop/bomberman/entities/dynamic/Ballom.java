@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class Ballom extends DynamicEntities {
     public static int ballomStep = 1;
-    private int dir = DOWN;
     private int countBallomDead = 0;
+    private int dir = DOWN;
     private static final int UP = 0;
     private static final int DOWN = 1;
     private static final int LEFT = 2;

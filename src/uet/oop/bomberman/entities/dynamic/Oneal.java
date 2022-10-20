@@ -10,10 +10,17 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.controller.Movement.*;
 import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
 import uet.oop.bomberman.entities.dynamic.Smart.*;
+
+import java.util.Random;
+
 public class Oneal extends DynamicEntities {
     public static int onealStep = 2;
     private int countOnealDead = 0;
-    private boolean check = true;
+    private int dir = DOWN;
+    private static final int UP = 0;
+    private static final int DOWN = 1;
+    private static final int LEFT = 2;
+    private static final int RIGHT = 3;
     public Oneal(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -32,11 +39,7 @@ public class Oneal extends DynamicEntities {
 //            moveLeft(this);
 //        }
 
-        if (check) {
 
-
-            check = false;
-        }
         //tinh toan vi tri cua bomber
         double tmp1X = (double) bomberman.getX() / Sprite.SCALED_SIZE;
         int eX =(int) Math.round(tmp1X);
@@ -74,22 +77,60 @@ public class Oneal extends DynamicEntities {
                 System.out.println(parent.get(i).x + " " + parent.get(i).y);
             }
             System.out.println("O tiep theo can di toi");
-            Vertex nextMove = parent.get(parent.size() - 1);
-            System.out.println(nextMove.x+" "+nextMove.y);
-            if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
-                Movement.moveDown(this);
+            if (parent.size() >= 1) {
+                Vertex nextMove = parent.get(parent.size() - 1);
+                System.out.println(nextMove.x+" "+nextMove.y);
+                if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
+                    Movement.moveDown(this);
+                }
+                if (nextMove.x * Sprite.SCALED_SIZE < this.getY()) {
+                    Movement.moveUp(this);
+                }
+                if (nextMove.y * Sprite.SCALED_SIZE > this.getX()) {
+                    Movement.moveRight(this);
+                }
+                if (nextMove.y * Sprite.SCALED_SIZE < this.getX()) {
+                    Movement.moveLeft(this);
+                }
             }
-            if (nextMove.x * Sprite.SCALED_SIZE < this.getY()) {
-                Movement.moveUp(this);
-            }
-            if (nextMove.y * Sprite.SCALED_SIZE > this.getX()) {
-                Movement.moveRight(this);
-            }
-            if (nextMove.y * Sprite.SCALED_SIZE < this.getX()) {
-                Movement.moveLeft(this);
-            }
-        } else {
 
+        } else {
+            switch (dir) {
+                case UP:
+                    if (Movement.canMoveUp(this)) {
+                        Movement.moveUp(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+
+                    break;
+                case DOWN:
+                    if (Movement.canMoveDown(this)) {
+                        Movement.moveDown(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+                    break;
+                case LEFT:
+                    if (Movement.canMoveLeft(this)) {
+                        Movement.moveLeft(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+                    break;
+                case RIGHT:
+                    if (Movement.canMoveRight(this)) {
+                        Movement.moveRight(this);
+                    } else {
+                        Random random = new Random();
+                        dir = random.nextInt(4);
+                    }
+                    break;
+
+            }
         }
         resetFindPath();
 
