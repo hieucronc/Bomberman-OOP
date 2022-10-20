@@ -7,8 +7,10 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.dynamic.Bomber.*;
 import static uet.oop.bomberman.entities.dynamic.Ballom.*;
 import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
+import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.*;
 import static uet.oop.bomberman.entities.dynamic.Minvo.*;
+
 import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -70,6 +72,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Kondoria) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + kondoriaStep, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -106,6 +115,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Minvo) {
             for (int i = 0; i < block.size(); i++) {
                 if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - minvoStep, block.get(i).getX(), block.get(i).getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof Kondoria) {
+            for (int i = 0; i < block.size(); i++) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - kondoriaStep, block.get(i).getX(), block.get(i).getY())) {
                     return false;
                 }
             }
@@ -150,6 +166,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Kondoria) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - kondoriaStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -190,6 +213,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Kondoria) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + kondoriaStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -223,6 +253,11 @@ public class Movement {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - minvoStep);
+            }
+        } else if (dynamicEntities instanceof Kondoria) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (Kondoria.etheral || canMoveUp(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() - kondoriaStep);
             }
         }
 
@@ -259,6 +294,12 @@ public class Movement {
                 dynamicEntities.setY(dynamicEntities.getY() + minvoStep);
             }
         }
+        if (dynamicEntities instanceof Kondoria) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveDown(dynamicEntities) || Kondoria.etheral) {
+                dynamicEntities.setY(dynamicEntities.getY() + kondoriaStep);
+            }
+        }
     }
 
     public static void moveLeft(DynamicEntities dynamicEntities) {
@@ -290,6 +331,11 @@ public class Movement {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - minvoStep);
+            }
+        } else if (dynamicEntities instanceof Kondoria) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2, Sprite.kondoria_left3, dynamicEntities.getX(), 100).getFxImage());
+            if (canMoveLeft(dynamicEntities) || Kondoria.etheral) {
+                dynamicEntities.setX(dynamicEntities.getX() - kondoriaStep);
             }
         }
     }
@@ -324,6 +370,11 @@ public class Movement {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + minvoStep);
+            }
+        } else if (dynamicEntities instanceof Kondoria) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, dynamicEntities.getX(), 100).getFxImage());
+            if (canMoveUp(dynamicEntities) || Kondoria.etheral) {
+                dynamicEntities.setX(dynamicEntities.getX() + kondoriaStep);
             }
         }
     }

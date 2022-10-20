@@ -227,7 +227,7 @@ public class BombermanGame extends Application {
     }
 
     public void update() throws Exception {
-        if (!pausing){
+        if (!pausing) {
             for (Entity entity : entities) {
                 entity.update();
             }
@@ -253,8 +253,8 @@ public class BombermanGame extends Application {
             block.forEach(g -> g.render(gc));
             bombs.forEach(g -> g.render(gc));
             flame.forEach(g -> g.render(gc));
-            enemy.forEach(g -> g.render(gc));
             items.forEach(g -> g.render(gc));
+            enemy.forEach(g -> g.render(gc));
         }
     }
 }
