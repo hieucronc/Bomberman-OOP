@@ -52,13 +52,13 @@ public class Oneal extends DynamicEntities {
         int sY = (int) Math.round(tmp2Y);
         Vertex s = new Vertex(sY,sX);
         bfs(s.x,s.y);
-        System.out.println("Ma tran position");
-        for (int i = 0;i<position.length;i++) {
-            for (int j=0;j<position[0].length;j++) {
-                System.out.print(position[i][j] + " ");
-            }
-            System.out.println();
-        }
+//        System.out.println("Ma tran position");
+//        for (int i = 0;i<position.length;i++) {
+//            for (int j=0;j<position[0].length;j++) {
+//                System.out.print(position[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
 //        System.out.println("Ma tran cac dinh da tham");
 //        for (int i=0;i<visited.length;i++) {
 //            for (int j = 0; j < visited[0].length; j++) {
@@ -66,30 +66,30 @@ public class Oneal extends DynamicEntities {
 //            }
 //            System.out.println();
 //        }
-        System.out.println("Co lien thong hay k: " +connectedComponet(s,e));
+//        System.out.println("Co lien thong hay k: " +connectedComponet(s,e));
         if (connectedComponet(s,e)) {
-            path(s,e);
+            path(s, e);
             System.out.println("Duong di tu e den s");
             for (int i = 0; i < parent.size(); i++) {
                 System.out.println(parent.get(i).x + " " + parent.get(i).y);
             }
             System.out.println("O tiep theo can di toi");
-            Vertex nextMove = parent.get(parent.size()-1);
+            Vertex nextMove = parent.get(parent.size() - 1);
             System.out.println(nextMove.x+" "+nextMove.y);
-            if (nextMove.x  == s.x) {
-                if (nextMove.y * Sprite.SCALED_SIZE > this.getX()) {
-                    Movement.moveRight(this);
-                } else {
-                    Movement.moveLeft(this);
-                }
+            if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
+                Movement.moveDown(this);
             }
-            if (nextMove.y == s.y) {
-                if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
-                    Movement.moveDown(this);
-                } else {
-                    Movement.moveUp(this);
-                }
+            if (nextMove.x * Sprite.SCALED_SIZE < this.getY()) {
+                Movement.moveUp(this);
             }
+            if (nextMove.y * Sprite.SCALED_SIZE > this.getX()) {
+                Movement.moveRight(this);
+            }
+            if (nextMove.y * Sprite.SCALED_SIZE < this.getX()) {
+                Movement.moveLeft(this);
+            }
+        } else {
+
         }
         resetFindPath();
 

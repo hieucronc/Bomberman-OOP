@@ -28,10 +28,12 @@ public class Brick extends Entity {
         for (int i = 0; i < block.size(); i++) {
             if (block.get(i) instanceof Brick) {
                 if (block.get(i).getX() == this.x && block.get(i).getY() == this.y) {
-                    block.remove(i);
                     position[((Brick) block.get(i)).getY() / Sprite.SCALED_SIZE]
                             [((Brick) block.get(i)).getX() / Sprite.SCALED_SIZE] = 0;
+                    block.remove(i);
+
                     cntBrickExploded = 0;
+
                 }
             }
         }
