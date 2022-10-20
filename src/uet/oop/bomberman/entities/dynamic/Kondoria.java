@@ -3,12 +3,16 @@ package uet.oop.bomberman.entities.dynamic;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.util.Random;
+
 import static uet.oop.bomberman.entities.blocks.Bomb.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.controller.Movement.*;
 
 public class Kondoria extends DynamicEntities {
     public static int kondoriaStep = 2;
+    boolean etheral = false;
+    int timer;
     private int countKondoriaDead = 0;
 
     public Kondoria(int x, int y, Image img) {
@@ -30,6 +34,10 @@ public class Kondoria extends DynamicEntities {
                 }
             }
         }
+    }
+    void switchState() {
+        if (etheral) etheral = false;
+        else etheral = true;
     }
 
     @Override

@@ -43,6 +43,7 @@ public class BombermanGame extends Application {
     public static int[][] position = new int[HEIGHT][WIDTH];
 
     public static DynamicEntities bomberman;
+    boolean pausing = false;
 
     public static void main(String[] args) throws Exception {
         Application.launch(BombermanGame.class);
@@ -82,6 +83,11 @@ public class BombermanGame extends Application {
                         break;
                     case SPACE:
                         Bomb.placeBomb();
+                        break;
+                    case ESCAPE:
+                        if (pausing) pausing = false;
+                        else pausing = true;
+                        break;
                     default:
                         break;
                 }
@@ -221,30 +227,34 @@ public class BombermanGame extends Application {
     }
 
     public void update() throws Exception {
-        for (Entity entity : entities) {
-            entity.update();
-        }
-        for (Entity entity : bombs) {
-            entity.update();
-        }
-        for (Entity entity : enemy) {
-            entity.update();
-        }
-        for (Entity entity : block) {
-            entity.update();
-        }
-        for (Entity entity : items) {
-            entity.update();
+        if (!pausing){
+            for (Entity entity : entities) {
+                entity.update();
+            }
+            for (Entity entity : bombs) {
+                entity.update();
+            }
+            for (Entity entity : enemy) {
+                entity.update();
+            }
+            for (Entity entity : block) {
+                entity.update();
+            }
+            for (Entity entity : items) {
+                entity.update();
+            }
         }
     }
 
     public void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        entities.forEach(g -> g.render(gc));
-        block.forEach(g -> g.render(gc));
-        bombs.forEach(g -> g.render(gc));
-        flame.forEach(g -> g.render(gc));
-        enemy.forEach(g -> g.render(gc));
-        items.forEach(g -> g.render(gc));
+        if (!pausing) {
+            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            entities.forEach(g -> g.render(gc));
+            block.forEach(g -> g.render(gc));
+            bombs.forEach(g -> g.render(gc));
+            flame.forEach(g -> g.render(gc));
+            enemy.forEach(g -> g.render(gc));
+            items.forEach(g -> g.render(gc));
+        }
     }
 }
