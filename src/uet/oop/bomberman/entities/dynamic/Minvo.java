@@ -24,7 +24,7 @@ public class Minvo extends DynamicEntities {
     }
 
     public void minvoMove() {
-        if (Math.abs(bomberman.getX() - this.getX()) <= 8  && Math.abs(bomberman.getY() - this.getY()) < 5 * Sprite.SCALED_SIZE) {
+        if (Math.abs(bomberman.getX() - this.getX()) <= 8 && Math.abs(bomberman.getY() - this.getY()) < 5 * Sprite.SCALED_SIZE) {
             if (bomberman.getY() > this.getY()) {
                 Movement.moveUp(this);
             } else if (bomberman.getY() < this.getY()) {
@@ -90,7 +90,8 @@ public class Minvo extends DynamicEntities {
 
     @Override
     public void update() {
-        minvoMove();
+        if (life)
+            minvoMove();
         checkAlive();
         if (!life) {
             killMinvo();

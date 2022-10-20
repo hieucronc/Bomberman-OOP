@@ -90,7 +90,7 @@ public class Doll extends DynamicEntities {
                 moveLeft(this);
             }
         } else {
-            
+
         }
     }
 
@@ -108,7 +108,8 @@ public class Doll extends DynamicEntities {
 
     @Override
     public void update() {
-        dollMove();
+        if (life)
+            dollMove();
         checkAlive();
         if (!life) {
             killDoll();

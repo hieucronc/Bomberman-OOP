@@ -9,6 +9,7 @@ import static uet.oop.bomberman.entities.blocks.Bomb.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.controller.Movement.*;
 import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
+
 import uet.oop.bomberman.entities.dynamic.Smart.*;
 
 import java.util.Random;
@@ -21,6 +22,7 @@ public class Oneal extends DynamicEntities {
     private static final int DOWN = 1;
     private static final int LEFT = 2;
     private static final int RIGHT = 3;
+
     public Oneal(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -42,19 +44,19 @@ public class Oneal extends DynamicEntities {
 
         //tinh toan vi tri cua bomber
         double tmp1X = (double) bomberman.getX() / Sprite.SCALED_SIZE;
-        int eX =(int) Math.round(tmp1X);
+        int eX = (int) Math.round(tmp1X);
         double tmp1Y = (double) bomberman.getY() / Sprite.SCALED_SIZE;
-        int eY =(int) Math.round(tmp1Y);
-        Vertex e = new Vertex(eY,eX);
+        int eY = (int) Math.round(tmp1Y);
+        Vertex e = new Vertex(eY, eX);
 
         //tinh toan vi tri cua oneal
         double tmp2X = (double) this.getX() / Sprite.SCALED_SIZE;
-        int sX = (int) Math.round(tmp2X) ;
+        int sX = (int) Math.round(tmp2X);
         //System.out.println("Toa do y" + this.getY());
         double tmp2Y = (double) this.getY() / Sprite.SCALED_SIZE;
         int sY = (int) Math.round(tmp2Y);
-        Vertex s = new Vertex(sY,sX);
-        bfs(s.x,s.y);
+        Vertex s = new Vertex(sY, sX);
+        bfs(s.x, s.y);
 //        System.out.println("Ma tran position");
 //        for (int i = 0;i<position.length;i++) {
 //            for (int j=0;j<position[0].length;j++) {
@@ -70,7 +72,7 @@ public class Oneal extends DynamicEntities {
 //            System.out.println();
 //        }
 //        System.out.println("Co lien thong hay k: " +connectedComponet(s,e));
-        if (connectedComponet(s,e)) {
+        if (connectedComponet(s, e)) {
             path(s, e);
             System.out.println("Duong di tu e den s");
             for (int i = 0; i < parent.size(); i++) {
@@ -79,7 +81,7 @@ public class Oneal extends DynamicEntities {
             System.out.println("O tiep theo can di toi");
             if (parent.size() >= 1) {
                 Vertex nextMove = parent.get(parent.size() - 1);
-                System.out.println(nextMove.x+" "+nextMove.y);
+                System.out.println(nextMove.x + " " + nextMove.y);
                 if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
                     Movement.moveDown(this);
                 }
@@ -150,7 +152,8 @@ public class Oneal extends DynamicEntities {
 
     @Override
     public void update() {
-        onealMove();
+        if (life)
+            onealMove();
         checkAlive();
         if (!life) {
             killOneal();

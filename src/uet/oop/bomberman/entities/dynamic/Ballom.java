@@ -76,7 +76,9 @@ public class Ballom extends DynamicEntities {
 
     @Override
     public void update() {
-        ballomMove();
+        if (life) {
+            ballomMove();
+        }
         checkAlive();
         if (!life) {
             killBallom();
