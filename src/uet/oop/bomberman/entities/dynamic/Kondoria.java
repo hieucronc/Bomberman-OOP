@@ -14,7 +14,7 @@ public class Kondoria extends DynamicEntities {
     public static int kondoriaStep = 1;
     public static boolean etheral = false;
     private int timer = 0;
-    private int stateTimer = 0;
+    private int stateTimer = 300;
     private int countKondoriaDead = 0;
 
     public Kondoria(int x, int y, Image img) {
@@ -66,15 +66,19 @@ public class Kondoria extends DynamicEntities {
             }
         } else {
             if (bomberman.getY() < this.getY()) {
+                this.setImg(Sprite.kondoria_left1.getFxImage());
                 moveUp(this);
             }
             if (bomberman.getY() > this.getY()) {
+                this.setImg(Sprite.kondoria_right1.getFxImage());
                 moveDown(this);
             }
             if (bomberman.getX() > this.getX()) {
+                this.setImg(Sprite.kondoria_right1.getFxImage());
                 moveRight(this);
             }
             if (bomberman.getX() < this.getX()) {
+                this.setImg(Sprite.kondoria_left1.getFxImage());
                 moveLeft(this);
             }
         }
@@ -97,17 +101,39 @@ public class Kondoria extends DynamicEntities {
 
     public void switchState() {
         if (timer > stateTimer) {
-            if (etheral) etheral = false;
-            else etheral = true;
+            if (canMoveDown(this) || canMoveUp(this)
+                    || canMoveLeft(this) || canMoveRight(this)) {
+                if (etheral) {
+                    setstateTimer();
+                    etheral = false;
+                    timer = 0;
+                } else {
+                    setstateTimer();
+                    etheral = true;
+                    timer = 0;
+                }
+            }
         }
     }
 
-    public void stateTimer() {
+    public void setstateTimer() {
+        if (etheral) setTimer();
+        else setEtheralTimer();
+    }
+
+    public void setEtheralTimer() {
         Random rand = new Random();
         int ranNum = 0;
-        while (ranNum < 2)
-            ranNum = rand.nextInt(7);
-        stateTimer = ranNum;
+        ranNum = rand.nextInt(3);
+        stateTimer = ranNum * 60;
+    }
+
+    public void setTimer() {
+        Random rand = new Random();
+        int ranNum = 0;
+        while (ranNum < 5)
+            ranNum = rand.nextInt(11);
+        stateTimer = ranNum * 60;
     }
 
     @Override

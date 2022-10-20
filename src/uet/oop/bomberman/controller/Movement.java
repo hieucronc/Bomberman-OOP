@@ -7,6 +7,7 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.dynamic.Bomber.*;
 import static uet.oop.bomberman.entities.dynamic.Ballom.*;
 import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
+import static uet.oop.bomberman.entities.dynamic.Kondoria.etheral;
 import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.*;
 import static uet.oop.bomberman.entities.dynamic.Minvo.*;
@@ -227,7 +228,8 @@ public class Movement {
     public static void moveUp(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             countBomberStep++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, countBomberStep, 54).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1,
+                    Sprite.player_up_2, countBomberStep, 54).getFxImage());
             if (countBomberStep > 10000) {
                 countBomberStep = 0;
             }
@@ -235,27 +237,33 @@ public class Movement {
                 dynamicEntities.setY(dynamicEntities.getY() - bomberStep);
             }
         } else if (dynamicEntities instanceof Ballom) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2,
+                    Sprite.balloom_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - ballomStep);
             }
         } else if (dynamicEntities instanceof Oneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2,
+                    Sprite.oneal_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - onealStep);
             }
         } else if (dynamicEntities instanceof Doll) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2,
+                    Sprite.doll_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - dollStep);
             }
         } else if (dynamicEntities instanceof Minvo) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2,
+                    Sprite.minvo_right3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - minvoStep);
             }
         } else if (dynamicEntities instanceof Kondoria) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (!etheral)
+                dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2,
+                        Sprite.kondoria_right3, dynamicEntities.getY(), 100).getFxImage());
             if (Kondoria.etheral || canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - kondoriaStep);
             }
@@ -266,7 +274,8 @@ public class Movement {
     public static void moveDown(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             countBomberStep++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, countBomberStep, 54).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1,
+                    Sprite.player_down_2, countBomberStep, 54).getFxImage());
             if (countBomberStep > 10000) {
                 countBomberStep = 0;
             }
@@ -274,28 +283,34 @@ public class Movement {
                 dynamicEntities.setY(dynamicEntities.getY() + bomberStep);
             }
         } else if (dynamicEntities instanceof Ballom) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2,
+                    Sprite.balloom_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + ballomStep);
             }
         } else if (dynamicEntities instanceof Oneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2,
+                    Sprite.oneal_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + onealStep);
             }
         } else if (dynamicEntities instanceof Doll) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2, Sprite.doll_left3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2,
+                    Sprite.doll_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + dollStep);
             }
         } else if (dynamicEntities instanceof Minvo) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, dynamicEntities.getY(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2,
+                    Sprite.minvo_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + minvoStep);
             }
         }
         if (dynamicEntities instanceof Kondoria) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (!etheral)
+                dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2,
+                        Sprite.kondoria_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setY(dynamicEntities.getY() + kondoriaStep);
             }
@@ -305,7 +320,8 @@ public class Movement {
     public static void moveLeft(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             countBomberStep++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, countBomberStep, 54).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1,
+                    Sprite.player_left_2, countBomberStep, 54).getFxImage());
             if (countBomberStep > 10000) {
                 countBomberStep = 0;
             }
@@ -313,27 +329,33 @@ public class Movement {
                 dynamicEntities.setX(dynamicEntities.getX() - bomberStep);
             }
         } else if (dynamicEntities instanceof Ballom) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2,
+                    Sprite.balloom_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - ballomStep);
             }
         } else if (dynamicEntities instanceof Oneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2,
+                    Sprite.oneal_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - onealStep);
             }
         } else if (dynamicEntities instanceof Doll) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2, Sprite.doll_left3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2,
+                    Sprite.doll_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - dollStep);
             }
         } else if (dynamicEntities instanceof Minvo) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2,
+                    Sprite.minvo_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - minvoStep);
             }
         } else if (dynamicEntities instanceof Kondoria) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2, Sprite.kondoria_left3, dynamicEntities.getX(), 100).getFxImage());
+            if (!etheral)
+                dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2,
+                        Sprite.kondoria_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setX(dynamicEntities.getX() - kondoriaStep);
             }
@@ -344,7 +366,8 @@ public class Movement {
     public static void moveRight(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
             countBomberStep++;
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, countBomberStep, 54).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1,
+                    Sprite.player_right_2, countBomberStep, 54).getFxImage());
             if (countBomberStep > 10000) {
                 countBomberStep = 0;
             }
@@ -352,27 +375,33 @@ public class Movement {
                 dynamicEntities.setX(dynamicEntities.getX() + bomberStep);
             }
         } else if (dynamicEntities instanceof Ballom) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2,
+                    Sprite.balloom_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + ballomStep);
             }
         } else if (dynamicEntities instanceof Oneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2,
+                    Sprite.oneal_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + onealStep);
             }
         } else if (dynamicEntities instanceof Doll) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2,
+                    Sprite.doll_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + dollStep);
             }
         } else if (dynamicEntities instanceof Minvo) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, dynamicEntities.getX(), 100).getFxImage());
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2,
+                    Sprite.minvo_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + minvoStep);
             }
         } else if (dynamicEntities instanceof Kondoria) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, dynamicEntities.getX(), 100).getFxImage());
+            if (!etheral)
+                dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2,
+                        Sprite.kondoria_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveUp(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setX(dynamicEntities.getX() + kondoriaStep);
             }
