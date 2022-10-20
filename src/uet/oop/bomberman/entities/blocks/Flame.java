@@ -17,19 +17,19 @@ public class Flame extends Entity {
     }
 
     public static boolean canFireDown(int x, int y) {
-        return position[x][y + 1] != 1;
+        return position[y+1][x] != 1;
     }
 
     public static boolean canFireUp(int x, int y) {
-        return position[x][y - 1] != 1;
+        return position[y-1][x] != 1;
     }
 
     public static boolean canFireLeft(int x, int y) {
-        return position[x - 1][y] != 1;
+        return position[y][x-1] != 1;
     }
 
     public static boolean canFireRight(int x, int y) {
-        return position[x + 1][y] != 1;
+        return position[y][x+1] != 1;
     }
 
     public Flame(int x, int y, Image _flame) {
