@@ -1,33 +1,98 @@
 package uet.oop.bomberman.entities.dynamic;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.controller.Movement;
+import uet.oop.bomberman.entities.dynamic.Smart.Vertex;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.entities.blocks.Bomb.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.controller.Movement.*;
-
+import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
+import uet.oop.bomberman.entities.dynamic.Smart.*;
 public class Oneal extends DynamicEntities {
     public static int onealStep = 2;
     private int countOnealDead = 0;
-
+    private boolean check = true;
     public Oneal(int x, int y, Image img) {
         super(x, y, img);
     }
 
     public void onealMove() {
-        if (bomberman.getY() < this.getY()) {
-            moveUp(this);
+//        if (bomberman.getY() < this.getY()) {
+//            moveUp(this);
+//        }
+//        if (bomberman.getY() > this.getY()) {
+//            moveDown(this);
+//        }
+//        if (bomberman.getX() > this.getX()) {
+//            moveRight(this);
+//        }
+//        if (bomberman.getX() < this.getX()) {
+//            moveLeft(this);
+//        }
+
+        if (check) {
+
+
+            check = false;
         }
-        if (bomberman.getY() > this.getY()) {
-            moveDown(this);
+        //tinh toan vi tri cua bomber
+        double tmp1X = (double) bomberman.getX() / Sprite.SCALED_SIZE;
+        int eX =(int) Math.round(tmp1X);
+        double tmp1Y = (double) bomberman.getY() / Sprite.SCALED_SIZE;
+        int eY =(int) Math.round(tmp1Y);
+        Vertex e = new Vertex(eY,eX);
+
+        //tinh toan vi tri cua oneal
+        double tmp2X = (double) this.getX() / Sprite.SCALED_SIZE;
+        int sX = (int) Math.round(tmp2X) ;
+        //System.out.println("Toa do y" + this.getY());
+        double tmp2Y = (double) this.getY() / Sprite.SCALED_SIZE;
+        int sY = (int) Math.round(tmp2Y);
+        Vertex s = new Vertex(sY,sX);
+        bfs(s.x,s.y);
+        System.out.println("Ma tran position");
+        for (int i = 0;i<position.length;i++) {
+            for (int j=0;j<position[0].length;j++) {
+                System.out.print(position[i][j] + " ");
+            }
+            System.out.println();
         }
-        if (bomberman.getX() > this.getX()) {
-            moveRight(this);
+//        System.out.println("Ma tran cac dinh da tham");
+//        for (int i=0;i<visited.length;i++) {
+//            for (int j = 0; j < visited[0].length; j++) {
+//                System.out.print(visited[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+        System.out.println("Co lien thong hay k: " +connectedComponet(s,e));
+        if (connectedComponet(s,e)) {
+            path(s,e);
+            System.out.println("Duong di tu e den s");
+            for (int i = 0; i < parent.size(); i++) {
+                System.out.println(parent.get(i).x + " " + parent.get(i).y);
+            }
+            System.out.println("O tiep theo can di toi");
+            Vertex nextMove = parent.get(parent.size()-1);
+            System.out.println(nextMove.x+" "+nextMove.y);
+            if (nextMove.x  == s.x) {
+                if (nextMove.y * Sprite.SCALED_SIZE > this.getX()) {
+                    Movement.moveRight(this);
+                } else {
+                    Movement.moveLeft(this);
+                }
+            }
+            if (nextMove.y == s.y) {
+                if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
+                    Movement.moveDown(this);
+                } else {
+                    Movement.moveUp(this);
+                }
+            }
         }
-        if (bomberman.getX() < this.getX()) {
-            moveLeft(this);
-        }
+        resetFindPath();
+
     }
 
     public void killOneal() {

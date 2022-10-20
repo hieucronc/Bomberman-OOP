@@ -27,7 +27,7 @@ public class Ai {
             for (int k =0; k < 4;k++) {
                 int i1 = top.x + dx[k];
                 int j1 = top.y + dy[k];
-                if (i1 >= 0 && i1 < 6 && j1 >= 0 && j1 < 6 && position[i1][j1] == 0 && !visited[i1][j1]) {
+                if (i1 >= 0 && i1 < HEIGHT && j1 >= 0 && j1 < WIDTH && position[i1][j1] == 0 && !visited[i1][j1]) {
                     prev[i1][j1] = top;
                     list.add(new Vertex(i1, j1));
                     visited[i1][j1] = true;
@@ -41,13 +41,23 @@ public class Ai {
             parent.add(e);
             e = prev[e.x][e.y];
         }
-//        for (int i = 0; i < parent.size(); i++) {
-//            System.out.println(parent.get(i).x + " " + parent.get(i).y);
-//        }
     }
     public static boolean connectedComponet(Vertex s, Vertex e) {
         bfs(s.x,s.y);
         return visited[e.x][e.y];
+    }
+    public static void resetFindPath() {
+        for (int i=0;i<visited.length;i++) {
+            for (int j=0;j<visited[0].length;j++) {
+                visited[i][j] = false;
+            }
+        }
+        for (int i=0;i<prev.length;i++) {
+            for (int j=0;j<prev[0].length;j++) {
+                prev[i][j] = null;
+            }
+        }
+        parent.clear();
     }
 //    public static void main(String[] args) {
 //        for (int i=0;i<6;i++) {

@@ -145,8 +145,8 @@ public class BombermanGame extends Application {
     }
 
     public static void createMap() throws Exception {
-        //File file = new File(System.getProperty("user.dir") + "/res/levels/lv" + level + ".txt");
-        File file = new File(System.getProperty("user.dir") + "/res/levels/testOneal.txt");
+        File file = new File(System.getProperty("user.dir") + "/res/levels/level" + level + ".txt");
+//        File file = new File(System.getProperty("user.dir") + "/res/levels/testOneal.txt");
         reset();
         Scanner scanner = new Scanner(file);
         int height = scanner.nextInt();
