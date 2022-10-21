@@ -68,7 +68,7 @@ public class Oneal extends DynamicEntities {
 //            System.out.println("O tiep theo can di toi");
             if (parent.size() >= 1) {
                 Vertex nextMove = parent.get(parent.size() - 1);
-                System.out.println(nextMove.x + " " + nextMove.y);
+//                System.out.println(nextMove.x + " " + nextMove.y);
                 if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
                     Movement.moveDown(this);
                 }

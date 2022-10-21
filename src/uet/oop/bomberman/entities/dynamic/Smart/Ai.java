@@ -9,12 +9,6 @@ public class Ai {
     public static boolean[][] visited = new boolean[HEIGHT][WIDTH];
     public static int[] dx = {-1, 0, 0, 1};
     public static int[] dy = {0, -1, 1, 0};
-//    public static int[][] a =  {{0,0,0,1,1,1},
-//            {1,1,0,1,1,1},
-//            {1,0,0,0,0,1},
-//            {1,1,1,1,1,0},
-//            {0,0,1,0,1,0},
-//            {0,1,0,0,1,0}};
     public static Vertex[][] prev = new Vertex[HEIGHT][WIDTH];
     public static List<Vertex> parent = new ArrayList<>();
     public static void bfs(int i, int j) {
