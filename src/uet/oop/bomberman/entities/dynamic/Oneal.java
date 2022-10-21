@@ -28,19 +28,6 @@ public class Oneal extends DynamicEntities {
     }
 
     public void onealMove() {
-//        if (bomberman.getY() < this.getY()) {
-//            moveUp(this);
-//        }
-//        if (bomberman.getY() > this.getY()) {
-//            moveDown(this);
-//        }
-//        if (bomberman.getX() > this.getX()) {
-//            moveRight(this);
-//        }
-//        if (bomberman.getX() < this.getX()) {
-//            moveLeft(this);
-//        }
-
 
         //tinh toan vi tri cua bomber
         double tmp1X = (double) bomberman.getX() / Sprite.SCALED_SIZE;
@@ -74,11 +61,11 @@ public class Oneal extends DynamicEntities {
 //        System.out.println("Co lien thong hay k: " +connectedComponet(s,e));
         if (connectedComponet(s, e)) {
             path(s, e);
-            System.out.println("Duong di tu e den s");
-            for (int i = 0; i < parent.size(); i++) {
-                System.out.println(parent.get(i).x + " " + parent.get(i).y);
-            }
-            System.out.println("O tiep theo can di toi");
+//            System.out.println("Duong di tu e den s");
+//            for (int i = 0; i < parent.size(); i++) {
+//                System.out.println(parent.get(i).x + " " + parent.get(i).y);
+//            }
+//            System.out.println("O tiep theo can di toi");
             if (parent.size() >= 1) {
                 Vertex nextMove = parent.get(parent.size() - 1);
                 System.out.println(nextMove.x + " " + nextMove.y);
