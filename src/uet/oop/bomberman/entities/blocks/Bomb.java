@@ -7,10 +7,15 @@ import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 import static uet.oop.bomberman.entities.items.BombPassItem.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.items.SpeedItem.*;
-
+import static uet.oop.bomberman.sound.SoundManager.*;
 public class Bomb extends Entity {
     public static int x;
     public static int y;
@@ -21,7 +26,7 @@ public class Bomb extends Entity {
     private boolean exploded = false;
     public boolean canPassThrough = true;
     public static int MAX_BOMB = 1;
-
+//    boolean soundExplosion = true;
 
     public Bomb(int x, int y, Image boom) {
         super(x, y, boom);
@@ -35,7 +40,7 @@ public class Bomb extends Entity {
      *
      */
     @Override
-    public void update() {
+    public void update() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         countToExploded++;
         if (!exploded) {
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1,
@@ -64,6 +69,10 @@ public class Bomb extends Entity {
         }
         if (exploded) {
             explode();
+//            if (soundExplosion) {
+//                bomExplosion();
+//                soundExplosion = false;
+//            }
             if (countToExploded > decayTimer) {
                 remove();
             }

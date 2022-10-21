@@ -16,16 +16,13 @@ import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import static uet.oop.bomberman.sound.SoundManager.*;
 import java.io.File;
-import java.util.*;
-import java.io.FileNotFoundException;
-import java.io.FileInputStream;
-
 import java.io.IOException;
-
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import java.util.*;
 
 public class BombermanGame extends Application {
     public static int level = 1;

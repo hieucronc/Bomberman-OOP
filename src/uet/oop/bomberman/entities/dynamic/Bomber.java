@@ -8,12 +8,17 @@ import static uet.oop.bomberman.controller.Movement.*;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.items.FlamePassItem.*;
+import static uet.oop.bomberman.sound.SoundManager.*;
 
 public class Bomber extends DynamicEntities {
     public static int bomberStep = 2;
-
+//    boolean soundDead = true;
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -57,7 +62,7 @@ public class Bomber extends DynamicEntities {
     }
 
     @Override
-    public void update() {
+    public void update() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         updateMove();
         if (!takeFlamePass) {
             checkAlive();
@@ -66,6 +71,11 @@ public class Bomber extends DynamicEntities {
         checkEnemy();
         if (!this.life) {
             killBomber();
+//            if (soundDead) {
+//                playerDied();
+//                soundDead = false;
+//            }
         }
+
     }
 }
