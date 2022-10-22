@@ -1,12 +1,24 @@
 package uet.oop.bomberman.entities.items;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.dynamic.Doll;
+import uet.oop.bomberman.entities.dynamic.Kondoria;
+import uet.oop.bomberman.entities.dynamic.Minvo;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.dynamic.Bomber.*;
 public class SpeedItem extends Items {
     public SpeedItem(int x, int y, Image image) {
         super(x,y,image);
+    }
+    public static void useSpeedItem() {
+        if (bomberman.getX() % 4 == 2) {
+            bomberman.setX(bomberman.getX() - 2);
+        }
+        if (bomberman.getY() % 4 == 2) {
+            bomberman.setY(bomberman.getY() - 2);
+        }
+        bomberStep++;
     }
     @Override
     public void update() {
@@ -17,13 +29,7 @@ public class SpeedItem extends Items {
 
         if (takeItem()) {
             items.remove(isInItem(this));
-            if (bomberman.getX() % 4 == 2) {
-                bomberman.setX(bomberman.getX() - 2);
-            }
-            if (bomberman.getY() % 4 == 2) {
-                bomberman.setY(bomberman.getY() - 2);
-            }
-            bomberStep = 4;
+            useSpeedItem();
         }
     }
 }

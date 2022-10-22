@@ -10,7 +10,9 @@ public class FlameItem extends Items {
     public FlameItem(int x, int y, Image image) {
         super(x, y, image);
     }
-
+    public static void useFlameItem() {
+        Flame.flameLength++;
+    }
     @Override
     public void update() {
         if (checkBomb()) {
@@ -19,7 +21,7 @@ public class FlameItem extends Items {
         }
         if (takeItem()) {
             items.remove(isInItem(this));
-            Flame.flameLength++;
+            useFlameItem();
         }
 
     }

@@ -170,6 +170,10 @@ public class BombermanGame extends Application {
                     Entity object = new BombItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                } else if (map[i][j] == 'r') {
+                    Entity object = new RandomItem(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
                 } else if (map[i][j] == 'f') {
                     Entity object = new FlameItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);

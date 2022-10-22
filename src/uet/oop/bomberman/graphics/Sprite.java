@@ -197,6 +197,7 @@ public class Sprite {
     public static Sprite powerup_flamepass = new Sprite(DEFAULT_SIZE, 6, 10, SpriteSheet.tiles, 16, 16);
     public static Sprite enemy_powerup = new Sprite(DEFAULT_SIZE, 0, 11, SpriteSheet.tiles, 16, 16);
     public static Sprite counter_speed = new Sprite(DEFAULT_SIZE, 2, 11, SpriteSheet.tiles, 16, 16);
+    public static Sprite random_item = new Sprite(DEFAULT_SIZE, 7, 10, SpriteSheet.tiles, 16, 16);
 
     public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
         SIZE = size;

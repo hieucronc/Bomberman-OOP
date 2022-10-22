@@ -47,4 +47,5 @@ t - Bomb pass item
 y - Flame pass item
 e - Enemy Item
 v - Counter Speed
+r - random item
 Kí tự khác các kí tự trên - Grass

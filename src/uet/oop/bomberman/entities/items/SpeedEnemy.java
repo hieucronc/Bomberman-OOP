@@ -13,6 +13,11 @@ public class SpeedEnemy extends Items{
     public SpeedEnemy(int x, int y, Image img) {
         super(x,y,img);
     }
+    public static void useSpeedEnemy() {
+        Doll.dollStep = 2;
+        Kondoria.kondoriaStep = 2;
+        Minvo.minvoStep = 2;
+    }
     @Override
     public void update() {
         if (checkBomb()) {
@@ -21,9 +26,7 @@ public class SpeedEnemy extends Items{
         }
         if (takeItem()) {
             items.remove(isInItem(this));
-            Doll.dollStep = 2;
-            Kondoria.kondoriaStep = 2;
-            Minvo.minvoStep = 2;
+            useSpeedEnemy();
         }
     }
 }

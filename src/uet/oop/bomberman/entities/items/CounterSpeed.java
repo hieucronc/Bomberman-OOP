@@ -8,6 +8,9 @@ public class CounterSpeed extends Items {
     public CounterSpeed(int x, int y, Image image) {
         super(x,y,image);
     }
+    public static void useCounterSpeed() {
+        bomberStep = 1;
+    }
     @Override
     public void update() {
         if (checkBomb()) {
@@ -17,7 +20,7 @@ public class CounterSpeed extends Items {
 
         if (takeItem()) {
             items.remove(isInItem(this));
-            bomberStep = 1;
+            useCounterSpeed();
         }
     }
 }

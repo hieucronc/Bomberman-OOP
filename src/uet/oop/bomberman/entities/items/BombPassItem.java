@@ -4,6 +4,9 @@ import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
 public class BombPassItem extends Items {
     public static boolean takeBombPass = false;
+    public static void useBombPassItem() {
+        takeBombPass = true;
+    }
     public BombPassItem(int x,int y, Image image) {
         super(x, y, image);
     }
@@ -15,7 +18,7 @@ public class BombPassItem extends Items {
         }
         if (takeItem()) {
             items.remove(isInItem(this));
-            takeBombPass = true;
+            useBombPassItem();
         }
     }
 }
