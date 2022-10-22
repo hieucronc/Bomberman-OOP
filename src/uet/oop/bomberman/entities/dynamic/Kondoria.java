@@ -123,7 +123,7 @@ public class Kondoria extends DynamicEntities {
 
     public void setEtheralTimer() {
         Random rand = new Random();
-        int ranNum = 0;
+        int ranNum;
         ranNum = rand.nextInt(3);
         stateTimer = ranNum * 60;
     }

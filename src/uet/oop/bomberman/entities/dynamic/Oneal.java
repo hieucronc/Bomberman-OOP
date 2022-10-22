@@ -5,14 +5,12 @@ import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.dynamic.Smart.Vertex;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.entities.blocks.Bomb.*;
-import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.controller.Movement.*;
-import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
-
-import uet.oop.bomberman.entities.dynamic.Smart.*;
-
 import java.util.Random;
+
+import static uet.oop.bomberman.BombermanGame.bomberman;
+import static uet.oop.bomberman.BombermanGame.enemy;
+import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
+import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
 
 public class Oneal extends DynamicEntities {
     public static int onealStep = 2;

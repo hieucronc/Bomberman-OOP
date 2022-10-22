@@ -53,17 +53,4 @@ public class Ai {
         }
         parent.clear();
     }
-//    public static void main(String[] args) {
-//        for (int i=0;i<6;i++) {
-//            for (int j=0;j<6;j++) {
-//                System.out.print(a[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//        Vertex s = new Vertex(0,0);
-//        Vertex e = new Vertex(2,4);
-//        bfs(0, 0);
-//        path(s, e);
-//
-//    }
 }

@@ -2,9 +2,6 @@ package uet.oop.bomberman.entities.dynamic;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.controller.Movement;
-
-import static uet.oop.bomberman.controller.Movement.*;
-
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -12,9 +9,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
-import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.entities.items.FlamePassItem.*;
-import static uet.oop.bomberman.sound.SoundManager.*;
+import static uet.oop.bomberman.BombermanGame.createMap;
+import static uet.oop.bomberman.BombermanGame.enemy;
+import static uet.oop.bomberman.controller.Movement.*;
+import static uet.oop.bomberman.entities.items.FlamePassItem.takeFlamePass;
 
 public class Bomber extends DynamicEntities {
     public static int bomberStep = 2;

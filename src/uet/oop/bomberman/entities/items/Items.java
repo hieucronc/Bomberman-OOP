@@ -1,14 +1,13 @@
 package uet.oop.bomberman.entities.items;
 
+import javafx.scene.image.Image;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
-import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.font.ImageGraphicAttribute;
-
-import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.BombermanGame.block;
+import static uet.oop.bomberman.BombermanGame.entities;
 import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 
 public abstract class Items extends Entity {

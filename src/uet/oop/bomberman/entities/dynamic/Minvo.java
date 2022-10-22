@@ -6,9 +6,9 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
 
-import static uet.oop.bomberman.entities.blocks.Bomb.*;
-import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.controller.Movement.*;
+import static uet.oop.bomberman.BombermanGame.bomberman;
+import static uet.oop.bomberman.BombermanGame.enemy;
+import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 
 public class Minvo extends DynamicEntities {
     public static int minvoStep = 1;

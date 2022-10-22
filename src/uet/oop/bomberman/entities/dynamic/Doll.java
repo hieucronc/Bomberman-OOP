@@ -1,16 +1,15 @@
 package uet.oop.bomberman.entities.dynamic;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.controller.Movement.*;
-import static uet.oop.bomberman.controller.Movement.moveLeft;
-import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
-
 import java.util.Random;
+
+import static uet.oop.bomberman.BombermanGame.bomberman;
+import static uet.oop.bomberman.BombermanGame.enemy;
+import static uet.oop.bomberman.controller.Movement.*;
+import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 
 
 public class Doll extends DynamicEntities {

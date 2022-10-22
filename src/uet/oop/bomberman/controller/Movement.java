@@ -2,18 +2,16 @@ package uet.oop.bomberman.controller;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.*;
+import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.entities.dynamic.Bomber.*;
-import static uet.oop.bomberman.entities.dynamic.Ballom.*;
+import static uet.oop.bomberman.BombermanGame.block;
+import static uet.oop.bomberman.entities.dynamic.Ballom.ballomStep;
+import static uet.oop.bomberman.entities.dynamic.Bomber.bomberStep;
 import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
 import static uet.oop.bomberman.entities.dynamic.Kondoria.etheral;
 import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
-import static uet.oop.bomberman.entities.dynamic.Oneal.*;
-import static uet.oop.bomberman.entities.dynamic.Minvo.*;
-
-import javafx.scene.input.KeyEvent;
-import uet.oop.bomberman.graphics.Sprite;
+import static uet.oop.bomberman.entities.dynamic.Minvo.minvoStep;
+import static uet.oop.bomberman.entities.dynamic.Oneal.onealStep;
 
 public class Movement {
     public static int countBomberStep = 0;
@@ -39,43 +37,43 @@ public class Movement {
 
     public static boolean canMoveDown(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + bomberStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + bomberStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Ballom) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + ballomStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + ballomStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Oneal) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + onealStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + onealStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Doll) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + dollStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + dollStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Minvo) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + minvoStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + minvoStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Kondoria) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + kondoriaStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + kondoriaStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -86,43 +84,43 @@ public class Movement {
 
     public static boolean canMoveUp(DynamicEntities dynamicEntities) {
         if (dynamicEntities instanceof Bomber) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - bomberStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - bomberStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Ballom) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - ballomStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - ballomStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Oneal) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - onealStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - onealStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Doll) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - dollStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - dollStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Minvo) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - minvoStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - minvoStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
             return true;
         } else if (dynamicEntities instanceof Kondoria) {
-            for (int i = 0; i < block.size(); i++) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - kondoriaStep, block.get(i).getX(), block.get(i).getY())) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - kondoriaStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }

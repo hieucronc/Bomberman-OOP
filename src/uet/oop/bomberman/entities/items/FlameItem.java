@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.blocks.Flame;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.BombermanGame.block;
 import static uet.oop.bomberman.BombermanGame.items;
 
 public class FlameItem extends Items {
