@@ -11,7 +11,7 @@ public class Ai {
     public static int[] dy = {0, -1, 1, 0};
     public static Vertex[][] prev = new Vertex[HEIGHT][WIDTH];
     public static List<Vertex> parent = new ArrayList<>();
-    public static void bfs(int i, int j) {
+    public static void bfsForSuperOneal(int i, int j) {
         Queue<Vertex> list = new LinkedList<>();
         Vertex v = new Vertex(i, j);
         list.add(v);
@@ -30,14 +30,37 @@ public class Ai {
         }
     }
 
+    public static void bfsForOneal(int i, int j) {
+        Queue<Vertex> list = new LinkedList<>();
+        Vertex v = new Vertex(i, j);
+        list.add(v);
+        visited[i][j] = true;
+        while (!list.isEmpty()) {
+            Vertex top = list.remove();
+            for (int k =0; k < 4;k++) {
+                int i1 = top.x + dx[k];
+                int j1 = top.y + dy[k];
+                if (i1 >= 0 && i1 < HEIGHT && j1 >= 0 && j1 < WIDTH && position[i1][j1] != 1 && position[i1][j1] != 2 && !visited[i1][j1]) {
+                    prev[i1][j1] = top;
+                    list.add(new Vertex(i1, j1));
+                    visited[i1][j1] = true;
+                }
+            }
+        }
+    }
+
     public static void path(Vertex s, Vertex e) {
         while (!e.isEquals(s)) {
             parent.add(e);
             e = prev[e.x][e.y];
         }
     }
-    public static boolean connectedComponet(Vertex s, Vertex e) {
-        bfs(s.x,s.y);
+    public static boolean connectedComponentOneal(Vertex s, Vertex e) {
+        bfsForOneal(s.x,s.y);
+        return visited[e.x][e.y];
+    }
+    public static boolean connectedComponentSuperOneal(Vertex s, Vertex e) {
+        bfsForSuperOneal(s.x,s.y);
         return visited[e.x][e.y];
     }
     public static void resetFindPath() {

@@ -11,20 +11,20 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
 
-public class Oneal extends DynamicEntities {
-    public static int onealStep = 1;
-    private int countOnealDead = 0;
+public class SuperOneal extends DynamicEntities {
+    public static int superOnealStep = 2;
+    private int countSuperOnealDead = 0;
     private int dir = DOWN;
     private static final int UP = 0;
     private static final int DOWN = 1;
     private static final int LEFT = 2;
     private static final int RIGHT = 3;
 
-    public Oneal(int x, int y, Image img) {
+    public SuperOneal(int x, int y, Image img) {
         super(x, y, img);
     }
 
-    public void onealMove() {
+    public void superOnealMove() {
 
         //tinh toan vi tri cua bomber
         double tmp1X = (double) bomberman.getX() / Sprite.SCALED_SIZE;
@@ -33,39 +33,17 @@ public class Oneal extends DynamicEntities {
         int eY = (int) Math.round(tmp1Y);
         Vertex e = new Vertex(eY, eX);
 
-        //tinh toan vi tri cua oneal
+        //tinh toan vi tri cua super oneal
         double tmp2X = (double) this.getX() / Sprite.SCALED_SIZE;
         int sX = (int) Math.round(tmp2X);
-        //System.out.println("Toa do y" + this.getY());
         double tmp2Y = (double) this.getY() / Sprite.SCALED_SIZE;
         int sY = (int) Math.round(tmp2Y);
         Vertex s = new Vertex(sY, sX);
-        bfsForOneal(s.x, s.y);
-//        System.out.println("Ma tran position");
-//        for (int i = 0;i<position.length;i++) {
-//            for (int j=0;j<position[0].length;j++) {
-//                System.out.print(position[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println("Ma tran cac dinh da tham");
-//        for (int i=0;i<visited.length;i++) {
-//            for (int j = 0; j < visited[0].length; j++) {
-//                System.out.print(visited[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println("Co lien thong hay k: " +connectedComponet(s,e));
-        if (connectedComponentOneal(s, e)) {
+        bfsForSuperOneal(s.x, s.y);
+        if (connectedComponentSuperOneal(s, e)) {
             path(s, e);
-//            System.out.println("Duong di tu e den s");
-//            for (int i = 0; i < parent.size(); i++) {
-//                System.out.println(parent.get(i).x + " " + parent.get(i).y);
-//            }
-//            System.out.println("O tiep theo can di toi");
             if (parent.size() >= 1) {
                 Vertex nextMove = parent.get(parent.size() - 1);
-//                System.out.println(nextMove.x + " " + nextMove.y);
                 if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {
                     Movement.moveDown(this);
                 }
@@ -122,10 +100,10 @@ public class Oneal extends DynamicEntities {
 
     }
 
-    public void killOneal() {
-        this.setImg(Sprite.movingSprite(Sprite.oneal_dead, Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, countOnealDead, decayTimer * 4 / 3).getFxImage());
-        countOnealDead++;
-        if (countOnealDead > decayTimer * 4 / 3) {
+    public void killSuperOneal() {
+        this.setImg(Sprite.movingSprite(Sprite.super_oneal_dead, Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, countSuperOnealDead, decayTimer * 4 / 3).getFxImage());
+        countSuperOnealDead++;
+        if (countSuperOnealDead > decayTimer * 4 / 3) {
             for (int i = 0; i < enemy.size(); i++) {
                 if (enemy.get(i).getX() == this.getX() && enemy.get(i).getY() == this.getY()) {
                     enemy.remove(i);
@@ -137,10 +115,10 @@ public class Oneal extends DynamicEntities {
     @Override
     public void update() {
         if (life)
-            onealMove();
+            superOnealMove();
         checkAlive();
         if (!life) {
-            killOneal();
+            killSuperOneal();
         }
     }
 }

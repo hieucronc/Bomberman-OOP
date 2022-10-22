@@ -27,6 +27,7 @@ Tiles:
 * - Brick
 x - Portal
 
+
 Character:
 p - Bomber
 1 - Balloon
@@ -34,7 +35,7 @@ p - Bomber
 3 - Doll
 4 - Kondoria
 5 - Minvo
-
+6 - Super Oneal
 
 
 
@@ -44,4 +45,6 @@ f - Flame Item
 s - Speed Item
 t - Bomb pass item
 y - Flame pass item
+e - Enemy Item
+v - Counter Speed
 Kí tự khác các kí tự trên - Grass

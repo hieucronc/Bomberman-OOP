@@ -12,6 +12,7 @@ import static uet.oop.bomberman.entities.dynamic.Kondoria.etheral;
 import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
 import static uet.oop.bomberman.entities.dynamic.Minvo.minvoStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.onealStep;
+import static uet.oop.bomberman.entities.dynamic.SuperOneal.superOnealStep;
 
 public class Movement {
     public static int countBomberStep = 0;
@@ -78,6 +79,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof SuperOneal) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + superOnealStep, entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -121,6 +129,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Kondoria) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - kondoriaStep, entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof SuperOneal) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - superOnealStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -172,6 +187,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof SuperOneal) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - superOnealStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         }
         return false;
     }
@@ -215,6 +237,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Kondoria) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX() + kondoriaStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof SuperOneal) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + superOnealStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -265,6 +294,12 @@ public class Movement {
             if (Kondoria.etheral || canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - kondoriaStep);
             }
+        } else if (dynamicEntities instanceof SuperOneal) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_right1, Sprite.super_oneal_left1,
+                    Sprite.super_oneal_right2, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveUp(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() - superOnealStep);
+            }
         }
 
     }
@@ -304,13 +339,18 @@ public class Movement {
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + minvoStep);
             }
-        }
-        if (dynamicEntities instanceof Kondoria) {
+        } else if (dynamicEntities instanceof Kondoria) {
             if (!etheral)
                 dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2,
                         Sprite.kondoria_left3, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setY(dynamicEntities.getY() + kondoriaStep);
+            }
+        } else if (dynamicEntities instanceof SuperOneal) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_left1, Sprite.super_oneal_right1,
+                    Sprite.super_oneal_left2, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveDown(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() + superOnealStep);
             }
         }
     }
@@ -357,6 +397,12 @@ public class Movement {
             if (canMoveLeft(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setX(dynamicEntities.getX() - kondoriaStep);
             }
+        } else if (dynamicEntities instanceof SuperOneal) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_left1, Sprite.super_oneal_left2,
+                    Sprite.super_oneal_left3, dynamicEntities.getX(), 100).getFxImage());
+            if (canMoveLeft(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() - superOnealStep);
+            }
         }
     }
 
@@ -400,8 +446,14 @@ public class Movement {
             if (!etheral)
                 dynamicEntities.setImg(Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2,
                         Sprite.kondoria_right3, dynamicEntities.getX(), 100).getFxImage());
-            if (canMoveUp(dynamicEntities) || Kondoria.etheral) {
+            if (canMoveRight(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setX(dynamicEntities.getX() + kondoriaStep);
+            }
+        } else if (dynamicEntities instanceof SuperOneal) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_right1, Sprite.super_oneal_right2,
+                    Sprite.super_oneal_right3, dynamicEntities.getX(), 100).getFxImage());
+            if (canMoveRight(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() + superOnealStep);
             }
         }
     }

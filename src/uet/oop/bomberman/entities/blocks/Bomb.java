@@ -86,6 +86,8 @@ public class Bomb extends Entity {
         if (!takeBombPass) {
             block.remove(block.size() - 1);
         }
+
+        position[y][x] = 0;
     }
 
     /**
@@ -101,6 +103,7 @@ public class Bomb extends Entity {
             y = (int) Math.round(tmpY);
             Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
             BombermanGame.bombs.add(bomb);
+            position[y][x] = 3;
         }
 
     }

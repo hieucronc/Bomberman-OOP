@@ -186,6 +186,14 @@ public class BombermanGame extends Application {
                     Entity object = new Portal(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                } else if (map[i][j] == 'e') {
+                    Entity object = new SpeedEnemy(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
+                } else if (map[i][j] == 'v') {
+                    Entity object = new CounterSpeed(j, i, Sprite.brick.getFxImage());
+                    items.add(object);
+                    block.add(object);
                 } else if (map[i][j] == '1') {
                     DynamicEntities ballom = new Ballom(j, i, Sprite.balloom_right1.getFxImage());
                     enemy.add(ballom);
@@ -201,6 +209,9 @@ public class BombermanGame extends Application {
                 } else if (map[i][j] == '5') {
                     DynamicEntities minvo = new Minvo(j, i, Sprite.minvo_right1.getFxImage());
                     enemy.add(minvo);
+                } else if (map[i][j] == '6') {
+                    DynamicEntities superOneal = new SuperOneal(j, i, Sprite.super_oneal_right1.getFxImage());
+                    enemy.add(superOneal);
                 } else if (map[i][j] == 'p') {
                     bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                 }
@@ -233,12 +244,14 @@ public class BombermanGame extends Application {
     public void render() {
         if (!pausing) {
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
             entities.forEach(g -> g.render(gc));
             block.forEach(g -> g.render(gc));
             bombs.forEach(g -> g.render(gc));
             flame.forEach(g -> g.render(gc));
             items.forEach(g -> g.render(gc));
             enemy.forEach(g -> g.render(gc));
+//            bomberman.render(gc);
         }
     }
 }
