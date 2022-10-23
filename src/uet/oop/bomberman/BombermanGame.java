@@ -230,6 +230,9 @@ public class BombermanGame extends Application {
                     block.add(statue);
                     enemy.add(statue);
                     position[i][j] = 2;
+                } else if (map[i][j] == '8') {
+                    Enemy ghost = new Ghost(j, i, Sprite.ghost_right1.getFxImage());
+                    enemy.add(ghost);
                 } else if (map[i][j] == 'p') {
                     bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                 }
