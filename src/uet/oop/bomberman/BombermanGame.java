@@ -134,8 +134,8 @@ public class BombermanGame extends Application {
     }
 
     public static void createMap() throws Exception {
-//        File file = new File(System.getProperty("user.dir") + "/res/levels/level" + level + ".txt");
-        File file = new File(System.getProperty("user.dir") + "/res/levels/level4.txt");
+        File file = new File(System.getProperty("user.dir") + "/res/levels/level" + level + ".txt");
+//        File file = new File(System.getProperty("user.dir") + "/res/levels/level4.txt");
 //        File file = new File(System.getProperty("user.dir") + "/res/levels/testOneal.txt");
         reset();
         Scanner scanner = new Scanner(file);
@@ -166,56 +166,70 @@ public class BombermanGame extends Application {
                     Entity object = new SpeedItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'b') {
-                    Entity object = new BombItem(j, i, Sprite.brick.getFxImage());
+                    Entity object = new DestroyItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'r') {
                     Entity object = new RandomItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'f') {
                     Entity object = new FlameItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 't') {
                     Entity object = new BombPassItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'y') {
                     Entity object = new FlamePassItem(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'x') {
                     Entity object = new Portal(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'e') {
                     Entity object = new SpeedEnemy(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'v') {
                     Entity object = new CounterSpeed(j, i, Sprite.brick.getFxImage());
                     items.add(object);
                     block.add(object);
+                    position[i][j] = 2;
                 } else if (map[i][j] == '1') {
-                    DynamicEntities ballom = new Ballom(j, i, Sprite.balloom_right1.getFxImage());
+                    Enemy ballom = new Ballom(j, i, Sprite.balloom_right1.getFxImage());
                     enemy.add(ballom);
                 } else if (map[i][j] == '2') {
-                    DynamicEntities oneal = new Oneal(j, i, Sprite.oneal_right1.getFxImage());
+                    Enemy oneal = new Oneal(j, i, Sprite.oneal_right1.getFxImage());
                     enemy.add(oneal);
                 } else if (map[i][j] == '3') {
-                    DynamicEntities doll = new Doll(j, i, Sprite.doll_right1.getFxImage());
+                    Enemy doll = new Doll(j, i, Sprite.doll_right1.getFxImage());
                     enemy.add(doll);
                 } else if (map[i][j] == '4') {
-                    DynamicEntities kondoria = new Kondoria(j, i, Sprite.kondoria_right1.getFxImage());
+                    Enemy kondoria = new Kondoria(j, i, Sprite.kondoria_right1.getFxImage());
                     enemy.add(kondoria);
                 } else if (map[i][j] == '5') {
-                    DynamicEntities minvo = new Minvo(j, i, Sprite.minvo_right1.getFxImage());
+                    Enemy minvo = new Minvo(j, i, Sprite.minvo_right1.getFxImage());
                     enemy.add(minvo);
                 } else if (map[i][j] == '6') {
-                    DynamicEntities superOneal = new SuperOneal(j, i, Sprite.super_oneal_right1.getFxImage());
+                    Enemy superOneal = new SuperOneal(j, i, Sprite.super_oneal_right1.getFxImage());
                     enemy.add(superOneal);
+                } else if (map[i][j] == '7') {
+                    Enemy statue = new Statue(j, i, Sprite.brick.getFxImage());
+                    block.add(statue);
+                    enemy.add(statue);
+                    position[i][j] = 2;
                 } else if (map[i][j] == 'p') {
                     bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                 }

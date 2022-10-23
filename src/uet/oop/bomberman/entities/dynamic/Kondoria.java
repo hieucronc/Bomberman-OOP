@@ -10,7 +10,7 @@ import static uet.oop.bomberman.entities.blocks.Bomb.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.controller.Movement.*;
 
-public class Kondoria extends DynamicEntities {
+public class Kondoria extends Enemy {
     public static int kondoriaStep = 1;
     public static boolean etheral = false;
     private int timer = 0;
@@ -22,10 +22,6 @@ public class Kondoria extends DynamicEntities {
     }
 
     private int dir = DOWN;
-    private static final int UP = 0;
-    private static final int DOWN = 1;
-    private static final int LEFT = 2;
-    private static final int RIGHT = 3;
 
     public void kondoriaMove() {
         if (!etheral) {

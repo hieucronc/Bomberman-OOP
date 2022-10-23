@@ -13,6 +13,7 @@ import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
 import static uet.oop.bomberman.entities.dynamic.Minvo.minvoStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.onealStep;
 import static uet.oop.bomberman.entities.dynamic.SuperOneal.superOnealStep;
+import static uet.oop.bomberman.entities.dynamic.Statue.statueStep;
 
 public class Movement {
     public static int countBomberStep = 0;
@@ -79,6 +80,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Statue) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + statueStep, entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         } else if (dynamicEntities instanceof SuperOneal) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + superOnealStep, entity.getX(), entity.getY())) {
@@ -129,6 +137,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Kondoria) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - kondoriaStep, entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof Statue) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - statueStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -187,6 +202,13 @@ public class Movement {
                 }
             }
             return true;
+        } else if (dynamicEntities instanceof Statue) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - statueStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
         } else if (dynamicEntities instanceof SuperOneal) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX() - superOnealStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
@@ -237,6 +259,13 @@ public class Movement {
         } else if (dynamicEntities instanceof Kondoria) {
             for (Entity entity : block) {
                 if (collision(dynamicEntities, dynamicEntities.getX() + kondoriaStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (dynamicEntities instanceof Statue) {
+            for (Entity entity : block) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + statueStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -294,6 +323,12 @@ public class Movement {
             if (Kondoria.etheral || canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - kondoriaStep);
             }
+        } else if (dynamicEntities instanceof Statue) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.statue_right1, Sprite.statue_right2,
+                    Sprite.statue_right3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveUp(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() - statueStep);
+            }
         } else if (dynamicEntities instanceof SuperOneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_right1, Sprite.super_oneal_left1,
                     Sprite.super_oneal_right2, dynamicEntities.getY(), 100).getFxImage());
@@ -346,6 +381,12 @@ public class Movement {
             if (canMoveDown(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setY(dynamicEntities.getY() + kondoriaStep);
             }
+        } else if (dynamicEntities instanceof Statue) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.statue_left1, Sprite.statue_left2,
+                    Sprite.statue_left3, dynamicEntities.getY(), 100).getFxImage());
+            if (canMoveDown(dynamicEntities)) {
+                dynamicEntities.setY(dynamicEntities.getY() + statueStep);
+            }
         } else if (dynamicEntities instanceof SuperOneal) {
             dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_left1, Sprite.super_oneal_right1,
                     Sprite.super_oneal_left2, dynamicEntities.getY(), 100).getFxImage());
@@ -389,6 +430,12 @@ public class Movement {
                     Sprite.minvo_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() - minvoStep);
+            }
+        } else if (dynamicEntities instanceof Statue) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.statue_left1, Sprite.statue_left2,
+                    Sprite.statue_left3, dynamicEntities.getX(), 100).getFxImage());
+            if (canMoveLeft(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() - statueStep);
             }
         } else if (dynamicEntities instanceof Kondoria) {
             if (!etheral)
@@ -441,6 +488,12 @@ public class Movement {
                     Sprite.minvo_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
                 dynamicEntities.setX(dynamicEntities.getX() + minvoStep);
+            }
+        } else if (dynamicEntities instanceof Statue) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.statue_right1, Sprite.statue_right2,
+                    Sprite.statue_right3, dynamicEntities.getX(), 100).getFxImage());
+            if (canMoveRight(dynamicEntities)) {
+                dynamicEntities.setX(dynamicEntities.getX() + statueStep);
             }
         } else if (dynamicEntities instanceof Kondoria) {
             if (!etheral)

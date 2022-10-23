@@ -11,14 +11,10 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
 
-public class SuperOneal extends DynamicEntities {
+public class SuperOneal extends Enemy {
     public static int superOnealStep = 2;
     private int countSuperOnealDead = 0;
     private int dir = DOWN;
-    private static final int UP = 0;
-    private static final int DOWN = 1;
-    private static final int LEFT = 2;
-    private static final int RIGHT = 3;
 
     public SuperOneal(int x, int y, Image img) {
         super(x, y, img);
@@ -42,6 +38,11 @@ public class SuperOneal extends DynamicEntities {
         bfsForSuperOneal(s.x, s.y);
         if (connectedComponentSuperOneal(s, e)) {
             path(s, e);
+//            System.out.println("Duong di tu e den s");
+//            for (int i = 0; i < parent.size(); i++) {
+//                System.out.println(parent.get(i).x + " " + parent.get(i).y);
+//            }
+//            System.out.println("O tiep theo can di toi");
             if (parent.size() >= 1) {
                 Vertex nextMove = parent.get(parent.size() - 1);
                 if (nextMove.x * Sprite.SCALED_SIZE > this.getY()) {

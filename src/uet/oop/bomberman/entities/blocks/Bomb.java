@@ -7,7 +7,6 @@ import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -86,7 +85,6 @@ public class Bomb extends Entity {
         if (!takeBombPass) {
             block.remove(block.size() - 1);
         }
-
         position[y][x] = 0;
     }
 

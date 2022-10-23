@@ -16,6 +16,7 @@ public class FlamePassItem extends Items {
         if (checkBomb()) {
             broken = true;
             reveal(Sprite.powerup_flamepass.getFxImage(),2);
+            position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
         }
         if (takeItem()) {
             items.remove(isInItem(this));

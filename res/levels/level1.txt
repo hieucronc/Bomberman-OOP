@@ -1,10 +1,10 @@
 13 31
 ###############################
-#p                            #
+#p     b        e             #
 # # # # # # # # # # # # # # # #
-#                             #
-# # # # # # # # # # # # # # # #
-#                             #
+#b                            #
+# # # # # # # # # # #*# # # # #
+#                   *         #
 # # # # # # # # # # # # # # # #
 #                             #
 # # # # # # # # # # # # # # # #
@@ -36,11 +36,11 @@ p - Bomber
 4 - Kondoria
 5 - Minvo
 6 - Super Oneal
-
+7 - Statue
 
 
 Items:
-b - Bomb Item
+b - Destroy Item
 f - Flame Item
 s - Speed Item
 t - Bomb pass item

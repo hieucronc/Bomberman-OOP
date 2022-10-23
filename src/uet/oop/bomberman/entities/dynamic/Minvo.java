@@ -10,14 +10,10 @@ import static uet.oop.bomberman.BombermanGame.bomberman;
 import static uet.oop.bomberman.BombermanGame.enemy;
 import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 
-public class Minvo extends DynamicEntities {
+public class Minvo extends Enemy {
     public static int minvoStep = 1;
     private int dir = DOWN;
     private int countMinvoDead = 0;
-    private static final int UP = 0;
-    private static final int DOWN = 1;
-    private static final int LEFT = 2;
-    private static final int RIGHT = 3;
 
     public Minvo(int x, int y, Image img) {
         super(x, y, img);
@@ -83,6 +79,7 @@ public class Minvo extends DynamicEntities {
             for (int i = 0; i < enemy.size(); i++) {
                 if (enemy.get(i).getX() == this.getX() && enemy.get(i).getY() == this.getY()) {
                     enemy.remove(i);
+                    break;
                 }
             }
         }

@@ -25,6 +25,7 @@ public class SpeedItem extends Items {
         if (checkBomb()) {
             broken = true;
             reveal(Sprite.powerup_speed.getFxImage(),2);
+            position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
         }
 
         if (takeItem()) {

@@ -7,7 +7,7 @@ import uet.oop.bomberman.entities.dynamic.Minvo;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.entities.dynamic.Bomber.bomberStep;
+import static uet.oop.bomberman.entities.items.DestroyItem.*;
 
 public class SpeedEnemy extends Items{
     public SpeedEnemy(int x, int y, Image img) {
@@ -20,13 +20,18 @@ public class SpeedEnemy extends Items{
     }
     @Override
     public void update() {
-        if (checkBomb()) {
+        if ((!destroyMode && checkBomb())) {
             broken = true;
             reveal(Sprite.enemy_powerup.getFxImage(),1);
+            position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
+
         }
         if (takeItem()) {
             items.remove(isInItem(this));
             useSpeedEnemy();
+        }
+        if (destroyMode && checkBomb() && broken) {
+            items.remove(isInItem(this));
         }
     }
 }

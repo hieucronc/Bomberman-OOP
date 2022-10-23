@@ -16,6 +16,7 @@ public class CounterSpeed extends Items {
         if (checkBomb()) {
             broken = true;
             reveal(Sprite.counter_speed.getFxImage(),1);
+            position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
         }
 
         if (takeItem()) {

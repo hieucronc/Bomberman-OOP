@@ -11,14 +11,10 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.blocks.Bomb.decayTimer;
 import static uet.oop.bomberman.entities.dynamic.Smart.Ai.*;
 
-public class Oneal extends DynamicEntities {
+public class Oneal extends Enemy {
     public static int onealStep = 1;
     private int countOnealDead = 0;
     private int dir = DOWN;
-    private static final int UP = 0;
-    private static final int DOWN = 1;
-    private static final int LEFT = 2;
-    private static final int RIGHT = 3;
 
     public Oneal(int x, int y, Image img) {
         super(x, y, img);
@@ -36,7 +32,6 @@ public class Oneal extends DynamicEntities {
         //tinh toan vi tri cua oneal
         double tmp2X = (double) this.getX() / Sprite.SCALED_SIZE;
         int sX = (int) Math.round(tmp2X);
-        //System.out.println("Toa do y" + this.getY());
         double tmp2Y = (double) this.getY() / Sprite.SCALED_SIZE;
         int sY = (int) Math.round(tmp2Y);
         Vertex s = new Vertex(sY, sX);
