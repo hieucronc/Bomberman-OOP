@@ -90,6 +90,7 @@ public class Kondoria extends Enemy {
             for (int i = 0; i < enemy.size(); i++) {
                 if (enemy.get(i).getX() == this.getX() && enemy.get(i).getY() == this.getY()) {
                     enemy.remove(i);
+                    break;
                 }
             }
         }

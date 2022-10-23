@@ -30,10 +30,9 @@ public class Brick extends Entity {
                 if (block.get(i).getX() == this.x && block.get(i).getY() == this.y) {
                     position[((Brick) block.get(i)).getY() / Sprite.SCALED_SIZE]
                             [((Brick) block.get(i)).getX() / Sprite.SCALED_SIZE] = 0;
-                    block.remove(i);
-
                     cntBrickExploded = 0;
-
+                    block.remove(i);
+                    break;
                 }
             }
         }

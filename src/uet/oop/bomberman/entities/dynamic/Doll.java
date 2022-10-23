@@ -71,7 +71,7 @@ public class Doll extends Enemy {
                     }
                     break;
             }
-        } else if (distance() > 1) {
+        } else {
             if (bomberman.getY() < this.getY()) {
                 moveUp(this);
             }
@@ -84,8 +84,6 @@ public class Doll extends Enemy {
             if (bomberman.getX() < this.getX()) {
                 moveLeft(this);
             }
-        } else {
-
         }
     }
 

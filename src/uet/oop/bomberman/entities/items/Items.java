@@ -28,6 +28,7 @@ public abstract class Items extends Entity {
                 for (int i = 0; i < block.size(); i++) {
                     if (block.get(i).getX() == this.getX() && block.get(i).getY() == this.getY()) {
                         block.remove(i);
+                        break;
                     }
                 }
             }

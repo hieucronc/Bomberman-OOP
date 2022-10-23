@@ -13,8 +13,6 @@ import java.io.IOException;
 
 import static uet.oop.bomberman.entities.items.BombPassItem.*;
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.entities.items.SpeedItem.*;
-import static uet.oop.bomberman.sound.SoundManager.*;
 public class Bomb extends Entity {
     public static int x;
     public static int y;

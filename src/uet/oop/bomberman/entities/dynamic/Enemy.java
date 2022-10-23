@@ -1,8 +1,4 @@
 package uet.oop.bomberman.entities.dynamic;
-
-import uet.oop.bomberman.controller.Movement;
-
-import java.util.Random;
 import javafx.scene.image.Image;
 public abstract class Enemy extends DynamicEntities{
 

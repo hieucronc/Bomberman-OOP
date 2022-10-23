@@ -57,18 +57,6 @@ public abstract class Entity {
         gc.drawImage(img, x, y);
     }
 
-    //    @Override
-//    public int hashCode() {
-//        return Objects.hash(x, y, img);
-//    }
-    public static int isInEntities(Entity entity) {
-        for (int i = 0; i < entities.size(); i++) {
-            if (entities.get(i).getX() == entity.getX() && entities.get(i).getY() == entity.getY()) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
     public boolean checkBomb() {
         for (Entity entity : flame) {
@@ -88,22 +76,6 @@ public abstract class Entity {
         return -1;
     }
 
-//    public static int isInBlock(Entity entity) {
-//        for (int i = 0; i < block.size(); i++) {
-//            if (block.get(i).getX() == entity.getX() && block.get(i).getY() == entity.getY()) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-
-    public static void updateFrameCount() {
-        if (frameCount > 80) {
-            frameCount = 0;
-        } else {
-            frameCount++;
-        }
-    }
 
     public abstract void update() throws Exception;
 }
