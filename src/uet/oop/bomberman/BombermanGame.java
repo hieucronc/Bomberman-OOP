@@ -17,12 +17,16 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.io.File;
 import java.util.*;
 
+import static bomberman.control.Menu.createMenu;
+
 public class BombermanGame extends Application {
     public static int level = 1;
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
 
     public static GraphicsContext gc;
+    public static boolean pausing = false;
+    public static boolean running = false;
     private Canvas canvas;
     public static List<Entity> entities = new ArrayList<>(); //gom nhan vat, grass
     public static List<Entity> block = new ArrayList<>(); // gom gach,tuong
@@ -33,7 +37,8 @@ public class BombermanGame extends Application {
     public static int[][] position = new int[HEIGHT][WIDTH];
 
     public static DynamicEntities bomberman;
-    boolean pausing = false;
+    public boolean started = false;
+
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -48,7 +53,7 @@ public class BombermanGame extends Application {
         // Tao root container
         Group root = new Group();
         root.getChildren().add(canvas);
-
+        createMenu(root);
         // Tao scene
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(keyEvent -> {
@@ -118,8 +123,6 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-
-        createMap();
 
     }
 
@@ -265,7 +268,6 @@ public class BombermanGame extends Application {
     public void render() {
         if (!pausing) {
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
             entities.forEach(g -> g.render(gc));
             block.forEach(g -> g.render(gc));
             bombs.forEach(g -> g.render(gc));
