@@ -11,7 +11,8 @@ public class SoundManager  {
         AudioInputStream audioStream1 = AudioSystem.getAudioInputStream(file1);
         Clip clip1 = AudioSystem.getClip();
         clip1.open(audioStream1);
-        clip1.start();
+//        clip1.start();
+        clip1.loop(-1);
     }
     public static void bomExplosion() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File file2 = new File(System.getProperty("user.dir") + "/res/sound/bomb_explosion.wav");
@@ -32,6 +33,5 @@ public class SoundManager  {
         AudioInputStream audioStream4 = AudioSystem.getAudioInputStream(file4);
         Clip clip4 = AudioSystem.getClip();
         clip4.open(audioStream4);
-        clip4.start();
     }
 }
