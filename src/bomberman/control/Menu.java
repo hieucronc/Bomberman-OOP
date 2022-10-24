@@ -12,8 +12,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import uet.oop.bomberman.BombermanGame;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 import static uet.oop.bomberman.BombermanGame.pausing;
 import static uet.oop.bomberman.BombermanGame.running;
+import static uet.oop.bomberman.sound.SoundManager.titleScreen;
 
 public class Menu {
     public static Text level, bomb, time;
@@ -25,9 +30,10 @@ public class Menu {
     static Image newGameImage = new Image("file:res/textures/start.png");
 //    static Image exitGameImage = new Image("file:src/main/resources/levels/exit.png");
 
-    public static void createMenu(Group root) {
+    public static void createMenu(Group root) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
         if (!running) {
+            titleScreen();
             Image backgroundMenuImage = new Image("file:res/textures/Name.png");
             backgroundMenu = new ImageView(backgroundMenuImage);
             backgroundMenu.setX(0);
@@ -91,6 +97,7 @@ public class Menu {
                     running = true;
                     backgroundMenu.setVisible(false);
                     newGameButton.setVisible(false);
+
                     try {
                         BombermanGame.createMap();
                     } catch (Exception e) {

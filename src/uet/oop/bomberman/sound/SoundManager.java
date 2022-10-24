@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class SoundManager  {
     public static void titleScreen() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File file1 = new File(System.getProperty("user.dir") + "/res/sound/title_screen.wav");
+        File file1 = new File(System.getProperty("user.dir") + "/res/sound/menu.wav");
         AudioInputStream audioStream1 = AudioSystem.getAudioInputStream(file1);
         Clip clip1 = AudioSystem.getClip();
         clip1.open(audioStream1);
@@ -33,5 +33,6 @@ public class SoundManager  {
         AudioInputStream audioStream4 = AudioSystem.getAudioInputStream(file4);
         Clip clip4 = AudioSystem.getClip();
         clip4.open(audioStream4);
+        clip4.start();
     }
 }

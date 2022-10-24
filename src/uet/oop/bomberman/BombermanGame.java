@@ -13,11 +13,11 @@ import uet.oop.bomberman.entities.blocks.*;
 import uet.oop.bomberman.entities.dynamic.*;
 import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
+
 import java.io.File;
 import java.util.*;
 
 import static bomberman.control.Menu.createMenu;
-import static uet.oop.bomberman.sound.SoundManager.*;
 public class BombermanGame extends Application {
     public static int level = 1;
     public static final int WIDTH = 31;
@@ -27,7 +27,6 @@ public class BombermanGame extends Application {
     public static boolean pausing = false;
     public static boolean running = false;
     private Canvas canvas;
-    public boolean cnt = true;
     public static List<Entity> entities = new ArrayList<>(); //gom nhan vat, grass
     public static List<Entity> block = new ArrayList<>(); // gom gach,tuong
     public static Queue<Flame> flame = new LinkedList<>();
@@ -37,7 +36,6 @@ public class BombermanGame extends Application {
     public static int[][] position = new int[HEIGHT][WIDTH];
 
     public static DynamicEntities bomberman;
-    public boolean started = false;
 
 
     public static void main(String[] args) {
@@ -107,10 +105,6 @@ public class BombermanGame extends Application {
                     break;
             }
         });
-        if (cnt) {
-            titleScreen();
-            cnt = false;
-        }
         // Them scene vao stage
         stage.setScene(scene);
         stage.show();
