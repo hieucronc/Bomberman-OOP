@@ -16,7 +16,7 @@ import static uet.oop.bomberman.entities.items.FlamePassItem.takeFlamePass;
 import static uet.oop.bomberman.sound.SoundManager.*;
 public class Bomber extends DynamicEntities {
     public static int bomberStep = 2;
-    public static boolean callDeadSound = false;
+    public boolean callDeadSound = false;
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
     }
