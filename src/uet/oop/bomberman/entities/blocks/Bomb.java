@@ -25,7 +25,6 @@ public class Bomb extends Entity {
     private boolean exploded = false;
     public boolean canPassThrough = true;
     public static int MAX_BOMB = 1;
-//    boolean soundExplosion = true;
 
     public Bomb(int x, int y, Image boom) {
         super(x, y, boom);

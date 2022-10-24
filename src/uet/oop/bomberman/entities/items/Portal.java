@@ -5,7 +5,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.enemy;
-
+import static uet.oop.bomberman.sound.SoundManager.*;
 public class Portal extends Items {
 
     public Portal(int x, int y, Image image) {
@@ -20,6 +20,7 @@ public class Portal extends Items {
         }
         if (takeItem()) {
             if (enemy.isEmpty()) {
+                levelComplete();
                 BombermanGame.level++;
                 BombermanGame.createMap();
             }

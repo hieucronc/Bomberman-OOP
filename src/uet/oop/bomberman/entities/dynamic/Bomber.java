@@ -13,10 +13,10 @@ import static uet.oop.bomberman.BombermanGame.createMap;
 import static uet.oop.bomberman.BombermanGame.enemy;
 import static uet.oop.bomberman.controller.Movement.*;
 import static uet.oop.bomberman.entities.items.FlamePassItem.takeFlamePass;
-
+import static uet.oop.bomberman.sound.SoundManager.*;
 public class Bomber extends DynamicEntities {
     public static int bomberStep = 2;
-//    boolean soundDead = true;
+    public static boolean callDeadSound = false;
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -68,11 +68,12 @@ public class Bomber extends DynamicEntities {
 
         checkEnemy();
         if (!this.life) {
+            if (!callDeadSound) {
+                playerDied();
+                callDeadSound = true;
+            }
             killBomber();
-//            if (soundDead) {
-//                playerDied();
-//                soundDead = false;
-//            }
+
         }
 
     }
