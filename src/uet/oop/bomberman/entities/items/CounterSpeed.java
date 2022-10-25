@@ -15,7 +15,7 @@ public class CounterSpeed extends Items {
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.counter_speed.getFxImage(),1);
+            reveal(Sprite.powerup_wallpass.getFxImage(),1);
             position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
         }
 

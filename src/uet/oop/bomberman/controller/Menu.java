@@ -29,7 +29,7 @@ public class Menu {
 
     //    public static Pane pane;
     static Image newGameImage = new Image("file:res/textures/start.png");
-//    static Image exitGameImage = new Image("file:src/main/resources/levels/exit.png");
+    static Image exitGameImage = new Image("file:res/textures/exit.png");
 
     public static void createMenu(Group root) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
@@ -42,7 +42,7 @@ public class Menu {
 //            backgroundMenu.setScaleX(0.05);
 //            backgroundMenu.setScaleY(0.05);
 
-//            exitButton = new ImageView(exitGameImage);
+            exitButton = new ImageView(exitGameImage);
             newGameButton = new ImageView(newGameImage);
 
             newGameButton.setX(320);
@@ -50,13 +50,13 @@ public class Menu {
             newGameButton.setScaleX(0.5);
             newGameButton.setScaleY(0.5);
 
-//            exitButton.setX(20);
-//            exitButton.setY(300);
-//            exitButton.setScaleX(0.5);
-//            exitButton.setScaleY(0.5);
+            exitButton.setX(890);
+            exitButton.setY(305);
+            exitButton.setScaleX(0.2);
+            exitButton.setScaleY(0.2);
             root.getChildren().add(backgroundMenu);
             root.getChildren().add(newGameButton);
-//            root.getChildren().add(exitButton);
+            root.getChildren().add(exitButton);
         }
 
 
@@ -68,6 +68,7 @@ public class Menu {
                     running = true;
                     backgroundMenu.setVisible(false);
                     newGameButton.setVisible(false);
+                    exitButton.setVisible(false);
                     try {
                         buttonSound();
                     } catch (UnsupportedAudioFileException e) {
@@ -83,11 +84,10 @@ public class Menu {
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-//                    exitButton.setVisible(false);
                 });
-//                exitButton.setOnMouseClicked(event -> {
-//                    Platform.exit();
-//                });
+                exitButton.setOnMouseClicked(event -> {
+                    Platform.exit();
+                });
 //                statusGame.setOnMouseClicked(event -> {
 //                    pausing = !pausing;
 //                    running = !running;
