@@ -262,11 +262,13 @@ public class BombermanGame extends Application {
             for (Entity entity : items) {
                 entity.update();
             }
+        } else {
+            bomberman.setImg(Sprite.player_rest.getFxImage());
         }
     }
 
     public void render() {
-        if (!pausing) {
+
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             entities.forEach(g -> g.render(gc));
             block.forEach(g -> g.render(gc));
@@ -275,9 +277,6 @@ public class BombermanGame extends Application {
             items.forEach(g -> g.render(gc));
             enemy.forEach(g -> g.render(gc));
 //            bomberman.render(gc);
-        } else {
-            bomberman.setImg(Sprite.player_rest.getFxImage());
-            entities.forEach(g -> g.render(gc));
-        }
+
     }
 }
