@@ -273,6 +273,9 @@ public class BombermanGame extends Application {
             items.forEach(g -> g.render(gc));
             enemy.forEach(g -> g.render(gc));
 //            bomberman.render(gc);
+        } else {
+            bomberman.setImg(Sprite.player_rest.getFxImage());
+            entities.forEach(g -> g.render(gc));
         }
     }
 }

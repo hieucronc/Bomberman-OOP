@@ -35,4 +35,11 @@ public class SoundManager  {
         clip4.open(audioStream4);
         clip4.start();
     }
+    public static void buttonSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File file5 = new File(System.getProperty("user.dir") + "/res/sound/button.wav");
+        AudioInputStream audioStream5 = AudioSystem.getAudioInputStream(file5);
+        Clip clip5 = AudioSystem.getClip();
+        clip5.open(audioStream5);
+        clip5.start();
+    }
 }
