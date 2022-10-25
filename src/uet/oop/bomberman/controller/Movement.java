@@ -8,11 +8,11 @@ import static uet.oop.bomberman.BombermanGame.block;
 import static uet.oop.bomberman.entities.dynamic.Ballom.ballomStep;
 import static uet.oop.bomberman.entities.dynamic.Bomber.bomberStep;
 import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
+import static uet.oop.bomberman.entities.dynamic.Ghost.ghostStep;
 import static uet.oop.bomberman.entities.dynamic.Kondoria.etheral;
 import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
 import static uet.oop.bomberman.entities.dynamic.Minvo.minvoStep;
 import static uet.oop.bomberman.entities.dynamic.Oneal.onealStep;
-import static uet.oop.bomberman.entities.dynamic.SuperOneal.superOnealStep;
 import static uet.oop.bomberman.entities.dynamic.Statue.statueStep;
 
 public class Movement {
@@ -87,9 +87,9 @@ public class Movement {
                 }
             }
             return true;
-        } else if (dynamicEntities instanceof SuperOneal) {
+        } else if (dynamicEntities instanceof Ghost) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + superOnealStep, entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() + ghostStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -148,9 +148,9 @@ public class Movement {
                 }
             }
             return true;
-        } else if (dynamicEntities instanceof SuperOneal) {
+        } else if (dynamicEntities instanceof Ghost) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - superOnealStep, entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX(), dynamicEntities.getY() - ghostStep, entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -209,9 +209,9 @@ public class Movement {
                 }
             }
             return true;
-        } else if (dynamicEntities instanceof SuperOneal) {
+        } else if (dynamicEntities instanceof Ghost) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities, dynamicEntities.getX() - superOnealStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX() - ghostStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -270,9 +270,9 @@ public class Movement {
                 }
             }
             return true;
-        } else if (dynamicEntities instanceof SuperOneal) {
+        } else if (dynamicEntities instanceof Ghost) {
             for (Entity entity : block) {
-                if (collision(dynamicEntities, dynamicEntities.getX() + superOnealStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
+                if (collision(dynamicEntities, dynamicEntities.getX() + ghostStep, dynamicEntities.getY(), entity.getX(), entity.getY())) {
                     return false;
                 }
             }
@@ -329,11 +329,11 @@ public class Movement {
             if (canMoveUp(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() - statueStep);
             }
-        } else if (dynamicEntities instanceof SuperOneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_right1, Sprite.super_oneal_left1,
-                    Sprite.super_oneal_right2, dynamicEntities.getY(), 100).getFxImage());
+        } else if (dynamicEntities instanceof Ghost) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.ghost_right1, Sprite.ghost_left1,
+                    Sprite.ghost_right2, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveUp(dynamicEntities)) {
-                dynamicEntities.setY(dynamicEntities.getY() - superOnealStep);
+                dynamicEntities.setY(dynamicEntities.getY() - ghostStep);
             }
         }
 
@@ -387,11 +387,11 @@ public class Movement {
             if (canMoveDown(dynamicEntities)) {
                 dynamicEntities.setY(dynamicEntities.getY() + statueStep);
             }
-        } else if (dynamicEntities instanceof SuperOneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_left1, Sprite.super_oneal_right1,
-                    Sprite.super_oneal_left2, dynamicEntities.getY(), 100).getFxImage());
+        } else if (dynamicEntities instanceof Ghost) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.ghost_left1, Sprite.ghost_right1,
+                    Sprite.ghost_left2, dynamicEntities.getY(), 100).getFxImage());
             if (canMoveDown(dynamicEntities)) {
-                dynamicEntities.setY(dynamicEntities.getY() + superOnealStep);
+                dynamicEntities.setY(dynamicEntities.getY() + ghostStep);
             }
         }
     }
@@ -444,11 +444,11 @@ public class Movement {
             if (canMoveLeft(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setX(dynamicEntities.getX() - kondoriaStep);
             }
-        } else if (dynamicEntities instanceof SuperOneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_left1, Sprite.super_oneal_left2,
-                    Sprite.super_oneal_left3, dynamicEntities.getX(), 100).getFxImage());
+        } else if (dynamicEntities instanceof Ghost) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.ghost_left1, Sprite.ghost_left2,
+                    Sprite.ghost_left3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveLeft(dynamicEntities)) {
-                dynamicEntities.setX(dynamicEntities.getX() - superOnealStep);
+                dynamicEntities.setX(dynamicEntities.getX() - ghostStep);
             }
         }
     }
@@ -502,11 +502,11 @@ public class Movement {
             if (canMoveRight(dynamicEntities) || Kondoria.etheral) {
                 dynamicEntities.setX(dynamicEntities.getX() + kondoriaStep);
             }
-        } else if (dynamicEntities instanceof SuperOneal) {
-            dynamicEntities.setImg(Sprite.movingSprite(Sprite.super_oneal_right1, Sprite.super_oneal_right2,
-                    Sprite.super_oneal_right3, dynamicEntities.getX(), 100).getFxImage());
+        } else if (dynamicEntities instanceof Ghost) {
+            dynamicEntities.setImg(Sprite.movingSprite(Sprite.ghost_right1, Sprite.ghost_right2,
+                    Sprite.ghost_right3, dynamicEntities.getX(), 100).getFxImage());
             if (canMoveRight(dynamicEntities)) {
-                dynamicEntities.setX(dynamicEntities.getX() + superOnealStep);
+                dynamicEntities.setX(dynamicEntities.getX() + ghostStep);
             }
         }
     }

@@ -11,7 +11,7 @@ public class Ai {
     public static int[] dy = {0, -1, 1, 0};
     public static Vertex[][] prev = new Vertex[HEIGHT][WIDTH];
     public static List<Vertex> parent = new ArrayList<>();
-    public static void bfsForSuperOneal(int i, int j) {
+    public static void bfsForGhost(int i, int j) {
         Queue<Vertex> list = new LinkedList<>();
         Vertex v = new Vertex(i, j);
         list.add(v);
@@ -59,8 +59,8 @@ public class Ai {
         bfsForOneal(s.x,s.y);
         return visited[e.x][e.y];
     }
-    public static boolean connectedComponentSuperOneal(Vertex s, Vertex e) {
-        bfsForSuperOneal(s.x,s.y);
+    public static boolean connectedComponentGhost(Vertex s, Vertex e) {
+        bfsForGhost(s.x,s.y);
         return visited[e.x][e.y];
     }
     public static void resetFindPath() {

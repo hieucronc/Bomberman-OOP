@@ -75,15 +75,15 @@ public class Sprite {
     public static Sprite balloom_dead = new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16);
 
     //SUPER ONEAL
-    public static Sprite super_oneal_left1 = new Sprite(DEFAULT_SIZE, 6, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite super_oneal_left2 = new Sprite(DEFAULT_SIZE, 6, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite super_oneal_left3 = new Sprite(DEFAULT_SIZE, 6, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_left1 = new Sprite(DEFAULT_SIZE, 6, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_left2 = new Sprite(DEFAULT_SIZE, 6, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_left3 = new Sprite(DEFAULT_SIZE, 6, 7, SpriteSheet.tiles, 16, 16);
 
-    public static Sprite super_oneal_right1 = new Sprite(DEFAULT_SIZE, 7, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite super_oneal_right2 = new Sprite(DEFAULT_SIZE, 7, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite super_oneal_right3 = new Sprite(DEFAULT_SIZE, 7, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_right1 = new Sprite(DEFAULT_SIZE, 7, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_right2 = new Sprite(DEFAULT_SIZE, 7, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_right3 = new Sprite(DEFAULT_SIZE, 7, 7, SpriteSheet.tiles, 16, 16);
 
-    public static Sprite super_oneal_dead = new Sprite(DEFAULT_SIZE, 6, 8, SpriteSheet.tiles, 16, 16);
+    public static Sprite ghost_dead = new Sprite(DEFAULT_SIZE, 6, 8, SpriteSheet.tiles, 16, 16);
 
     //ONEAL
     public static Sprite oneal_left1 = new Sprite(DEFAULT_SIZE, 11, 0, SpriteSheet.tiles, 16, 16);
@@ -141,15 +141,15 @@ public class Sprite {
     public static Sprite statue_dead = new Sprite(DEFAULT_SIZE, 12, 8, SpriteSheet.tiles, 16, 16);
 
     //Ghost
-    public static Sprite ghost_left1 = new Sprite(DEFAULT_SIZE, 14, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite ghost_left2 = new Sprite(DEFAULT_SIZE, 14, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite ghost_left3 = new Sprite(DEFAULT_SIZE, 14, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_left1 = new Sprite(DEFAULT_SIZE, 14, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_left2 = new Sprite(DEFAULT_SIZE, 14, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_left3 = new Sprite(DEFAULT_SIZE, 14, 7, SpriteSheet.tiles, 16, 16);
 
-    public static Sprite ghost_right1 = new Sprite(DEFAULT_SIZE, 15, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite ghost_right2 = new Sprite(DEFAULT_SIZE, 15, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite ghost_right3 = new Sprite(DEFAULT_SIZE, 15, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_right1 = new Sprite(DEFAULT_SIZE, 15, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_right2 = new Sprite(DEFAULT_SIZE, 15, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_right3 = new Sprite(DEFAULT_SIZE, 15, 7, SpriteSheet.tiles, 16, 16);
 
-    public static Sprite ghost_dead = new Sprite(DEFAULT_SIZE, 12, 8, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_dead = new Sprite(DEFAULT_SIZE, 12, 8, SpriteSheet.tiles, 16, 16);
 
 
     //ALL

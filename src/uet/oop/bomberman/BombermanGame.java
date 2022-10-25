@@ -226,7 +226,7 @@ public class BombermanGame extends Application {
                     Enemy minvo = new Minvo(j, i, Sprite.minvo_right1.getFxImage());
                     enemy.add(minvo);
                 } else if (map[i][j] == '6') {
-                    Enemy superOneal = new SuperOneal(j, i, Sprite.super_oneal_right1.getFxImage());
+                    Enemy superOneal = new Ghost(j, i, Sprite.ghost_right1.getFxImage());
                     enemy.add(superOneal);
                 } else if (map[i][j] == '7') {
                     Enemy statue = new Statue(j, i, Sprite.brick.getFxImage());
@@ -234,7 +234,7 @@ public class BombermanGame extends Application {
                     enemy.add(statue);
                     position[i][j] = 2;
                 } else if (map[i][j] == '8') {
-                    Enemy ghost = new Ghost(j, i, Sprite.ghost_right1.getFxImage());
+                    Enemy ghost = new Pontan(j, i, Sprite.pontan_right1.getFxImage());
                     enemy.add(ghost);
                 } else if (map[i][j] == 'p') {
                     bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
