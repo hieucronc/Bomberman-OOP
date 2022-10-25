@@ -5,18 +5,12 @@ import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import uet.oop.bomberman.BombermanGame;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
-import static uet.oop.bomberman.BombermanGame.pausing;
 import static uet.oop.bomberman.BombermanGame.running;
 import static uet.oop.bomberman.sound.SoundManager.buttonSound;
 import static uet.oop.bomberman.sound.SoundManager.titleScreen;
@@ -97,11 +91,7 @@ public class Menu {
                     newGameButton.setVisible(false);
                     try {
                         buttonSound();
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                         throw new RuntimeException(e);
                     }
 
@@ -111,18 +101,12 @@ public class Menu {
                         throw new RuntimeException(e);
                     }
                 });
-                exitButton.setOnMouseClicked(event -> {
-                    Platform.exit();
-                });
+                exitButton.setOnMouseClicked(event -> Platform.exit());
                 backButton.setOnMouseClicked(event -> {
                     displayMenu();
                     try {
                         buttonSound();
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                         throw new RuntimeException(e);
                     }
                 });
@@ -130,11 +114,7 @@ public class Menu {
                     displayItem();
                     try {
                         buttonSound();
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                         throw new RuntimeException(e);
                     }
                 });
@@ -142,11 +122,7 @@ public class Menu {
                     displayMonster();
                     try {
                         buttonSound();
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                         throw new RuntimeException(e);
                     }
                 });
@@ -166,16 +142,13 @@ public class Menu {
         backButton.setVisible(false);
     }
     public static void displayItem() {
-        backgroundMenu.setVisible(false);
-        exitButton.setVisible(false);
-        monsterButton.setVisible(false);
-        itemButton.setVisible(false);
-        newGameButton.setVisible(false);
-        enemyPage.setVisible(false);
-        itemPage.setVisible(true);
-        backButton.setVisible(true);
+        hideMenu(enemyPage, itemPage);
     }
     public static void displayMonster() {
+        hideMenu(itemPage, enemyPage);
+    }
+
+    private static void hideMenu(ImageView itemPage, ImageView enemyPage) {
         backgroundMenu.setVisible(false);
         exitButton.setVisible(false);
         monsterButton.setVisible(false);
