@@ -17,7 +17,9 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.io.File;
 import java.util.*;
 
-import static bomberman.control.Menu.createMenu;
+import static uet.oop.bomberman.controller.Menu.createMenu;
+
+
 public class BombermanGame extends Application {
     public static int level = 1;
     public static final int WIDTH = 31;
