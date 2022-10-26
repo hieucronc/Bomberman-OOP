@@ -72,13 +72,13 @@ public class Pontan extends Enemy {
         }
     }
     private void mLeft() {
-        this.setImg(Sprite.movingSprite(Sprite.pontan_left1,Sprite.pontan_left2,Sprite.pontan_left3,this.getY(),100).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.pontan_left1,Sprite.pontan_left2,Sprite.pontan_left3,this.getX(),100).getFxImage());
         if (cLeft()) {
             this.setX(this.getX() - pontanStep);
         }
     }
     private void mRight() {
-        this.setImg(Sprite.movingSprite(Sprite.pontan_right1,Sprite.pontan_right2,Sprite.pontan_right3,this.getY(),100).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.pontan_right1,Sprite.pontan_right2,Sprite.pontan_right3,this.getX(),100).getFxImage());
         if (cRight()) {
             this.setX(this.getX() + pontanStep);
         }

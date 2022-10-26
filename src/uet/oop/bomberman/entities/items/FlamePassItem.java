@@ -10,6 +10,9 @@ public class FlamePassItem extends Items {
     public static void useFlamePassItem() {
         takeFlamePass = true;
     }
+    public static void resetFlamePassItem() {
+        takeFlamePass = false;
+    }
     @Override
     public void update() {
         if (checkBomb()) {

@@ -14,6 +14,9 @@ public class FlameItem extends Items {
     public static void useFlameItem() {
         Flame.flameLength++;
     }
+    public static void resetFlameItem() {
+        Flame.flameLength = 1;
+    }
     @Override
     public void update() {
         if (checkBomb()) {

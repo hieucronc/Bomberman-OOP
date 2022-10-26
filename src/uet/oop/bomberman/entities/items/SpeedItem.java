@@ -15,7 +15,10 @@ public class SpeedItem extends Items {
         if (bomberman.getY() % 4 == 2) {
             bomberman.setY(bomberman.getY() - 2);
         }
-        bomberStep++;
+        bomberStep = 4;
+    }
+    public static void resetSpeedItem() {
+        bomberStep = 2;
     }
     @Override
     public void update() {

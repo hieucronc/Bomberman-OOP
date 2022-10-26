@@ -18,6 +18,12 @@ public class SpeedEnemy extends Items{
         Kondoria.kondoriaStep = 2;
         Minvo.minvoStep = 2;
     }
+    public static void resetSpeedEnemy() {
+        Doll.dollStep = 1;
+        Kondoria.kondoriaStep = 1;
+        Minvo.minvoStep = 1;
+    }
+
     @Override
     public void update() {
         if ((!destroyMode && checkBomb())) {

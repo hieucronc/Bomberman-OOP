@@ -21,18 +21,21 @@ public class Minvo extends Enemy {
 
     public void minvoMove() {
         if (Math.abs(bomberman.getX() - this.getX()) <= 8 && Math.abs(bomberman.getY() - this.getY()) < 5 * Sprite.SCALED_SIZE) {
+            minvoStep = 2;
             if (bomberman.getY() > this.getY()) {
                 Movement.moveUp(this);
             } else if (bomberman.getY() < this.getY()) {
                 Movement.moveDown(this);
             }
         } else if (bomberman.getY() == this.getY() && Math.abs(bomberman.getX() - this.getX()) < 5 * Sprite.SCALED_SIZE) {
+            minvoStep = 2;
             if (bomberman.getX() > this.getX()) {
                 Movement.moveLeft(this);
             } else if (bomberman.getX() < this.getX()) {
                 Movement.moveRight(this);
             }
         } else {
+            minvoStep = 1;
             switch (dir) {
                 case UP:
                     if (Movement.canMoveUp(this)) {

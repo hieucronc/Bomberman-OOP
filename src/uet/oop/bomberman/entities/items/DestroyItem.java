@@ -7,6 +7,12 @@ public class DestroyItem extends Items{
     public DestroyItem(int x, int y, Image image) {
         super(x, y, image);
     }
+    public static void useDestroyItem() {
+        destroyMode = true;
+    }
+    public static void resetDestroyItem() {
+        destroyMode = false;
+    }
     @Override
     public void update() {
         if (checkBomb()) {
@@ -16,7 +22,7 @@ public class DestroyItem extends Items{
         }
         if (takeItem()) {
             items.remove(isInItem(this));
-            destroyMode = true;
+            useDestroyItem();
         }
 
     }

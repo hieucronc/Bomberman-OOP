@@ -11,6 +11,9 @@ public class CounterSpeed extends Items {
     public static void useCounterSpeed() {
         bomberStep = 1;
     }
+    public static void resetCounterSpeed() {
+        bomberStep = 2;
+    }
     @Override
     public void update() {
         if (checkBomb()) {

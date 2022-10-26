@@ -7,6 +7,9 @@ public class BombPassItem extends Items {
     public static void useBombPassItem() {
         takeBombPass = true;
     }
+    public static void resetBombPass() {
+        takeBombPass = false;
+    }
     public BombPassItem(int x,int y, Image image) {
         super(x, y, image);
     }
