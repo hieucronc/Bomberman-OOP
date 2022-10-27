@@ -98,6 +98,7 @@ public class Menu {
                     monsterButton.setVisible(false);
                     itemButton.setVisible(false);
                     newGameButton.setVisible(false);
+                    howButton.setVisible(false);
                     playButtonSound();
 
                     try {
