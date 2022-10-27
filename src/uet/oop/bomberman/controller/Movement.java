@@ -2,18 +2,19 @@ package uet.oop.bomberman.controller;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.dynamic.*;
+import uet.oop.bomberman.entities.dynamic.Enemy.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.block;
-import static uet.oop.bomberman.entities.dynamic.Ballom.ballomStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Ballom.ballomStep;
 import static uet.oop.bomberman.entities.dynamic.Bomber.bomberStep;
-import static uet.oop.bomberman.entities.dynamic.Doll.dollStep;
-import static uet.oop.bomberman.entities.dynamic.Ghost.ghostStep;
-import static uet.oop.bomberman.entities.dynamic.Kondoria.etheral;
-import static uet.oop.bomberman.entities.dynamic.Kondoria.kondoriaStep;
-import static uet.oop.bomberman.entities.dynamic.Minvo.minvoStep;
-import static uet.oop.bomberman.entities.dynamic.Oneal.onealStep;
-import static uet.oop.bomberman.entities.dynamic.Statue.statueStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Doll.dollStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Ghost.ghostStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Kondoria.etheral;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Kondoria.kondoriaStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Minvo.minvoStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Oneal.onealStep;
+import static uet.oop.bomberman.entities.dynamic.Enemy.Statue.statueStep;
 
 public class Movement {
     public static int countBomberStep = 0;

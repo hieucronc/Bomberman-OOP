@@ -1,9 +1,9 @@
 package uet.oop.bomberman.entities.items;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.entities.dynamic.Doll;
-import uet.oop.bomberman.entities.dynamic.Kondoria;
-import uet.oop.bomberman.entities.dynamic.Minvo;
+import uet.oop.bomberman.entities.dynamic.Enemy.Doll;
+import uet.oop.bomberman.entities.dynamic.Enemy.Kondoria;
+import uet.oop.bomberman.entities.dynamic.Enemy.Minvo;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;

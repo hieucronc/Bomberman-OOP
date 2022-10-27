@@ -11,6 +11,7 @@ import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.blocks.*;
 import uet.oop.bomberman.entities.dynamic.*;
+import uet.oop.bomberman.entities.dynamic.Enemy.*;
 import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.entities.items.BombPassItem.*;
