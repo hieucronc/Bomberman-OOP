@@ -21,6 +21,7 @@ public class Pontan extends Enemy {
     public Pontan(int x, int y, Image img) {
         super(x, y, img);
     }
+
     private boolean cUp() {
         for (Entity entity : block) {
             if (!(entity instanceof Brick) && !(entity instanceof Items)) {
@@ -31,6 +32,7 @@ public class Pontan extends Enemy {
         }
         return true;
     }
+
     private boolean cDown() {
         for (Entity entity : block) {
             if (!(entity instanceof Brick) && !(entity instanceof Items)) {
@@ -41,6 +43,7 @@ public class Pontan extends Enemy {
         }
         return true;
     }
+
     private boolean cRight() {
         for (Entity entity : block) {
             if (!(entity instanceof Brick) && !(entity instanceof Items)) {
@@ -51,6 +54,7 @@ public class Pontan extends Enemy {
         }
         return true;
     }
+
     private boolean cLeft() {
         for (Entity entity : block) {
             if (!(entity instanceof Brick) && !(entity instanceof Items)) {
@@ -61,30 +65,35 @@ public class Pontan extends Enemy {
         }
         return true;
     }
+
     private void mUp() {
-        this.setImg(Sprite.movingSprite(Sprite.pontan_right1,Sprite.pontan_right2,Sprite.pontan_right3,this.getY(),100).getFxImage());
-        if(cUp()) {
+        this.setImg(Sprite.movingSprite(Sprite.pontan_right1, Sprite.pontan_right2, Sprite.pontan_right3, this.getY(), 100).getFxImage());
+        if (cUp()) {
             this.setY(this.getY() - pontanStep);
         }
     }
+
     private void mDown() {
-        this.setImg(Sprite.movingSprite(Sprite.pontan_left1,Sprite.pontan_left2,Sprite.pontan_left3,this.getY(),100).getFxImage());
-        if(cDown()) {
+        this.setImg(Sprite.movingSprite(Sprite.pontan_left1, Sprite.pontan_left2, Sprite.pontan_left3, this.getY(), 100).getFxImage());
+        if (cDown()) {
             this.setY(this.getY() + pontanStep);
         }
     }
+
     private void mLeft() {
-        this.setImg(Sprite.movingSprite(Sprite.pontan_left1,Sprite.pontan_left2,Sprite.pontan_left3,this.getX(),100).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.pontan_left1, Sprite.pontan_left2, Sprite.pontan_left3, this.getX(), 100).getFxImage());
         if (cLeft()) {
             this.setX(this.getX() - pontanStep);
         }
     }
+
     private void mRight() {
-        this.setImg(Sprite.movingSprite(Sprite.pontan_right1,Sprite.pontan_right2,Sprite.pontan_right3,this.getX(),100).getFxImage());
+        this.setImg(Sprite.movingSprite(Sprite.pontan_right1, Sprite.pontan_right2, Sprite.pontan_right3, this.getX(), 100).getFxImage());
         if (cRight()) {
             this.setX(this.getX() + pontanStep);
         }
     }
+
     public void pontanMove() {
         switch (dir) {
             case UP:

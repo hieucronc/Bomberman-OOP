@@ -176,6 +176,7 @@ public class Menu {
         enemyPage.setVisible(true);
         backButton.setVisible(true);
     }
+
     public static void displayInstruction() {
         backgroundMenu.setVisible(false);
         exitButton.setVisible(false);

@@ -8,6 +8,7 @@ public class Vertex {
         this.x = x;
         this.y = y;
     }
+
     public boolean isEquals(Vertex other) {
         return x == other.x && y == other.y;
     }

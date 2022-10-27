@@ -1,4 +1,5 @@
 package uet.oop.bomberman.entities.dynamic.Enemy;
+
 import javafx.scene.image.Image;
 import uet.oop.bomberman.controller.Movement;
 import uet.oop.bomberman.graphics.Sprite;
@@ -14,9 +15,11 @@ public class Statue extends Enemy {
     public static int statueStep = 1;
     private int countStatueDead = 0;
     public boolean alive = false;
+
     public Statue(int x, int y, Image image) {
-        super(x,y,image);
+        super(x, y, image);
     }
+
     public void killStatue() {
         this.setImg(Sprite.movingSprite(Sprite.statue_dead, Sprite.mob_dead1, Sprite.mob_dead2,
                 Sprite.mob_dead3, countStatueDead, decayTimer * 4 / 3).getFxImage());
@@ -30,6 +33,7 @@ public class Statue extends Enemy {
             }
         }
     }
+
     public void statueMove() {
         switch (dir) {
             case UP:
@@ -68,10 +72,11 @@ public class Statue extends Enemy {
 
         }
     }
+
     @Override
     public void update() {
         if (!alive && checkBomb()) {
-            for (int i=0;i<block.size();i++) {
+            for (int i = 0; i < block.size(); i++) {
                 if (block.get(i) instanceof Statue) {
                     if (block.get(i).getY() == this.getY() && block.get(i).getX() == this.getX()) {
                         block.remove(i);

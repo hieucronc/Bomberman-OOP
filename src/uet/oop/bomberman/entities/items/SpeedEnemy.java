@@ -9,15 +9,17 @@ import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.items.DestroyItem.*;
 
-public class SpeedEnemy extends Items{
+public class SpeedEnemy extends Items {
     public SpeedEnemy(int x, int y, Image img) {
-        super(x,y,img);
+        super(x, y, img);
     }
+
     public static void useSpeedEnemy() {
         Doll.dollStep = 2;
         Kondoria.kondoriaStep = 2;
         Minvo.minvoStep = 2;
     }
+
     public static void resetSpeedEnemy() {
         Doll.dollStep = 1;
         Kondoria.kondoriaStep = 1;
@@ -28,7 +30,7 @@ public class SpeedEnemy extends Items{
     public void update() {
         if ((!destroyMode && checkBomb())) {
             broken = true;
-            reveal(Sprite.enemy_powerup.getFxImage(),1);
+            reveal(Sprite.enemy_powerup.getFxImage(), 1);
             position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
 
         }

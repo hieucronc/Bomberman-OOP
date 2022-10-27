@@ -14,10 +14,11 @@ import static uet.oop.bomberman.entities.items.SpeedItem.*;
 import static uet.oop.bomberman.entities.items.SpeedEnemy.*;
 
 
-public class RandomItem extends Items{
+public class RandomItem extends Items {
     public RandomItem(int x, int y, Image img) {
-        super(x,y,img);
+        super(x, y, img);
     }
+
     private void useItem() {
         Random random = new Random();
         int item = random.nextInt(7);
@@ -42,11 +43,12 @@ public class RandomItem extends Items{
                 break;
         }
     }
+
     @Override
     public void update() {
         if (checkBomb()) {
             broken = true;
-            reveal(Sprite.random_item.getFxImage(),1);
+            reveal(Sprite.random_item.getFxImage(), 1);
             position[this.getY() / Sprite.SCALED_SIZE][this.getX() / Sprite.SCALED_SIZE] = 0;
         }
         if (takeItem()) {

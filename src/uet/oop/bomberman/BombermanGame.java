@@ -14,6 +14,7 @@ import uet.oop.bomberman.entities.dynamic.*;
 import uet.oop.bomberman.entities.dynamic.Enemy.*;
 import uet.oop.bomberman.entities.items.*;
 import uet.oop.bomberman.graphics.Sprite;
+
 import static uet.oop.bomberman.entities.items.BombPassItem.*;
 import static uet.oop.bomberman.entities.items.CounterSpeed.*;
 import static uet.oop.bomberman.entities.items.DestroyItem.*;
@@ -21,6 +22,7 @@ import static uet.oop.bomberman.entities.items.FlameItem.*;
 import static uet.oop.bomberman.entities.items.FlamePassItem.*;
 import static uet.oop.bomberman.entities.items.SpeedEnemy.*;
 import static uet.oop.bomberman.entities.items.SpeedItem.*;
+
 import java.io.File;
 import java.util.*;
 
@@ -282,13 +284,13 @@ public class BombermanGame extends Application {
 
     public void render() {
 
-            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            entities.forEach(g -> g.render(gc));
-            block.forEach(g -> g.render(gc));
-            bombs.forEach(g -> g.render(gc));
-            flame.forEach(g -> g.render(gc));
-            items.forEach(g -> g.render(gc));
-            enemy.forEach(g -> g.render(gc));
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        entities.forEach(g -> g.render(gc));
+        block.forEach(g -> g.render(gc));
+        bombs.forEach(g -> g.render(gc));
+        flame.forEach(g -> g.render(gc));
+        items.forEach(g -> g.render(gc));
+        enemy.forEach(g -> g.render(gc));
 
     }
 }
